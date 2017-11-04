@@ -286,7 +286,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/04/git-page-hexo-domain/" itemprop="url">gitpage + hexo（及一些博客插件）+ 域名 试水个人博客</a></h2>
+                <a class="post-title-link" href="/2017/11/04/git-page-hexo-domain/" itemprop="url">GitHub Pages + hexo（及一些博客插件）+ 域名 试水个人博客</a></h2>
         
 
         <div class="post-meta">
@@ -345,16 +345,17 @@
 
           
             
+            <!--noindex-->
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/04/git-page-hexo-domain/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/04/git-page-hexo-domain/" itemprop="commentCount"></span>
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/04/git-page-hexo-domain/" itemprop="commentsCount"></span>
                 </a>
               </span>
+              <!--/noindex-->
             
           
 
@@ -381,13 +382,23 @@
 
       
         
-          <blockquote>
-<p>gitPage</p>
-<p>搜索（Algolia）</p>
+          <h1 id="轻量级建博客站"><a href="#轻量级建博客站" class="headerlink" title="轻量级建博客站"></a>轻量级建博客站</h1><h2 id="1-GitHub-Page"><a href="#1-GitHub-Page" class="headerlink" title="1. GitHub Page"></a>1. GitHub Page</h2><p>这个就不多说了，见<a href="https://pages.github.com/" target="_blank" rel="external">官方doc</a>，创建<code>你的github名字.github.io</code>的仓库，然后上传网站文件到该仓库就可以通过<code>你的github名字.github.io</code>访问啦～✌️</p>
+<h2 id="2-绑定域名"><a href="#2-绑定域名" class="headerlink" title="2. 绑定域名"></a>2. 绑定域名</h2><ul>
+<li><p>购买域名（很便宜的啦）<br><a href="https://www.aliyun.com/" target="_blank" rel="external">阿里云购买(万网)</a><br><a href="https://cloud.tencent.com/" target="_blank" rel="external">腾讯云购买，同上</a></p>
+</li>
+<li><p>绑定域名指向github个人主页</p>
+</li>
+</ul>
+<p>在域名解析管理中，增加<strong>类型</strong>为<code>CNAME</code>、<strong>主机记录</strong>分别为<code>@</code>和<code>www</code>、<strong>记录值</strong>为<code>yourGithubName.github.io</code>的2条解析记录，不建议<code>A</code>类型绑定<code>ping xx.github.io</code>得到的IP，这个会变。</p>
+<ul>
+<li>设置<code>yourGithubName.github.io</code>跳转到你的域名</li>
+</ul>
+<p>进入你的github.io项目的setting，<code>Custom domain</code>里输入要绑定的域名，保存。</p>
+<p>如果你使用的是hexo框架建站，那么可以在source目录下新建一个<code>CNAME</code>的文件（没有任何后缀），文件内容是你的域名<code>xxx.xx</code>不要带<code>http://</code>、<code>wwww</code>等前缀，保存发布（默认会发布到主页仓库的根目录）。</p>
+<blockquote>
+<p><strong>此处扯点儿淡，阿里云的买域名不知是之前绑定了香港服务器搭梯子，然后最近开会的原因还是怎么滴，网页访问一直是DNS解析失败，重新绑定到github.io也没用，最后把DNS地址换成了腾讯云提供的居然可以了🤦‍♂️。</strong></p>
 </blockquote>
-<p><a href="http://theme-next.iissnan.com/third-party-services.html#algolia-search" target="_blank" rel="external">官方Doc: NexT主题支持Algolia</a></p>
-<p>注册账号，进入dashboard，在Indices下新建Index，在API Key下获取接入配置（注意保密哈），在<code>站点配置文件</code>内增加：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># applicationID、apiKey、adminApiKey、indexName均为Aloglia获取的配置</span></div><div class="line"><span class="attr">algolia:</span></div><div class="line"><span class="attr">  applicationID:</span> <span class="string">'Application ID'</span></div><div class="line"><span class="attr">  apiKey:</span> <span class="string">'Search-Only API Key'</span></div><div class="line"><span class="attr">  adminApiKey:</span> <span class="string">'Admin API Key'</span></div><div class="line"><span class="attr">  indexName:</span> <span class="string">'Index Name'</span></div><div class="line"><span class="attr">  chunkSize:</span> <span class="number">5000</span></div></pre></td></tr></table></figure></p>
-<p>修改<code>主题配置文件_config.yml</code>中的Algolia Search为true。<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Algolia Search</span></div><div class="line"><span class="attr">algolia_search:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  hits:</span></div><div class="line"><span class="attr">    per_page:</span> <span class="number">10</span></div><div class="line"><span class="attr">  labels:</span></div><div class="line"><span class="attr">    input_placeholder:</span> <span class="string">Search</span> <span class="string">for</span> <span class="string">Posts</span></div><div class="line"><span class="attr">    hits_empty:</span> <span class="string">"不好意思，木有'$&#123;query&#125;'的搜索结果😂"</span></div><div class="line"><span class="attr">    hits_stats:</span> <span class="string">"$&#123;hits&#125; results found in $&#123;time&#125; ms"</span></div></pre></td></tr></table></figure></p>
+<h2 id="3-hexo建站"><a href="#3-hexo建站" class="headerlink" title="3. hexo建站"></a>3. hexo建站</h2><p>一句话：按照<a href="https://hexo.io/docs/" target="_blank" rel="external">Hexo官方Doc</a>来就对了。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/04/git-page-hexo-domain/#more" rel="contents">
@@ -508,16 +519,17 @@
 
           
             
+            <!--noindex-->
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/10/22/css3-grid-layout/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/22/css3-grid-layout/" itemprop="commentCount"></span>
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/22/css3-grid-layout/" itemprop="commentsCount"></span>
                 </a>
               </span>
+              <!--/noindex-->
             
           
 
@@ -679,16 +691,17 @@
 
           
             
+            <!--noindex-->
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/10/21/hexo-iframe/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/21/hexo-iframe/" itemprop="commentCount"></span>
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/21/hexo-iframe/" itemprop="commentsCount"></span>
                 </a>
               </span>
+              <!--/noindex-->
             
           
 
@@ -844,16 +857,17 @@
 
           
             
+            <!--noindex-->
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/10/20/google-search-skill/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/20/google-search-skill/" itemprop="commentCount"></span>
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/20/google-search-skill/" itemprop="commentsCount"></span>
                 </a>
               </span>
+              <!--/noindex-->
             
           
 
@@ -1010,16 +1024,17 @@
 
           
             
+            <!--noindex-->
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/10/19/ecs-ss-cross-wall/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/19/ecs-ss-cross-wall/" itemprop="commentCount"></span>
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/19/ecs-ss-cross-wall/" itemprop="commentsCount"></span>
                 </a>
               </span>
+              <!--/noindex-->
             
           
 
@@ -1353,24 +1368,32 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://jonge.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
 
 
 
 	
 
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
 
 
-
-
-  
 
 
 

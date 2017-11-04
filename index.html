@@ -104,11 +104,11 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'TX3HWHW4MX',
+      apiKey: '37cddc76297f3056858eea2ec2c60561',
+      indexName: 'gitpage_blog_search',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
     }
   };
 </script>
@@ -198,9 +198,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -229,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/02/ecs_ss_cross_wall/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="辣手摧花">
@@ -248,7 +286,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/02/ecs_ss_cross_wall/" itemprop="url">阿里云ECS+shadowsocks 科学上网</a></h2>
+                <a class="post-title-link" href="/2017/11/04/git-page-hexo-domain/" itemprop="url">gitpage + hexo（及一些博客插件）+ 域名 试水个人博客</a></h2>
         
 
         <div class="post-meta">
@@ -260,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T23:52:14+08:00">
-                2017-11-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T21:14:10+08:00">
+                2017-11-04
               </time>
             
 
@@ -283,7 +321,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/利器/" itemprop="url" rel="index">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/利器/" itemprop="url" rel="index">
                     <span itemprop="name">利器</span>
                   </a>
                 </span>
@@ -301,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/02/ecs_ss_cross_wall/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/04/git-page-hexo-domain/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/02/ecs_ss_cross_wall/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/04/git-page-hexo-domain/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -332,37 +381,20 @@
 
       
         
-          
-            <h1 id="嗯，曲线救国—-—-。"><a href="#嗯，曲线救国—-—-。" class="headerlink" title="嗯，曲线救国— —||。"></a>嗯，曲线救国— —||。</h1><blockquote>
-<p>阿里ECS+ShadowSocks.</p>
+          <blockquote>
+<p>gitPage</p>
+<p>搜索（Algolia）</p>
 </blockquote>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ul>
-<li>STEP_1</li>
-</ul>
-<p>购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）</p>
-<ul>
-<li>STEP_2</li>
-</ul>
-<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
-<ul>
-<li><p>STEP_3<br>配置ECS开启上面设置的端口，在阿里云控制台，进入ECS实例管理，找到对应的实例，<code>操作</code>列中，<code>更多</code>里选择<code>安全组配置</code>，在<code>配置规则</code>中增加<em>入方向</em>的规则即可。</p>
-</li>
-<li><p>STEP_4</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动ss</span></div><div class="line">启动：/etc/init.d/shadowsocks start</div></pre></td></tr></table></figure>
-<ul>
-<li>STEP_5</li>
-</ul>
-<p>客户端下载及配置。（很简单，下载客户端，添加上面配置的IP:PORT+密码即可）</p>
-<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="external">shadowsocks官网</a></p>
-<p><a href="https://github.com/shadowsocks" target="_blank" rel="external">github地址</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ss相关其它命令</span></div><div class="line">停止：/etc/init.d/shadowsocks stop</div><div class="line">重启：/etc/init.d/shadowsocks restart</div><div class="line">状态：/etc/init.d/shadowsocks status</div><div class="line">卸载：./shadowsocks.sh uninstall</div><div class="line"></div><div class="line"><span class="comment"># ss的配置文件（可以设置多用户什么的）</span></div><div class="line">vi /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<p><strong><a href="https://teddysun.com/342.html" target="_blank" rel="external">shadowsocks python版</a></strong></p>
-<p><strong><a href="https://teddysun.com/399.html" target="_blank" rel="external">开发者提供的FAQ</a></strong></p>
-<p><strong><a href="https://teddysun.com/486.html" target="_blank" rel="external">shadowsocks安装四合一(R/python/Go/libev)版本</a></strong></p>
-
-          
+<p><a href="http://theme-next.iissnan.com/third-party-services.html#algolia-search" target="_blank" rel="external">官方Doc: NexT主题支持Algolia</a></p>
+<p>注册账号，进入dashboard，在Indices下新建Index，在API Key下获取接入配置（注意保密哈），在<code>站点配置文件</code>内增加：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># applicationID、apiKey、adminApiKey、indexName均为Aloglia获取的配置</span></div><div class="line"><span class="attr">algolia:</span></div><div class="line"><span class="attr">  applicationID:</span> <span class="string">'Application ID'</span></div><div class="line"><span class="attr">  apiKey:</span> <span class="string">'Search-Only API Key'</span></div><div class="line"><span class="attr">  adminApiKey:</span> <span class="string">'Admin API Key'</span></div><div class="line"><span class="attr">  indexName:</span> <span class="string">'Index Name'</span></div><div class="line"><span class="attr">  chunkSize:</span> <span class="number">5000</span></div></pre></td></tr></table></figure></p>
+<p>修改<code>主题配置文件_config.yml</code>中的Algolia Search为true。<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Algolia Search</span></div><div class="line"><span class="attr">algolia_search:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  hits:</span></div><div class="line"><span class="attr">    per_page:</span> <span class="number">10</span></div><div class="line"><span class="attr">  labels:</span></div><div class="line"><span class="attr">    input_placeholder:</span> <span class="string">Search</span> <span class="string">for</span> <span class="string">Posts</span></div><div class="line"><span class="attr">    hits_empty:</span> <span class="string">"不好意思，木有'$&#123;query&#125;'的搜索结果😂"</span></div><div class="line"><span class="attr">    hits_stats:</span> <span class="string">"$&#123;hits&#125; results found in $&#123;time&#125; ms"</span></div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/04/git-page-hexo-domain/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -512,32 +544,17 @@
 
       
         
-          
-            <h1 id="1-开箱"><a href="#1-开箱" class="headerlink" title="1. 开箱"></a>1. 开箱</h1><p>基本原理：将某个容器按照行、列划分，形成最小单元，然后设置内容占据单元个数（行、列）。为了我们更顺滑的布局，点赞。</p>
+          <h1 id="1-开箱"><a href="#1-开箱" class="headerlink" title="1. 开箱"></a>1. 开箱</h1><p>基本原理：将某个容器按照行、列划分，形成最小单元，然后设置内容占据单元个数（行、列）。为了我们更顺滑的布局，点赞。</p>
 <p>兼容性的话……貌似还需要一段时间才能遍地开花呢：</p>
 <img src="/2017/10/22/css3-grid-layout/css-grid-caniuse.jpg" title="Fig1. CSS3 Grid Layout CanIuse">
 <h1 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h1><p>假设有这样一个页面结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>I-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>I-2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>I-3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>I-4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h2 id="2-1-设置容器以网格形式呈现"><a href="#2-1-设置容器以网格形式呈现" class="headerlink" title="2.1 设置容器以网格形式呈现"></a>2.1 设置容器以网格形式呈现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">    display: grid;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="2-2-画网格"><a href="#2-2-画网格" class="headerlink" title="2.2 画网格"></a>2.2 画网格</h2><p><code>grid-template-rows</code>和<code>grid-template-columns</code>设置行、列占比。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">grid-template-rows</span>: 1<span class="selector-tag">fr</span>; <span class="comment">/* 1行，百分百宽，fr类似于占比 */</span></div><div class="line"><span class="selector-tag">grid-template-rows</span>: 1<span class="selector-tag">fr</span> 2<span class="selector-tag">fr</span>; <span class="comment">/* 2行，高度三等分，第1行占1份，第2行占2份 */</span></div><div class="line"><span class="selector-tag">grid-template-rows</span>: 1<span class="selector-tag">fr</span> 20<span class="selector-tag">px</span> 2<span class="selector-tag">fr</span>; <span class="comment">/* 3行，高度减去20px然后三等分，第1行占1份，第3行占2份，第2行高20px */</span></div><div class="line"><span class="selector-tag">grid-template-rows</span>: 20<span class="selector-tag">px</span> <span class="selector-tag">repeat</span>(2, 1<span class="selector-tag">fr</span>, 2<span class="selector-tag">fr</span>); <span class="comment">/* 5行，高度减去20px然后5等分，第2行占1份，第3行占2份，第4行占1份，第5行占2份 */</span></div></pre></td></tr></table></figure></p>
-<p>假设如下设置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">container</span> &#123;</div><div class="line">    <span class="attribute">display</span>: grid;</div><div class="line">    <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(3, 1fr);</div><div class="line">    <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(4, 1fr);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>那么我们会得到这样的网格（图中黑色底线）:</p>
-<img src="/2017/10/22/css3-grid-layout/css-grid-diy.jpg" title="Fig2. CSS3 Grid Demo1">
-<h2 id="2-3-设置行列间隔"><a href="#2-3-设置行列间隔" class="headerlink" title="2.3 设置行列间隔"></a>2.3 设置行列间隔</h2><p><code>grid-gap: row column</code>，也可以通过<code>grid-row-gap</code>和<code>grid-column-gap</code>单独设置。</p>
-<h2 id="2-4-设置元素位置"><a href="#2-4-设置元素位置" class="headerlink" title="2.4 设置元素位置"></a>2.4 设置元素位置</h2><p>如果不设置，则默认元素按照阅读顺序填充单元格。</p>
-<p>通过每一个元素的<code>grid-column</code>和<code>grid-row</code>设置占比，比如：<code>grid-column:1/3;</code>意思是元素<code>宽</code>等于从第<code>1</code>条网格线到第<code>3</code>条网格线之间的距离（网格线见上图Fig2中的序号）。</p>
-<p>同样的，<code>grid-column</code>可以拆分为<code>grid-column-start</code>和<code>grid-column-end</code>，<code>行</code>同理。</p>
-<p>如下设置，效果见前图。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.blue</span> &#123;</div><div class="line">    <span class="attribute">grid-row</span>: <span class="number">1</span>;</div><div class="line">    <span class="attribute">grid-column</span>: <span class="number">1</span> / <span class="number">4</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.purple</span> &#123;</div><div class="line">    <span class="attribute">grid-row</span>: <span class="number">1</span> / <span class="number">2</span>;</div><div class="line">    <span class="attribute">grid-column</span>: <span class="number">2</span> / <span class="number">4</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.brown</span> &#123;</div><div class="line">    <span class="attribute">grid-row</span>: <span class="number">3</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.red</span> &#123;</div><div class="line">    <span class="attribute">grid-row</span>: <span class="number">3</span>;</div><div class="line">    <span class="attribute">grid-column</span>: <span class="number">4</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>另外，<code>z-index</code>设置层叠次序。</p>
-<h1 id="3-一个简单的DEMO"><a href="#3-一个简单的DEMO" class="headerlink" title="3. 一个简单的DEMO"></a>3. 一个简单的DEMO</h1>
-<h3>CSS Grid Layout Playground</h3>
-<p data-height="360" data-theme-id="dark" data-slug-hash="WZWZJR" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="css-grid Layout Playground" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/WZWZJR/" target="_blank" rel="external">css-grid Layout Playground</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-
-<hr>
-<p><strong>参考</strong></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout" target="_blank" rel="external">MDN CSS3 Grid Layout</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/22/css3-grid-layout/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -698,8 +715,7 @@
 
       
         
-          
-            <h1 id="1-hexo嵌入CodePen"><a href="#1-hexo嵌入CodePen" class="headerlink" title="1. hexo嵌入CodePen"></a>1. hexo嵌入CodePen</h1><p>在<a href="https://codepen.io" target="_blank" rel="external">codepen</a>页面右下角点击embed，复制iframe（或html）菜单下的代码到下面代码块的<code>EMBED</code>里即可。</p>
+          <h1 id="1-hexo嵌入CodePen"><a href="#1-hexo嵌入CodePen" class="headerlink" title="1. hexo嵌入CodePen"></a>1. hexo嵌入CodePen</h1><p>在<a href="https://codepen.io" target="_blank" rel="external">codepen</a>页面右下角点击embed，复制iframe（或html）菜单下的代码到下面代码块的<code>EMBED</code>里即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% raw %&#125;</div><div class="line">EMBED</div><div class="line">&#123;% endraw %&#125;</div></pre></td></tr></table></figure>
 <p><strong>示例</strong></p>
 <blockquote>
@@ -708,15 +724,13 @@
 
 <p data-height="265" data-theme-id="dark" data-slug-hash="LkdOwj" data-default-tab="js,result" data-user="ge1doot" data-embed-version="2" data-pen-title="The Last Experience" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/ge1doot/pen/LkdOwj/" target="_blank" rel="external">The Last Experience</a> by Gerard Ferrandez (<a href="https://codepen.io/ge1doot" target="_blank" rel="external">@ge1doot</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-
-<h1 id="2-hexo嵌入jsFiddle"><a href="#2-hexo嵌入jsFiddle" class="headerlink" title="2. hexo嵌入jsFiddle"></a>2. hexo嵌入jsFiddle</h1><p>hexo直接支持jsfiddle，所以如果有这么个代码片段<code>https://jsfiddle.net/5zyvfgav/</code>，那么直接嵌入到如下模板中（用<code>5zyvfgav</code>替换<code>shorttag</code>）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% jsfiddle shorttag [tabs] [skin] [width] [height] %&#125;</div></pre></td></tr></table></figure>
-<p>结果如下：<br><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/5zyvfgav/embedded/dark/light" frameborder="0" allowfullscreen></iframe><br>当然，你也可以用<code>raw</code>来嵌入：<br>
-<script async src="//jsfiddle.net/5zyvfgav/embed/js,html,css,result/dark/"></script>
-</p>
-<h1 id="3-参考"><a href="#3-参考" class="headerlink" title="3.参考"></a>3.参考</h1><p><a href="https://hexo.io/docs/tag-plugins.html" target="_blank" rel="external">hexo DOC -tag plugins</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/21/hexo-iframe/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -866,8 +880,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>珍爱生命，远离百度，善用利器，阿弥陀佛。</p>
 </blockquote>
 <h2 id="可能会用到的设置"><a href="#可能会用到的设置" class="headerlink" title="可能会用到的设置"></a>可能会用到的设置</h2><h3 id="阻止google搜索自己跳转到对应的国家（hk、jp呀什么的）"><a href="#阻止google搜索自己跳转到对应的国家（hk、jp呀什么的）" class="headerlink" title="阻止google搜索自己跳转到对应的国家（hk、jp呀什么的）"></a>阻止google搜索自己跳转到对应的国家（hk、jp呀什么的）</h3><p>使用<code>https://google.com/ncr</code>即可。</p>
@@ -876,76 +889,192 @@
 <h3 id="设置默认搜索引擎"><a href="#设置默认搜索引擎" class="headerlink" title="设置默认搜索引擎"></a>设置默认搜索引擎</h3><p>浏览器地址栏输入：<code>chrome://settings/searchEngines</code>，回车。</p>
 <p>底下other engines右侧点击<code>ADD</code>，添加后在更多里设置为默认引擎。</p>
 <p>url设置为<code>https://www.google.com/ncr#q=%s&amp;safe=off</code></p>
-<h2 id="常用搜索小技巧"><a href="#常用搜索小技巧" class="headerlink" title="常用搜索小技巧"></a>常用搜索小技巧</h2><h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><table>
-<thead>
-<tr>
-<th>符号</th>
-<th>作用</th>
-<th>举个栗子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;&quot;</code></td>
-<td>精确匹配</td>
-<td><code>&quot;天空是红色的&quot;</code>只显示包含完整”天空是红色的”的结果以及广告</td>
-</tr>
-<tr>
-<td><code>*</code></td>
-<td>通配</td>
-<td><code>天空是*色的</code>会显示”天空是蓝色的”等结果</td>
-</tr>
-<tr>
-<td><code>-</code>（前面有空格)</td>
-<td>剔除</td>
-<td><code>天空是*色的 -蓝</code>会显示剔除了“蓝”的结果，汉字不太好使</td>
-</tr>
-<tr>
-<td><code>..</code></td>
-<td>数字范围</td>
-<td><code>奥运会 2008..2016</code> 2008到2016之间的，<code>奥运会 ..2008</code>只有2008的</td>
-</tr>
-<tr>
-<td><code>OR</code></td>
-<td>或</td>
-<td><code>&quot;天空是红色的&quot; OR &quot;天空是紫色的&quot;</code>显示红色或紫色天空</td>
-</tr>
-</tbody>
-</table>
-<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h3><table>
-<thead>
-<tr>
-<th>符号</th>
-<th>作用</th>
-<th>举个栗子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>site:</code></td>
-<td>某站内搜索</td>
-<td><code>人偶 site:huaban.com</code>在花瓣网搜索关键字人偶</td>
-</tr>
-<tr>
-<td><code>link:</code></td>
-<td>跳转到某站的结果</td>
-<td><code>人偶 link:huaban.com</code>与site类似吧</td>
-</tr>
-<tr>
-<td><code>related:</code></td>
-<td>同类网站</td>
-<td><code>related:google.com</code>有雅虎、Bing等，居然没有我大百度，心疼三秒</td>
-</tr>
-</tbody>
-</table>
-<h3 id="在线小工具"><a href="#在线小工具" class="headerlink" title="在线小工具"></a>在线小工具</h3><ul>
-<li>计算器 <code>2+3</code></li>
-<li>单位转换 <code>RMB to $</code></li>
-<li>颜色转换 <code>rgb to hex</code> <strong>简直6</strong></li>
+<h2 id="常用搜索小技巧"><a href="#常用搜索小技巧" class="headerlink" title="常用搜索小技巧"></a>常用搜索小技巧</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/20/google-search-skill/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="辣手摧花">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make Bitch Cry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/ecs-ss-cross-wall/" itemprop="url">阿里云ECS+shadowsocks 科学上网</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T23:39:17+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/利器/" itemprop="url" rel="index">
+                    <span itemprop="name">利器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/19/ecs-ss-cross-wall/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/19/ecs-ss-cross-wall/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="嗯，曲线救国—-—-。"><a href="#嗯，曲线救国—-—-。" class="headerlink" title="嗯，曲线救国— —||。"></a>嗯，曲线救国— —||。</h1><blockquote>
+<p>阿里ECS+ShadowSocks.</p>
+</blockquote>
+<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ul>
+<li>STEP_1</li>
 </ul>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><ul>
-<li>文件类型<code>filetype:pdf</code>，好像直接在后面加空格<code>pdf</code>更方便些，用于非常见后缀比较实用。</li>
+<p>购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）</p>
+<ul>
+<li>STEP_2</li>
 </ul>
+<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line">&lt;!-- more --&gt;</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>STEP_3<br>配置ECS开启上面设置的端口，在阿里云控制台，进入ECS实例管理，找到对应的实例，<code>操作</code>列中，<code>更多</code>里选择<code>安全组配置</code>，在<code>配置规则</code>中增加<em>入方向</em>的规则即可。</p>
+</li>
+<li><p>STEP_4</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动ss</span></div><div class="line">启动：/etc/init.d/shadowsocks start</div></pre></td></tr></table></figure>
+<ul>
+<li>STEP_5</li>
+</ul>
+<p>客户端下载及配置。（很简单，下载客户端，添加上面配置的IP:PORT+密码即可）</p>
+<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="external">shadowsocks官网</a></p>
+<p><a href="https://github.com/shadowsocks" target="_blank" rel="external">github地址</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ss相关其它命令</span></div><div class="line">停止：/etc/init.d/shadowsocks stop</div><div class="line">重启：/etc/init.d/shadowsocks restart</div><div class="line">状态：/etc/init.d/shadowsocks status</div><div class="line">卸载：./shadowsocks.sh uninstall</div><div class="line"></div><div class="line"><span class="comment"># ss的配置文件（可以设置多用户什么的）</span></div><div class="line">vi /etc/shadowsocks.json</div></pre></td></tr></table></figure>
+<p><strong><a href="https://teddysun.com/342.html" target="_blank" rel="external">shadowsocks python版</a></strong></p>
+<p><strong><a href="https://teddysun.com/399.html" target="_blank" rel="external">开发者提供的FAQ</a></strong></p>
+<p><strong><a href="https://teddysun.com/486.html" target="_blank" rel="external">shadowsocks安装四合一(R/python/Go/libev)版本</a></strong></p>
 
           
         
@@ -1031,7 +1160,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1042,7 +1171,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1053,7 +1182,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -1259,6 +1388,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
 
 
 

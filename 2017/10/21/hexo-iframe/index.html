@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Make Bitch Cry">
 <meta property="og:description" content="1. hexo嵌入CodePen在codepen页面右下角点击embed，复制iframe（或html）菜单下的代码到下面代码块的EMBED里即可。 123&amp;#123;% raw %&amp;#125;EMBED&amp;#123;% endraw %&amp;#125; 示例  示例中魔性动画来源The Last Experience，感谢原作者Gerard Ferrandez分享。   See the Pen The">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-02T15:52:46.000Z">
+<meta property="og:updated_time" content="2017-11-04T15:45:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo嵌入在线代码演示（codepen、jsFiddle等）">
 <meta name="twitter:description" content="1. hexo嵌入CodePen在codepen页面右下角点击embed，复制iframe（或html）菜单下的代码到下面代码块的EMBED里即可。 123&amp;#123;% raw %&amp;#125;EMBED&amp;#123;% endraw %&amp;#125; 示例  示例中魔性动画来源The Last Experience，感谢原作者Gerard Ferrandez分享。   See the Pen The">
@@ -108,11 +108,11 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'TX3HWHW4MX',
+      apiKey: '37cddc76297f3056858eea2ec2c60561',
+      indexName: 'gitpage_blog_search',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
     }
   };
 </script>
@@ -201,9 +201,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -353,6 +391,7 @@
 <p data-height="265" data-theme-id="dark" data-slug-hash="LkdOwj" data-default-tab="js,result" data-user="ge1doot" data-embed-version="2" data-pen-title="The Last Experience" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/ge1doot/pen/LkdOwj/" target="_blank" rel="external">The Last Experience</a> by Gerard Ferrandez (<a href="https://codepen.io/ge1doot" target="_blank" rel="external">@ge1doot</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
+<a id="more"></a>
 <h1 id="2-hexo嵌入jsFiddle"><a href="#2-hexo嵌入jsFiddle" class="headerlink" title="2. hexo嵌入jsFiddle"></a>2. hexo嵌入jsFiddle</h1><p>hexo直接支持jsfiddle，所以如果有这么个代码片段<code>https://jsfiddle.net/5zyvfgav/</code>，那么直接嵌入到如下模板中（用<code>5zyvfgav</code>替换<code>shorttag</code>）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% jsfiddle shorttag [tabs] [skin] [width] [height] %&#125;</div></pre></td></tr></table></figure>
 <p>结果如下：<br><iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/5zyvfgav/embedded/dark/light" frameborder="0" allowfullscreen></iframe><br>当然，你也可以用<code>raw</code>来嵌入：<br>
@@ -486,7 +525,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,7 +536,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -508,7 +547,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -746,6 +785,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
 
 
 

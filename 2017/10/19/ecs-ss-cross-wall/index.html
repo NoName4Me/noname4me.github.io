@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks12345678910111213# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https:">
+<meta name="description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里云ECS+shadowsocks 科学上网">
 <meta property="og:url" content="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/index.html">
 <meta property="og:site_name" content="Make Bitch Cry">
-<meta property="og:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks12345678910111213# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https:">
+<meta property="og:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-04T15:46:23.000Z">
+<meta property="og:updated_time" content="2017-11-12T14:14:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta name="twitter:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks12345678910111213# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https:">
+<meta name="twitter:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
 
 
 
@@ -381,7 +381,8 @@
 <ul>
 <li>STEP_2</li>
 </ul>
-<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line">&lt;!-- more --&gt;</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
+<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <ul>
 <li><p>STEP_3<br>配置ECS开启上面设置的端口，在阿里云控制台，进入ECS实例管理，找到对应的实例，<code>操作</code>列中，<code>更多</code>里选择<code>安全组配置</code>，在<code>配置规则</code>中增加<em>入方向</em>的规则即可。</p>
 </li>
@@ -517,7 +518,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +540,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

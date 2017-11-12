@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js,DomEvent," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Make Bitch Cry">
-<meta property="og:url" content="https://noname4me.github.io/tags/CSS/index.html">
+<meta name="description" content="1. Mouse事件1.1 鼠标进/出一共有两对，mouseenter/mouseleave和mouseover/mouseout，两者的区别如下：  后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）； mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。  请看示例（仔细体会）：  See the Pen">
+<meta name="keywords" content="js,DomEvent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端常用的事件总结（Mouse&#x2F;keyboard等）">
+<meta property="og:url" content="https://noname4me.github.io/2017/11/12/all-about-event/index.html">
 <meta property="og:site_name" content="Make Bitch Cry">
+<meta property="og:description" content="1. Mouse事件1.1 鼠标进/出一共有两对，mouseenter/mouseleave和mouseover/mouseout，两者的区别如下：  后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）； mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。  请看示例（仔细体会）：  See the Pen">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-12T14:15:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Make Bitch Cry">
+<meta name="twitter:title" content="前端常用的事件总结（Mouse&#x2F;keyboard等）">
+<meta name="twitter:description" content="1. Mouse事件1.1 鼠标进/出一共有两对，mouseenter/mouseleave和mouseover/mouseout，两者的区别如下：  后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）； mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。  请看示例（仔细体会）：  See the Pen">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://noname4me.github.io/tags/CSS/"/>
+  <link rel="canonical" href="https://noname4me.github.io/2017/11/12/all-about-event/"/>
 
 
 
 
 
-  <title>标签: CSS | Make Bitch Cry</title>
+  <title>前端常用的事件总结（Mouse/keyboard等） | Make Bitch Cry</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,54 +257,192 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>CSS<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/12/all-about-event/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="辣手摧花">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make Bitch Cry">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/10/22/css3-grid-layout/" itemprop="url">
-              
-                <span itemprop="name">CSS3 Grid布局学习</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">前端常用的事件总结（Mouse/keyboard等）</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-22T17:37:57+08:00"
-              content="2017-10-22" >
-          10-22
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-12T21:51:35+08:00">
+                2017-11-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/12/all-about-event/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/12/all-about-event/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h2 id="1-Mouse事件"><a href="#1-Mouse事件" class="headerlink" title="1. Mouse事件"></a>1. Mouse事件</h2><h2 id="1-1-鼠标进-出"><a href="#1-1-鼠标进-出" class="headerlink" title="1.1 鼠标进/出"></a>1.1 鼠标进/出</h2><p>一共有两对，<code>mouseenter</code>/<code>mouseleave</code>和<code>mouseover</code>/<code>mouseout</code>，两者的区别如下：</p>
+<ol>
+<li>后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）；</li>
+<li>mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。</li>
+</ol>
+<p>请看示例（仔细体会）：</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="bYWBzv" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="all-about-event" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/bYWBzv/" target="_blank" rel="external">all-about-event</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<a id="more"></a>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/DomEvent/" rel="tag"># DomEvent</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/04/git-page-hexo-domain/" rel="next" title="GitHub Pages + hexo（及一些博客插件）+ 域名 试水个人博客">
+                <i class="fa fa-chevron-left"></i> GitHub Pages + hexo（及一些博客插件）+ 域名 试水个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -307,6 +450,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -327,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -394,6 +555,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Mouse事件"><span class="nav-text">1. Mouse事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-鼠标进-出"><span class="nav-text">1.1 鼠标进/出</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -527,6 +704,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -550,6 +731,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/11/12/all-about-event/"});
 		
 
 		(function() {

@@ -373,7 +373,7 @@
         
           <p>小角度总结一下事件。</p>
 <img src="/2017/11/12/all-about-event/Event.png" title="Fig1. Events in This Post">
-<h1 id="1-Mouse事件"><a href="#1-Mouse事件" class="headerlink" title="1. Mouse事件"></a>1. Mouse事件</h1><h2 id="1-1-鼠标进-出"><a href="#1-1-鼠标进-出" class="headerlink" title="1.1 鼠标进/出"></a>1.1 鼠标进/出</h2><p>一共有两对，<code>mouseenter</code>/<code>mouseleave</code>和<code>mouseover</code>/<code>mouseout</code>，两者的区别如下：</p>
+<h1 id="1-MouseEvent"><a href="#1-MouseEvent" class="headerlink" title="1. MouseEvent"></a>1. MouseEvent</h1><h2 id="1-1-鼠标进-出"><a href="#1-1-鼠标进-出" class="headerlink" title="1.1 鼠标进/出"></a>1.1 鼠标进/出</h2><p>一共有两对，<code>mouseenter</code>/<code>mouseleave</code>和<code>mouseover</code>/<code>mouseout</code>，两者的区别如下：</p>
 <ol>
 <li>后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）；</li>
 <li>mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。</li>

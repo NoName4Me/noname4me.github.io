@@ -88,7 +88,7 @@
 <meta property="og:description" content="小角度总结一下事件。  1. MouseEvent1.1 鼠标悬浮一共有两对，mouseenter/mouseleave和mouseover/mouseout，两者的区别如下：  后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）； mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。  请看示例（仔细体会）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/12/all-about-event/Event.png">
-<meta property="og:updated_time" content="2017-11-16T16:15:11.000Z">
+<meta property="og:updated_time" content="2017-11-19T10:02:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端常见Event总结（待续）">
 <meta name="twitter:description" content="小角度总结一下事件。  1. MouseEvent1.1 鼠标悬浮一共有两对，mouseenter/mouseleave和mouseover/mouseout，两者的区别如下：  后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）； mouseleave与mouseout，后者在离开子层（即使仍然在范围内）也会触发事件，前者不会。  请看示例（仔细体会）">
@@ -408,10 +408,16 @@
 <h1 id="2-KeyboardEvent"><a href="#2-KeyboardEvent" class="headerlink" title="2. KeyboardEvent"></a>2. KeyboardEvent</h1><blockquote>
 <p><strong>Note:</strong> 如果是为了处理输入事件，最好使用<code>InputEvent</code>，因为<code>KeyboardEvent</code>只代表键盘事件，非键盘的输入可能无法如你所愿哦～</p>
 </blockquote>
-<p>响应顺序：<code>keydown</code> –&gt; <code>keyup</code> –&gt; <code>keypress</code>。</p>
+<h1 id="2-1-基础"><a href="#2-1-基础" class="headerlink" title="2.1 基础"></a>2.1 基础</h1><p>响应顺序：<code>keydown</code> –&gt; <code>keyup</code> –&gt; <code>keypress</code>。</p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code#Code_values_on_Windows" target="_blank" rel="external">键盘编码参考KeyboardEvent.code</a></p>
 <p><a href="http://keycode.info/" target="_blank" rel="external">在线获取keyCode</a></p>
 <p><code>// TODO add select article link.</code><br>一般的，非输入DOMElement无法响应<code>KeyboardEvent</code>，但是可以添加<code>tabindex=数字</code>属性强制让其可以focus，从而响应（见<code>1.4</code>节示例）。</p>
+<h1 id="2-2-组合键"><a href="#2-2-组合键" class="headerlink" title="2.2 组合键"></a>2.2 组合键</h1><p><code>Ctrl</code>、<code>Shift</code>、<code>Alt</code>、<code>Meta</code>在键盘事件中都有对应的标志位(<code>true/false</code>)：<code>ctrlKey</code>、<code>shiftKey</code>、<code>altKey</code>、<code>metaKey</code>。</p>
+<p>请看示例（Ctrl+c/v复制小球）：</p>
+
+<p data-height="265" data-theme-id="dark" data-slug-hash="POERXz" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="combined-key" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/POERXz/" target="_blank" rel="external">combined-key</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
 
       
     </div>
@@ -595,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MouseEvent"><span class="nav-text">1. MouseEvent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-鼠标悬浮"><span class="nav-text">1.1 鼠标悬浮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-鼠标点击"><span class="nav-text">1.2 鼠标点击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-滚动（轮）"><span class="nav-text">1.3 滚动（轮）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-鼠标事件忽略"><span class="nav-text">1.4 鼠标事件忽略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-KeyboardEvent"><span class="nav-text">2. KeyboardEvent</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MouseEvent"><span class="nav-text">1. MouseEvent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-鼠标悬浮"><span class="nav-text">1.1 鼠标悬浮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-鼠标点击"><span class="nav-text">1.2 鼠标点击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-滚动（轮）"><span class="nav-text">1.3 滚动（轮）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-鼠标事件忽略"><span class="nav-text">1.4 鼠标事件忽略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-KeyboardEvent"><span class="nav-text">2. KeyboardEvent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-基础"><span class="nav-text">2.1 基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-组合键"><span class="nav-text">2.2 组合键</span></a></li></ol></div>
             
 
           </div>

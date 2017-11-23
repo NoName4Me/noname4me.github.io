@@ -267,6 +267,464 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/22/chrome-devtool/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="辣手摧花">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make Bitch Cry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/22/chrome-devtool/" itemprop="url">Chrome DevTool使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T00:33:18+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/22/chrome-devtool/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/22/chrome-devtool/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>常用快捷键一览</strong></p>
+<ul>
+<li>DevTool面板</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctrl + +/-</code></td>
+<td>窗口放大/缩小</td>
+</tr>
+<tr>
+<td><code>ctrl + 0</code></td>
+<td>窗口默认大小</td>
+</tr>
+<tr>
+<td><code>ctrl + shift + j</code></td>
+<td>开启Dev模式，并定位到console页签</td>
+</tr>
+<tr>
+<td><code>ctrl + [</code></td>
+<td>页签切换(向左)</td>
+</tr>
+<tr>
+<td><code>ctrl + shift + p</code></td>
+<td>DevTools Command Menu</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Source页签</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctrl + g</code></td>
+<td>跳转行</td>
+</tr>
+<tr>
+<td><code>ctrl + p</code></td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td>进入函数</td>
+</tr>
+<tr>
+<td><code>shift + F11</code>、<code>ctrl + shift + ;</code></td>
+<td>跳出函数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Console页签</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctrl + &#96;</code></td>
+<td>聚焦到console</td>
+</tr>
+</tbody>
+</table>
+<p>chrome://flags/#enable-devtools-experiments</p>
+<p><code>Settings</code> –&gt; <code>Experiments</code></p>
+<p><a href="https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a" target="_blank" rel="external">Accessibility Inspector</a></p>
+<h2 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F2</code></td>
+<td>以HTML形式编辑</td>
+</tr>
+<tr>
+<td><code>ctrl + enter</code></td>
+<td>保存更改</td>
+</tr>
+<tr>
+<td><code>esc</code></td>
+<td>退出不保存</td>
+</tr>
+<tr>
+<td><code>鼠标选中移动</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>delete</code></td>
+<td>删除</td>
+</tr>
+<tr>
+<td><code>ctrl + z</code></td>
+<td>撤销</td>
+</tr>
+</tbody>
+</table>
+<p>悬浮会有高亮当前页面元素，如果不在视窗内，会提示在边缘位置，右键选择<code>Scroll into View</code>跳转到元素。</p>
+<ul>
+<li>Event Listeners</li>
+</ul>
+<p><code>handler</code>上右键选择<code>show function defination</code>跳转到源码查看定义。</p>
+<ul>
+<li>DOM Breakpoints</li>
+</ul>
+<p>在<code>Element</code>页签中的元素上右键，选择<code>break on</code>中的一项，会增加断点到<code>DOM Breakpoints</code>栏目下。</p>
+<blockquote>
+<p><strong>技巧：</strong> 许多扩展程序都会将其自己的事件侦听器添加到DOM上。如果遇到有些不是你的代码设置的事件侦听器，可以在隐身窗口中重新打开页面，默认情况下，隐身窗口会阻止扩展程序运行。</p>
+</blockquote>
+<ul>
+<li>Animation</li>
+</ul>
+<p>位于<code>Element</code>同级的更多菜单里进入，或者<code>ctrl + shift + p</code>输入<code>Animation</code>选择<code>Drawer Show Animations</code>进入。</p>
+<img src="/2017/11/22/chrome-devtool/annotated-animation-inspector.png" title="Fig1. 动画面板">
+<ol>
+<li>Controls：可以清除所有当前捕捉的动画组，更改选定动画组的速度。</li>
+<li>Overview：在这里选择动画组，然后在 Details 窗格中进行检查和修改。</li>
+<li>Timeline：可以暂停和启动动画，或者跳到动画中的特定点。</li>
+<li>Details：查看和修改当前选定的动画组（左侧深色代表定义，右侧浅色代表重复，实心球动画起止，空心球关键帧）。</li>
+</ol>
+<ul>
+<li>Styles</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>菜单</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Filter</code></td>
+<td>就是搜索啦</td>
+</tr>
+<tr>
+<td><code>.cls</code></td>
+<td>增加类</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>增加css规则</td>
+</tr>
+<tr>
+<td><code>长按+</code></td>
+<td>增加css规则，并选择添加到哪个样式文件里</td>
+</tr>
+<tr>
+<td><code>点击某个颜色前面的彩色小方块</code></td>
+<td>打开颜色拾取器</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/19/svg-use-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="辣手摧花">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make Bitch Cry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/19/svg-use-note/" itemprop="url">SVG学习（及实践）笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T18:21:00+08:00">
+                2017-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/19/svg-use-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/19/svg-use-note/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>项目中需要做一个工作流编排的界面，于是，入了SVG的坑，之所以说坑，是项目要兼容三大浏览器，而且兼容的版本比较尴尬。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/12/all-about-event/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1330,7 +1788,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1352,7 +1810,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

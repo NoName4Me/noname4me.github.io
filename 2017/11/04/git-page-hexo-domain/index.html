@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/hypercomments.png">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/hypercomments-test1.png">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/hypercomments-test2.png">
-<meta property="og:updated_time" content="2017-11-04T17:31:40.000Z">
+<meta property="og:updated_time" content="2017-11-25T08:12:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Pages + hexo（及一些博客插件）+ 域名 试水个人博客">
 <meta name="twitter:description" content="轻量级建博客站1. GitHub Page这个就不多说了，见官方doc，创建你的github名字.github.io的仓库，然后上传网站文件到该仓库就可以通过你的github名字.github.io访问啦～✌️ 2. 绑定域名 购买域名（很便宜的啦）阿里云购买(万网)腾讯云购买，同上  绑定域名指向github个人主页   在域名解析管理中，增加类型为CNAME、主机记录分别为@和www、记录值为">
@@ -406,6 +406,12 @@
 </blockquote>
 <h2 id="3-hexo建站"><a href="#3-hexo建站" class="headerlink" title="3. hexo建站"></a>3. hexo建站</h2><p>一句话：按照<a href="https://hexo.io/docs/" target="_blank" rel="external">Hexo官方Doc</a>来就对了。</p>
 <a id="more"></a>
+<ul>
+<li>一些可能会用到的配置：</li>
+</ul>
+<ol>
+<li>设置不解析某些源文件为博文，配置<code>_config.yml</code>中<code>skip_render: [&#39;**/*.html&#39;, &#39;**/*.js&#39;, &#39;**/*.map&#39;]</code></li>
+</ol>
 <h2 id="4-搜索（Algolia）"><a href="#4-搜索（Algolia）" class="headerlink" title="4. 搜索（Algolia）"></a>4. 搜索（Algolia）</h2><p>博文一多，自己分类、标签不明确很容易把自己都弄迷路，所以<code>搜索吧，少年～</code>。</p>
 <p>作者使用的是NexT主题，目前已经内置支持，不要配置太多东西。</p>
 <p><a href="http://theme-next.iissnan.com/third-party-services.html#algolia-search" target="_blank" rel="external">官方Doc: NexT主题支持Algolia</a></p>

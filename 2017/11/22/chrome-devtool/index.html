@@ -87,7 +87,7 @@
 <meta property="og:description" content="常用快捷键一览  DevTool面板     快捷键 功能     ctrl + +/- 窗口放大/缩小   ctrl + 0 窗口默认大小   ctrl + shift + j 开启Dev模式，并定位到console页签   ctrl + [ 页签切换(向左)   ctrl + shift + p DevTools Command Menu     Source页签     快捷键 功能">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/22/chrome-devtool/annotated-animation-inspector.png">
-<meta property="og:updated_time" content="2017-11-23T16:22:42.000Z">
+<meta property="og:updated_time" content="2017-11-25T07:54:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chrome DevTool使用">
 <meta name="twitter:description" content="常用快捷键一览  DevTool面板     快捷键 功能     ctrl + +/- 窗口放大/缩小   ctrl + 0 窗口默认大小   ctrl + shift + j 开启Dev模式，并定位到console页签   ctrl + [ 页签切换(向左)   ctrl + shift + p DevTools Command Menu     Source页签     快捷键 功能">
@@ -434,6 +434,7 @@
 <p>chrome://flags/#enable-devtools-experiments</p>
 <p><code>Settings</code> –&gt; <code>Experiments</code></p>
 <p><a href="https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a" target="_blank" rel="external">Accessibility Inspector</a></p>
+<a id="more"></a>
 <h2 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h2><table>
 <thead>
 <tr>
@@ -524,6 +525,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="Sources"><a href="#Sources" class="headerlink" title="Sources"></a>Sources</h2><ul>
+<li>设置条件断点</li>
+</ul>
+<p>在某一行行号处右键，<code>Add conditional breakpoint...</code>，输入条件回车。（若已有断点，选择<code>Edit breakpoint</code>即可。）</p>
+<h3 id="Source-Map"><a href="#Source-Map" class="headerlink" title="Source Map"></a>Source Map</h3><p>示例代码：</p>
+<p><code>test.html</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"test.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Source Map Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>test.js</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">justTest</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> addr = <span class="string">"jonge.club"</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"hi "</span>+name+<span class="string">", you are on "</span>+Addr+<span class="string">" at "</span>+<span class="keyword">new</span> <span class="built_in">Date</span>()+<span class="string">"."</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">justTest(<span class="string">"stranger"</span>);</div></pre></td></tr></table></figure></p>
+<p>使用source map（以uglify-js为例说明）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装uglify-js</span></div><div class="line">npm install uglify-js -g</div><div class="line"></div><div class="line"><span class="comment"># 生成包含source map信息的压缩后js文件</span></div><div class="line"><span class="comment">## 确保root/url可以被访问到，root也可以是网络地址</span></div><div class="line">uglifyjs test.js -o test.min.js -c -m --<span class="built_in">source</span>-map <span class="string">"root='/some/path',url='test.min.js.map'"</span></div></pre></td></tr></table></figure>
+<p>压缩后的js文件（test.min.js）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">justTest</span>(<span class="params">t</span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"hi "</span>+t+<span class="string">", you are on "</span>+Addr+<span class="string">" at "</span>+<span class="keyword">new</span> <span class="built_in">Date</span>+<span class="string">"."</span>)&#125;justTest(<span class="string">"stranger"</span>);</div><div class="line"><span class="comment">//# sourceMappingURL=test.min.js.map</span></div></pre></td></tr></table></figure></p>
+<p>在Chrome里开启Source Map（默认开启，<code>Settings</code>里），访问test.html，<code>F12</code>调试代码（源码）。</p>
+<hr>
+<p><strong>参考</strong></p>
+<p>[1] <a href="https://developers.google.com/web/tools/chrome-devtools/" target="_blank" rel="external">Chrome DevTool Doc</a></p>
+<p>[2] <a href="https://github.com/mishoo/UglifyJS2" target="_blank" rel="external">UglifyJS2 @github</a></p>
 
       
     </div>
@@ -557,6 +573,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/25/chrome-devtool/sourceMapDemo/test/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -642,7 +662,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -699,7 +719,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Element"><span class="nav-text">Element</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Element"><span class="nav-text">Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sources"><span class="nav-text">Sources</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-Map"><span class="nav-text">Source Map</span></a></li></ol></li></ol></div>
             
 
           </div>

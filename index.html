@@ -267,6 +267,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/07/about-js-log-console/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="辣手摧花">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make Bitch Cry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/07/about-js-log-console/" itemprop="url">JS日志（console.xx）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T00:00:03+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/07/about-js-log-console/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/07/about-js-log-console/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-基本console-log-error-warn"><a href="#1-基本console-log-error-warn" class="headerlink" title="1. 基本console.log/error/warn"></a>1. 基本<code>console.log/error/warn</code></h1><p>基本就只是样式的区别。</p>
+<h2 id="1-1-格式化输出"><a href="#1-1-格式化输出" class="headerlink" title="1.1 格式化输出"></a>1.1 格式化输出</h2><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>用途</th>
+<th>示例(已省略<code>console.log</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%d</code> 或 <code>%i</code></td>
+<td>整数输出（会被忽略小数位）</td>
+<td><code>(&#39;%d&#39;, 2.7)</code>输出<code>2</code></td>
+</tr>
+<tr>
+<td><code>%f</code></td>
+<td>浮点输出</td>
+<td><code>(&#39;%f&#39;, 2.7)</code>输出<code>2.7</code></td>
+</tr>
+<tr>
+<td><code>%s</code></td>
+<td>字符串输出</td>
+<td><code>(&#39;%s&#39;, &#39;hi&#39;)</code>输出<code>hi</code></td>
+</tr>
+<tr>
+<td><code>%o</code></td>
+<td>格式化为可扩展DOM元素，如果本身是DOM，输出类似在<code>Elements</code>下看到的</td>
+</tr>
+<tr>
+<td><code>%O</code></td>
+<td>格式化为可扩展的JS对象，如果本身是DOM，输出包含该元素的JS属性</td>
+</tr>
+<tr>
+<td><code>%c</code></td>
+<td>CSS语法自定义输出样式</td>
+</tr>
+</tbody>
+</table>
+<img src="/2017/12/07/about-js-log-console/oO-console.png" title="Fig1. `%o/O`格式化输出DOM">
+<h2 id="1-2-console-dir"><a href="#1-2-console-dir" class="headerlink" title="1.2 console.dir"></a>1.2 <code>console.dir</code></h2><p>同“1.1”中的<code>%O</code>输出。</p>
+<h1 id="2-断言console-assert"><a href="#2-断言console-assert" class="headerlink" title="2. 断言console.assert"></a>2. 断言<code>console.assert</code></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.assert(expression, <span class="string">'当前面的表达式为false时，会输出这句话。'</span>);</div></pre></td></tr></table></figure>
+<h1 id="3-分组console-group-groupEnd-groupCollapsed"><a href="#3-分组console-group-groupEnd-groupCollapsed" class="headerlink" title="3. 分组console.group/groupEnd/groupCollapsed"></a>3. 分组<code>console.group/groupEnd/groupCollapsed</code></h1><p>会自动收集<code>group</code>与<code>groupEnd</code>之间的所有日志，可以嵌套使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.group();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/22/chrome-devtool/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,7 +1881,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1706,7 +1903,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

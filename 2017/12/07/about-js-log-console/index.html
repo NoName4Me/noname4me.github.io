@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="日志,console.log," />
+  <meta name="keywords" content="日志,console," />
 
 
 
@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="1. 基本console.log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;hi&amp;#39;)">
-<meta name="keywords" content="日志,console.log">
+<meta name="description" content="console.xx()。  1. 基本log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;h">
+<meta name="keywords" content="日志,console">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS日志（console.xx）">
 <meta property="og:url" content="https://noname4me.github.io/2017/12/07/about-js-log-console/index.html">
 <meta property="og:site_name" content="Make Bitch Cry">
-<meta property="og:description" content="1. 基本console.log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;hi&amp;#39;)">
+<meta property="og:description" content="console.xx()。  1. 基本log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;h">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://noname4me.github.io/2017/12/07/about-js-log-console/oO-console.png">
-<meta property="og:updated_time" content="2017-12-07T16:43:46.000Z">
+<meta property="og:updated_time" content="2017-12-10T14:03:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS日志（console.xx）">
-<meta name="twitter:description" content="1. 基本console.log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;hi&amp;#39;)">
+<meta name="twitter:description" content="console.xx()。  1. 基本log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;h">
 <meta name="twitter:image" content="https://noname4me.github.io/2017/12/07/about-js-log-console/oO-console.png">
 
 
@@ -374,7 +374,10 @@
       
 
       
-        <h1 id="1-基本console-log-error-warn"><a href="#1-基本console-log-error-warn" class="headerlink" title="1. 基本console.log/error/warn"></a>1. 基本<code>console.log/error/warn</code></h1><p>基本就只是样式的区别。</p>
+        <blockquote>
+<p><code>console.xx()</code>。</p>
+</blockquote>
+<h1 id="1-基本log-error-warn"><a href="#1-基本log-error-warn" class="headerlink" title="1. 基本log/error/warn"></a>1. 基本<code>log/error/warn</code></h1><p>基本就只是样式的区别。</p>
 <h2 id="1-1-格式化输出"><a href="#1-1-格式化输出" class="headerlink" title="1.1 格式化输出"></a>1.1 格式化输出</h2><table>
 <thead>
 <tr>
@@ -415,11 +418,13 @@
 </table>
 <a id="more"></a>
 <img src="/2017/12/07/about-js-log-console/oO-console.png" title="Fig1. `%o/O`格式化输出DOM">
-<h2 id="1-2-console-dir"><a href="#1-2-console-dir" class="headerlink" title="1.2 console.dir"></a>1.2 <code>console.dir</code></h2><p>同“1.1”中的<code>%O</code>输出。</p>
-<h1 id="2-断言console-assert"><a href="#2-断言console-assert" class="headerlink" title="2. 断言console.assert"></a>2. 断言<code>console.assert</code></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.assert(expression, <span class="string">'当前面的表达式为false时，会输出这句话。'</span>);</div></pre></td></tr></table></figure>
-<h1 id="3-分组console-group-groupEnd-groupCollapsed"><a href="#3-分组console-group-groupEnd-groupCollapsed" class="headerlink" title="3. 分组console.group/groupEnd/groupCollapsed"></a>3. 分组<code>console.group/groupEnd/groupCollapsed</code></h1><p>会自动收集<code>group</code>与<code>groupEnd</code>之间的所有日志，可以嵌套使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.group();</div></pre></td></tr></table></figure>
-
+<h2 id="1-2-dir"><a href="#1-2-dir" class="headerlink" title="1.2 dir"></a>1.2 <code>dir</code></h2><p>同“1.1”中的<code>%O</code>输出。</p>
+<h1 id="2-断言cassert"><a href="#2-断言cassert" class="headerlink" title="2. 断言cassert"></a>2. 断言<code>cassert</code></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.assert(expression, <span class="string">'当前面的表达式为false时，会输出这句话。'</span>);</div></pre></td></tr></table></figure>
+<h1 id="3-分组group-groupEnd-groupCollapsed"><a href="#3-分组group-groupEnd-groupCollapsed" class="headerlink" title="3. 分组group/groupEnd/groupCollapsed"></a>3. 分组<code>group/groupEnd/groupCollapsed</code></h1><p>会自动收集<code>group</code>与<code>groupEnd</code>之间的所有日志，可以嵌套使用。</p>
+<h1 id="4-表格table"><a href="#4-表格table" class="headerlink" title="4. 表格table"></a>4. 表格<code>table</code></h1><p>方便比较数组／对象中的内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = [&#123;<span class="attr">name</span>:<span class="string">'jonge1'</span>, <span class="attr">age</span>:<span class="number">30</span>, <span class="attr">email</span>:<span class="string">'h@jonge.club'</span>&#125;, &#123;<span class="attr">name</span>:<span class="string">'jonge2'</span>, <span class="attr">age</span>:<span class="number">40</span>, <span class="attr">email</span>:<span class="string">'j@jonge.club'</span>&#125;, &#123;<span class="attr">name</span>:<span class="string">'jonge3'</span>, <span class="attr">age</span>:<span class="number">50</span>&#125;];</div><div class="line"><span class="built_in">console</span>.table(x);</div><div class="line"><span class="built_in">console</span>.table(x,[<span class="string">'name'</span>, <span class="string">'email'</span>]);</div></pre></td></tr></table></figure>
+<h1 id="5-计时（time-timeEnd）／计数（count）"><a href="#5-计时（time-timeEnd）／计数（count）" class="headerlink" title="5. 计时（time/timeEnd）／计数（count）"></a>5. 计时（<code>time/timeEnd</code>）／计数（<code>count</code>）</h1><p>可以初始化一个字符串作为唯一识别码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.time(<span class="string">'Jonge\'s timer'</span>);</div><div class="line"><span class="comment">// do sth.</span></div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'Jonge\'s timer'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line"><span class="comment">// Jonge's timer: 94.562744140625ms</span></div><div class="line"></div><div class="line"><span class="comment">// 计数，比如记录某个函数被调用次数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.count(<span class="string">"test called cnt"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line"><span class="comment">// test called cnt: 1</span></div></pre></td></tr></table></figure>
       
     </div>
     
@@ -438,7 +443,7 @@
           
             <a href="/tags/日志/" rel="tag"># 日志</a>
           
-            <a href="/tags/console-log/" rel="tag"># console.log</a>
+            <a href="/tags/console/" rel="tag"># console</a>
           
         </div>
       
@@ -602,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本console-log-error-warn"><span class="nav-text">1. 基本console.log/error/warn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-格式化输出"><span class="nav-text">1.1 格式化输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-console-dir"><span class="nav-text">1.2 console.dir</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-断言console-assert"><span class="nav-text">2. 断言console.assert</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-分组console-group-groupEnd-groupCollapsed"><span class="nav-text">3. 分组console.group/groupEnd/groupCollapsed</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本log-error-warn"><span class="nav-text">1. 基本log/error/warn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-格式化输出"><span class="nav-text">1.1 格式化输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-dir"><span class="nav-text">1.2 dir</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-断言cassert"><span class="nav-text">2. 断言cassert</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-分组group-groupEnd-groupCollapsed"><span class="nav-text">3. 分组group/groupEnd/groupCollapsed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-表格table"><span class="nav-text">4. 表格table</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-计时（time-timeEnd）／计数（count）"><span class="nav-text">5. 计时（time/timeEnd）／计数（count）</span></a></li></ol></div>
             
 
           </div>

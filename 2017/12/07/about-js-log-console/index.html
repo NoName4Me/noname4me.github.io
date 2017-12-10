@@ -88,7 +88,7 @@
 <meta property="og:description" content="console.xx()。  1. 基本log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;h">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://noname4me.github.io/2017/12/07/about-js-log-console/oO-console.png">
-<meta property="og:updated_time" content="2017-12-10T14:03:40.000Z">
+<meta property="og:updated_time" content="2017-12-10T14:17:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS日志（console.xx）">
 <meta name="twitter:description" content="console.xx()。  1. 基本log/error/warn基本就只是样式的区别。 1.1 格式化输出   格式 用途 示例(已省略console.log)     %d 或 %i 整数输出（会被忽略小数位） (&amp;#39;%d&amp;#39;, 2.7)输出2   %f 浮点输出 (&amp;#39;%f&amp;#39;, 2.7)输出2.7   %s 字符串输出 (&amp;#39;%s&amp;#39;, &amp;#39;h">
@@ -405,14 +405,17 @@
 <tr>
 <td><code>%o</code></td>
 <td>格式化为可扩展DOM元素，如果本身是DOM，输出类似在<code>Elements</code>下看到的</td>
+<td>见Fig 1示例</td>
 </tr>
 <tr>
 <td><code>%O</code></td>
 <td>格式化为可扩展的JS对象，如果本身是DOM，输出包含该元素的JS属性</td>
+<td>见Fig 1示例</td>
 </tr>
 <tr>
 <td><code>%c</code></td>
 <td>CSS语法自定义输出样式</td>
+<td><code>console.log(&quot;hi, %cjonge~&quot;,&quot;color:red;&quot;)</code>输出的<code>jonge~</code>是红色</td>
 </tr>
 </tbody>
 </table>

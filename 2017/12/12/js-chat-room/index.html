@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Make Bitch Cry">
 <meta property="og:description" content="主要参考：廖雪峰的JS全栈教程。  练习项目归档：chat-room(Github)。 1 整体架构前端 呈现在Web页面上，提供用户列表，展示、发送聊天面板。 登录、注册面板。 在收到服务器消息后局部更新页面内容。  后端： 服务器收到用户登录信息，刷新数据库状态，并将所有用户列表发送给当前登录用户，并广播该用户信息到其它用户。 服务器收到用户发送的消息，广播给所有用户。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-12T12:44:40.000Z">
+<meta property="og:updated_time" content="2017-12-12T12:51:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS chat room项目练习总结">
 <meta name="twitter:description" content="主要参考：廖雪峰的JS全栈教程。  练习项目归档：chat-room(Github)。 1 整体架构前端 呈现在Web页面上，提供用户列表，展示、发送聊天面板。 登录、注册面板。 在收到服务器消息后局部更新页面内容。  后端： 服务器收到用户登录信息，刷新数据库状态，并将所有用户列表发送给当前登录用户，并广播该用户信息到其它用户。 服务器收到用户发送的消息，广播给所有用户。">
@@ -448,8 +448,8 @@
 <h2 id="2-6-Vue-js"><a href="#2-6-Vue-js" class="headerlink" title="2.6 Vue.js"></a>2.6 Vue.js</h2><blockquote>
 <p>Vue.js（读音 /vjuː/，类似于 view） 是一套构建用户界面的渐进式框架。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与单文件组件和 Vue 生态系统支持的库结合使用时，Vue 也完全能够为复杂的单页应用程序提供驱动。</p>
 </blockquote>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// HTML</span></div><div class="line">&lt;div id=<span class="string">"app"</span>&gt;</div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="comment">// js</span></div><div class="line">var app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  data: &#123;</div><div class="line">    message: <span class="string">'Hello Vue!'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p><em>注意：</em> Vue.js的<code>\{\{..}}</code>会和其它模板框架（比如Nunjucks）有冲突，所以当必须要使用两种框架时，可以通过<code>v-text=&quot;&quot;</code>来规避。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// HTML</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">  &#123;&#123; message &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">// js</div><div class="line">var app = new Vue(&#123;</div><div class="line">  el: '#app',</div><div class="line">  data: &#123;</div><div class="line">    message: 'Hello Vue!'</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><em>注意：</em> Vue.js的{{..}}会和其它模板框架（比如Nunjucks）有冲突，所以当必须要使用两种框架时，可以通过<code>v-text=&quot;&quot;</code>来规避。</p>
 <p>以上。</p>
 
       

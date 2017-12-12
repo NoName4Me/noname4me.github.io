@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Make Bitch Cry">
 <meta property="og:description" content="先占坑，后面补写首先span是inline元素，不能直接在CSS中设置宽高。 1、同行对齐，两者同时设置vertical-align: middle，取值视具体需求。注意： vertical-align对block元素无作用。 2、多行文字，图片居于首行（即文字环绕效果）默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。 3、将2中的组">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-12T13:35:53.000Z">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png">
+<meta property="og:updated_time" content="2017-12-12T13:43:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="inline-block-align">
 <meta name="twitter:description" content="先占坑，后面补写首先span是inline元素，不能直接在CSS中设置宽高。 1、同行对齐，两者同时设置vertical-align: middle，取值视具体需求。注意： vertical-align对block元素无作用。 2、多行文字，图片居于首行（即文字环绕效果）默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。 3、将2中的组">
+<meta name="twitter:image" content="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png">
 
 
 
@@ -387,6 +389,18 @@
 <p>1、同行对齐，两者同时设置<code>vertical-align: middle</code>，取值视具体需求。<br><em>注意： vertical-align对block元素无作用。</em></p>
 <p>2、多行文字，图片居于首行（即文字环绕效果）<br>默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。</p>
 <p>3、将2中的组合垂直居中<br>使用table或者float来实现。<br><a href="https://jsfiddle.net/jonge/250uua1z/" target="_blank" rel="external">JsFidder示例</a></p>
+<h1 id="span比其同级的img略高"><a href="#span比其同级的img略高" class="headerlink" title="span比其同级的img略高"></a>span比其同级的img略高</h1><p>因为img是inline元素，默认baseline对齐（vertical-align: baseline;）。</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png" alt="img"></p>
+<ul>
+<li>解决方式</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">img</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="comment">/* 或 vertical-align: bottom; */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>顺带一提</li>
+</ul>
+<p>vertical-align只适用于inline级别的元素。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/en-US/docs/Images,_Tables,_and_Mysterious_Gaps" target="_blank" rel="external">MDN doc: Images, Tables and Mysterious Gaps</a></p>
 
       
     </div>
@@ -572,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#先占坑，后面补写"><span class="nav-text">先占坑，后面补写</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#先占坑，后面补写"><span class="nav-text">先占坑，后面补写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#span比其同级的img略高"><span class="nav-text">span比其同级的img略高</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>

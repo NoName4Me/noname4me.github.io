@@ -11,3 +11,26 @@ function getLength(something: string | number): number {
 
 let o = {a: 23, b: 'jonge'};
 let { a, b }: { a: number, b: string } = o;
+
+function f1(o: { a: string, b?: number }) {
+    let { a, b = 0 } = o;
+}
+
+f1({a: 'hh'}); // ok
+f1({a: 'hh', b: 'h'}); // error
+
+// a、b都必须
+function f2({ a, b } = { a: "", b: 0 }): void {
+    // ...
+}
+// a必须，b可选，同f1
+function f3({ a, b = 0 } = { a: ""}): void {
+    // ...
+}
+f2({}); // error, need a & b
+f2({a: 'h'}); // error, need b
+f2({a: 23}); // error, number cannot be assigned to string
+
+f3({}); // error, need a
+f3({a: 'h'}); // ok
+f3({a: 23}); // error, number cannot be assigned to string

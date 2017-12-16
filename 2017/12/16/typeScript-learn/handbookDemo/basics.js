@@ -13,3 +13,8 @@ function getLength(something) {
 }
 var o = { a: 23, b: 'jonge' };
 var a = o.a, b = o.b;
+function keepWholeObject(wholeObject) {
+    var a = wholeObject.a, _a = wholeObject.b, b = _a === void 0 ? 1001 : _a;
+}
+keepWholeObject({ a: 'hh' }); // ok
+keepWholeObject({ a: 'hh', b: 'h' }); // error

@@ -34,3 +34,20 @@ f2({a: 23}); // error, number cannot be assigned to string
 f3({}); // error, need a
 f3({a: 'h'}); // ok
 f3({a: 23}); // error, number cannot be assigned to string
+
+interface NumberDictionary {
+    [index: string]: number;
+    length: number;    // ok, length is a number
+    name: string;      // error, the type of 'name' is not a subtype of the indexer
+}
+
+interface ClockConstructor {
+    new (hour: number, minute: number): ClockInterface;
+}
+interface ClockInterface {
+    tick();
+}
+class Clock implements ClockConstructor {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}

@@ -63,13 +63,6 @@ animal = employee; // Error: 'Animal' and 'Employee' are not compatible
 */
 
 class Octopus {
-    readonly name: string;
-    readonly numberOfLegs: number = 8;
-    constructor (theName: string) {
-        this.name = theName;
-    }
-}
-class Octopus {
     readonly numberOfLegs: number = 8;
     // 这里还可以用private／protected／public修饰
     constructor(readonly name: string) {

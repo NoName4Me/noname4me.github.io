@@ -267,6 +267,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/18/typeScript-learn-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="辣手摧花">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bitch won't Cry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/18/typeScript-learn-2/" itemprop="url">typeScript学习笔记(2/3)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T23:14:17+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/18/typeScript-learn-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/18/typeScript-learn-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2-学习"><a href="#2-学习" class="headerlink" title="2. 学习"></a>2. 学习</h1><h2 id="2-3-类"><a href="#2-3-类" class="headerlink" title="2.3 类"></a>2.3 类</h2><h3 id="2-3-1-继承"><a href="#2-3-1-继承" class="headerlink" title="2.3.1 继承"></a>2.3.1 继承</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Animal &#123;</div><div class="line">    name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">    move(distanceInMeters: <span class="built_in">number</span> = <span class="number">0</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;this.name&#125;</span> moved <span class="subst">$&#123;distanceInMeters&#125;</span>m.`</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Snake <span class="keyword">extends</span> Animal &#123;</div><div class="line">    <span class="comment">// 在调用this之前，必须先调用super</span></div><div class="line">    <span class="keyword">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>) &#123; <span class="keyword">super</span>(name); &#125;</div><div class="line">    <span class="comment">// 方法重写（覆盖）</span></div><div class="line">    move(distanceInMeters = <span class="number">5</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Slithering..."</span>);</div><div class="line">        <span class="keyword">super</span>.move(distanceInMeters);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-3-2-private-protected-public"><a href="#2-3-2-private-protected-public" class="headerlink" title="2.3.2 private/protected/public"></a>2.3.2 <code>private</code>/<code>protected</code>/<code>public</code></h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// private</span></div><div class="line"><span class="keyword">class</span> Animal &#123;</div><div class="line">    <span class="comment">// 仅能在Animal域内访问</span></div><div class="line">    <span class="keyword">private</span> name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Rhino <span class="keyword">extends</span> Animal &#123;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123; </div><div class="line">        <span class="keyword">super</span>(<span class="string">"Rhino"</span>);</div><div class="line">        <span class="comment">// a. 这里也无法访问Animal里的name</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">    test() &#123;</div><div class="line">        <span class="comment">// b. 这里也无法访问</span></div><div class="line">        <span class="keyword">this</span>.name;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Employee &#123;</div><div class="line">    <span class="keyword">private</span> name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> animal = <span class="keyword">new</span> Animal(<span class="string">"Goat"</span>);</div><div class="line"><span class="keyword">let</span> rhino = <span class="keyword">new</span> Rhino();</div><div class="line"><span class="keyword">let</span> employee = <span class="keyword">new</span> Employee(<span class="string">"Bob"</span>);</div><div class="line"></div><div class="line">animal = rhino;</div><div class="line"><span class="built_in">console</span>.log(animal.name); <span class="comment">// Property 'name' is private and only accessible within class 'Animal'.</span></div><div class="line">animal = employee; <span class="comment">// Error: 'Animal' and 'Employee' are not compatible</span></div><div class="line"></div><div class="line"><span class="comment">// protected</span></div><div class="line"><span class="comment">// 上面private里的'a'和'b'处可以访问到name</span></div><div class="line"><span class="keyword">class</span> Person &#123;</div><div class="line">    <span class="keyword">protected</span> name: <span class="built_in">string</span>;</div><div class="line">    <span class="comment">// 修饰构造器，表示只可以被继承，不可以直接实例化</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-3-3-参数属性"><a href="#2-3-3-参数属性" class="headerlink" title="2.3.3 参数属性"></a>2.3.3 参数属性</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Octopus &#123;</div><div class="line">    readonly name: <span class="built_in">string</span>;</div><div class="line">    readonly numberOfLegs: <span class="built_in">number</span> = <span class="number">8</span>;</div><div class="line">    <span class="keyword">constructor</span> (<span class="params">theName: <span class="built_in">string</span></span>) &#123;</div><div class="line">        <span class="keyword">this</span>.name = theName; <span class="comment">// 注意这个的变化</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 可以演变为</span></div><div class="line"><span class="keyword">class</span> Octopus &#123;</div><div class="line">    readonly numberOfLegs: <span class="built_in">number</span> = <span class="number">8</span>;</div><div class="line">    <span class="comment">// 这里还可以用private／protected／public修饰</span></div><div class="line">    <span class="keyword">constructor</span>(<span class="params">readonly name: <span class="built_in">string</span></span>) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> t = <span class="keyword">new</span> Octopus(<span class="string">"jonge"</span>);</div><div class="line">t.name;</div></pre></td></tr></table></figure>
+<h3 id="2-3-4-访问器"><a href="#2-3-4-访问器" class="headerlink" title="2.3.4 访问器"></a>2.3.4 访问器</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/16/typeScript-learn-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1872,191 +2028,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="辣手摧花">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bitch won't Cry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/04/git-page-hexo-domain/" itemprop="url">GitHub Pages + hexo（及一些博客插件）+ 域名 试水个人博客</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T21:14:10+08:00">
-                2017-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/利器/" itemprop="url" rel="index">
-                    <span itemprop="name">利器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/04/git-page-hexo-domain/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/04/git-page-hexo-domain/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="轻量级建博客站"><a href="#轻量级建博客站" class="headerlink" title="轻量级建博客站"></a>轻量级建博客站</h1><h2 id="1-GitHub-Page"><a href="#1-GitHub-Page" class="headerlink" title="1. GitHub Page"></a>1. GitHub Page</h2><p>这个就不多说了，见<a href="https://pages.github.com/" target="_blank" rel="external">官方doc</a>，创建<code>你的github名字.github.io</code>的仓库，然后上传网站文件到该仓库就可以通过<code>你的github名字.github.io</code>访问啦～✌️</p>
-<h2 id="2-绑定域名"><a href="#2-绑定域名" class="headerlink" title="2. 绑定域名"></a>2. 绑定域名</h2><ul>
-<li><p>购买域名（很便宜的啦）<br><a href="https://www.aliyun.com/" target="_blank" rel="external">阿里云购买(万网)</a><br><a href="https://cloud.tencent.com/" target="_blank" rel="external">腾讯云购买，同上</a></p>
-</li>
-<li><p>绑定域名指向github个人主页</p>
-</li>
-</ul>
-<p>在域名解析管理中，增加<strong>类型</strong>为<code>CNAME</code>、<strong>主机记录</strong>分别为<code>@</code>和<code>www</code>、<strong>记录值</strong>为<code>yourGithubName.github.io</code>的2条解析记录，不建议<code>A</code>类型绑定<code>ping xx.github.io</code>得到的IP，这个会变。</p>
-<ul>
-<li>设置<code>yourGithubName.github.io</code>跳转到你的域名</li>
-</ul>
-<p>进入你的github.io项目的setting，<code>Custom domain</code>里输入要绑定的域名，保存。</p>
-<p>如果你使用的是hexo框架建站，那么可以在source目录下新建一个<code>CNAME</code>的文件（没有任何后缀），文件内容是你的域名<code>xxx.xx</code>不要带<code>http://</code>、<code>wwww</code>等前缀，保存发布（默认会发布到主页仓库的根目录）。</p>
-<blockquote>
-<p><strong>此处扯点儿淡，阿里云买的域名不知是之前绑定了香港服务器搭梯子，然后最近开会的原因还是怎么滴，网页访问一直是DNS解析失败，重新绑定到github.io也没用，最后把DNS地址换成了腾讯云提供的居然可以了🤦‍♂️。</strong></p>
-</blockquote>
-<h2 id="3-hexo建站"><a href="#3-hexo建站" class="headerlink" title="3. hexo建站"></a>3. hexo建站</h2><p>一句话：按照<a href="https://hexo.io/docs/" target="_blank" rel="external">Hexo官方Doc</a>来就对了。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/04/git-page-hexo-domain/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2111,7 +2082,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

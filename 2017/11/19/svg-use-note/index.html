@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Bitch won&#39;t Cry">
 <meta property="og:description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-21T17:14:08.000Z">
+<meta property="og:updated_time" content="2018-01-04T15:49:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVG学习（及实践）笔记">
 <meta name="twitter:description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
@@ -390,13 +390,75 @@
 </svg>
 </p>
 <h2 id="1-3-path"><a href="#1-3-path" class="headerlink" title="1.3 path"></a>1.3 path</h2><blockquote>
-<p>Capital Form: absolute, Lower Case: relative</p>
+<p>大写字母：相对于起点的绝对定位，小写：相对定位</p>
 </blockquote>
-<p><strong>M</strong>ove to<br><strong>L</strong>ine to<br><strong>H</strong>orizontal line to<br><strong>V</strong>ertical line to<br>clo<strong>Z</strong>e path</p>
-<p><strong>A</strong>rc</p>
-<blockquote>
-<p>A rx,ry rotation big/small-arcFlag,clock-wise flag<br><code>A30,40 0 0,0 70,70</code>: this means draw a small couter-clock-wise arc(rx=30,ry=40) to (70,70)</p>
-</blockquote>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>行为</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M</code></td>
+<td>移动到</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>绘制直线到</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>绘制水平线到</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>绘制垂直线到</td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>闭合（绘制到起点）</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>绘制弧线</td>
+<td><code>A30,40 0 0,0 70,70</code>: 画一个（从上一个点）到坐标(70,70)横轴30，纵轴40的逆时针小圆弧线</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td>绘制二次贝塞尔曲线</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>绘制三次贝塞尔曲线</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M50,50 L100,30 H150 V80 Z"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 不封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M60,60 L110,40 H160 V90"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 红色逆时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#f00"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 绿色逆时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0f0"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 蓝色顺时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#00f"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 青色顺时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0ff"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div></pre></td></tr></table></figure>
+
+<svg style="width:600px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
+  <defs>
+    <marker viewbox="0 0 10 10" markerwidth="10" markerheight="10" refx="5" refy="5" orient="auto" markerunits="strokeWidth" id="start">
+        <circle cx="5" cy="5" r="5" fill="#3A9" stroke="none"/>
+    </marker>
+    <marker viewbox="0 0 10 10" markerwidth="10" markerheight="10" refx="5" refy="5" orient="auto" markerunits="strokeWidth" id="end">
+        <circle cx="5" cy="5" r="5" fill="#A39" stroke="none"/>
+    </marker>
+  </defs>
+  <path d="M10,15 L10,15" marker-start="url(#start)"/>
+  <text x="20" y="20">起点</text>
+  <path d="M60,15 L10,15" marker-start="url(#end)"/>
+  <text x="70" y="20">终点</text>
+  <path d="M50,50 L100,30 H150 V80 Z" stroke="#000" stroke-width="1" fill="none" marker-start="url(#start)"/>
+  <path d="M60,60 L110,40 H160 V90" stroke="#000" stroke-width="1" fill="none" marker-start="url(#start)"/>
+  <path d="M220,40 A40,20 0 0,0 250,60" stroke="#f00" stroke-width="1" fill="none"/>
+  <path d="M220,40 A40,20 0 1,0 250,60" stroke="#0f0" stroke-width="1" fill="none"/>
+  <path d="M220,40 A40,20 0 0,1 250,60" stroke="#00f" stroke-width="1" fill="none"/>
+  <path d="M220,40 A40,20 0 1,1 250,60" stroke="#0ff" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
+</svg>
+
 <p>Bezier Curves<br><strong>Q</strong>uadratic Bezier Curves<br>Qcx,cy x,y: cx,cy is control point, x,y is end point<br>Tx,y: control point is last used control point</p>
 <p><strong>C</strong>ubic Bezier Curves<br>Ccx1,cy1 cx2,cy2 x,y: 2 control points<br>Scx,cy x,y: first control point is assumed to be the last used point</p>
 <h2 id="Coordinate"><a href="#Coordinate" class="headerlink" title="Coordinate"></a>Coordinate</h2><p>viewBox=minX,minY width,height</p>
@@ -633,7 +695,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

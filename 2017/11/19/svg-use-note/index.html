@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Bitch won&#39;t Cry">
 <meta property="og:description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-04T15:49:29.000Z">
+<meta property="og:updated_time" content="2018-01-05T16:09:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVG学习（及实践）笔记">
 <meta name="twitter:description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
@@ -390,7 +390,7 @@
 </svg>
 </p>
 <h2 id="1-3-path"><a href="#1-3-path" class="headerlink" title="1.3 path"></a>1.3 path</h2><blockquote>
-<p>大写字母：相对于起点的绝对定位，小写：相对定位</p>
+<p>大写字母：相对于起点的定位，小写：相对前一个点的定位</p>
 </blockquote>
 <table>
 <thead>
@@ -404,39 +404,56 @@
 <tr>
 <td><code>M</code></td>
 <td>移动到</td>
+<td></td>
 </tr>
 <tr>
 <td><code>L</code></td>
 <td>绘制直线到</td>
+<td></td>
 </tr>
 <tr>
 <td><code>H</code></td>
 <td>绘制水平线到</td>
+<td></td>
 </tr>
 <tr>
 <td><code>V</code></td>
 <td>绘制垂直线到</td>
+<td></td>
 </tr>
 <tr>
 <td><code>Z</code></td>
 <td>闭合（绘制到起点）</td>
+<td></td>
 </tr>
 <tr>
 <td><code>A</code></td>
-<td>绘制弧线</td>
+<td>弧线</td>
 <td><code>A30,40 0 0,0 70,70</code>: 画一个（从上一个点）到坐标(70,70)横轴30，纵轴40的逆时针小圆弧线</td>
 </tr>
 <tr>
 <td><code>Q</code></td>
-<td>绘制二次贝塞尔曲线</td>
+<td>二次贝塞尔曲线</td>
+<td><code>Q10,100 40,200</code>画一个（从上一个点）到坐标(40,200)的以(10,100)为控制点的贝塞尔曲线</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>二次贝塞尔简写</td>
+<td><code>T40,200</code>画一个（从上一个点）到坐标(40,200)的以上一个控制点为控制点的贝塞尔曲线</td>
 </tr>
 <tr>
 <td><code>C</code></td>
-<td>绘制三次贝塞尔曲线</td>
+<td>三次贝塞尔曲线</td>
+<td><code>C10,40 50,80 100，100</code>画一个（从上一个点）到坐标(100,100)的以(10,40)和(50,80)为第一、第二控制点的曲线</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>三次贝塞尔曲线简写</td>
+<td><code>S50,80 100，100</code>类似<code>T</code>，第一个控制点省略（使用上一个）</td>
 </tr>
 </tbody>
 </table>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M50,50 L100,30 H150 V80 Z"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 不封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M60,60 L110,40 H160 V90"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 红色逆时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#f00"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 绿色逆时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0f0"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 蓝色顺时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#00f"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 青色顺时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0ff"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M50,50 L100,30 H150 V80 Z"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 不封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M60,60 L110,40 H160 V90"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 红色逆时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#f00"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 绿色逆时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0f0"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 蓝色顺时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#00f"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 青色顺时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0ff"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 二次贝塞尔 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M320,40 Q340,10 350,60"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 三次贝塞尔 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M320,80 C320,120 420,10 480,50"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div></pre></td></tr></table></figure>
 
 <svg style="width:600px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
   <defs>
@@ -457,34 +474,68 @@
   <path d="M220,40 A40,20 0 1,0 250,60" stroke="#0f0" stroke-width="1" fill="none"/>
   <path d="M220,40 A40,20 0 0,1 250,60" stroke="#00f" stroke-width="1" fill="none"/>
   <path d="M220,40 A40,20 0 1,1 250,60" stroke="#0ff" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
+  <path d="M320,40 Q340,10 350,60" stroke="grey" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
+  <path d="M320,80 C320,120 420,10 480,50" stroke="grey" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
 </svg>
 
-<p>Bezier Curves<br><strong>Q</strong>uadratic Bezier Curves<br>Qcx,cy x,y: cx,cy is control point, x,y is end point<br>Tx,y: control point is last used control point</p>
-<p><strong>C</strong>ubic Bezier Curves<br>Ccx1,cy1 cx2,cy2 x,y: 2 control points<br>Scx,cy x,y: first control point is assumed to be the last used point</p>
 <h2 id="Coordinate"><a href="#Coordinate" class="headerlink" title="Coordinate"></a>Coordinate</h2><p>viewBox=minX,minY width,height</p>
 <blockquote>
 <p>this can do shift/scale</p>
 </blockquote>
 <p>preserveAspectRatio<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">preserveAspectRatio=<span class="string">"xMinyMin meet"</span></div><div class="line"><span class="comment">// xMin - aligned to left, xMid - middle, xMax - aligned to bottom</span></div><div class="line"><span class="comment">// yMin - top</span></div><div class="line"><span class="comment">// meet: sliced untill the largest side touch the viewport boundary</span></div><div class="line"><span class="comment">// slice: scaled and sliced untill the mallest side touch the viewport boundary</span></div></pre></td></tr></table></figure></p>
 <h1 id="2-高级知识"><a href="#2-高级知识" class="headerlink" title="2. 高级知识"></a>2. 高级知识</h1><ul>
-<li><p><code>&lt;defs&gt;</code> &amp; <code>&lt;symbol&gt;</code> </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">"gradient"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"20%"</span> <span class="attr">stop-color</span>=<span class="string">"#3D9"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"90%"</span> <span class="attr">stop-color</span>=<span class="string">"#39F"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">symbol</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">"gradient"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"20%"</span> <span class="attr">stop-color</span>=<span class="string">"#3D9"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"90%"</span> <span class="attr">stop-color</span>=<span class="string">"#39F"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- reference to the defined element --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">g</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">circle</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">fill</span>=<span class="string">"url(#gradient)"</span>&gt;</span><span class="tag">&lt;/<span class="name">circle</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">g</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><code>&lt;use&gt;</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">use</span> <span class="attr">x</span>=<span class="string">"0"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">xlink:href</span>=<span class="string">"#element"</span> <span class="attr">fill</span>=<span class="string">"#f00"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">stroke-width</span>=<span class="string">"5px"</span> /&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><code>&lt;marker&gt;</code></p>
-<blockquote>
-<p>you can use viewBox for scale/transform</p>
-</blockquote>
-</li>
+<li><code>&lt;defs&gt;</code> &amp; <code>&lt;symbol&gt;</code>：定义</li>
+<li><code>&lt;marker&gt;</code>：标记</li>
+<li><code>&lt;use&gt;</code>：引用</li>
 </ul>
-<p>refX,refY: the offset of X-axis, Y-axis<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- basic W|H * markerUnits assignedKey's Value--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">marker</span> <span class="attr">markerWidth</span>=<span class="string">"10"</span> <span class="attr">markerHeight</span>=<span class="string">"10"</span> <span class="attr">refX</span>=<span class="string">"0"</span> <span class="attr">refY</span>=<span class="string">"3"</span> <span class="attr">orient</span>=<span class="string">"auto"</span> <span class="attr">markerUnits</span>=<span class="string">"strokeWidth"</span> <span class="attr">id</span>=<span class="string">"arrow"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M0,0 L0,6 L9,3 Z"</span> <span class="attr">fill</span>=<span class="string">"#3A9"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">marker</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M100,10 C200,40 300,10 400,50"</span>  <span class="attr">stroke</span>=<span class="string">"#3DA"</span> <span class="attr">marker-end</span>=<span class="string">"url(#arrow)"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>marker-end</code>, <code>marker-start</code>, <code>marker-end</code>(only display when polyline, path, polygon change direction)</p>
+<blockquote>
+<p>可以使用viewBox来scale/transform</p>
+</blockquote>
+<p>refX／refY：X／Y轴的偏移<br><code>marker-end</code>, <code>marker-start</code>, <code>marker-mid</code>(多节点的线才会有效，即至少3个点）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 渐变 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">"g1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"20%"</span> <span class="attr">stop-color</span>=<span class="string">"#3D9"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"90%"</span> <span class="attr">stop-color</span>=<span class="string">"#39F"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--  W|H * markerUnits 计算实际大小 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">marker</span> <span class="attr">viewBox</span>=<span class="string">"0 0 10 10"</span> <span class="attr">markerWidth</span>=<span class="string">"10"</span> <span class="attr">markerHeight</span>=<span class="string">"10"</span> <span class="attr">refX</span>=<span class="string">"0"</span> <span class="attr">refY</span>=<span class="string">"3"</span> <span class="attr">orient</span>=<span class="string">"auto"</span> <span class="attr">markerUnits</span>=<span class="string">"strokeWidth"</span> <span class="attr">id</span>=<span class="string">"arrow"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M0,0 L0,6 L9,3 Z"</span> <span class="attr">fill</span>=<span class="string">"#3A9"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">marker</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">symbol</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">stroke-width</span>=<span class="string">"18"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">fill</span>=<span class="string">"purple"</span> <span class="attr">id</span>=<span class="string">"r1"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 引用上面的定义 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"30"</span> <span class="attr">fill</span>=<span class="string">"url(#g1)"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">use</span> <span class="attr">x</span>=<span class="string">"110"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">xlink:href</span>=<span class="string">"#r1"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M240,20 C180,40 360,50 320,80"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">marker-end</span>=<span class="string">"url(#arrow)"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- marker-mid --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M260,20 H300 V60"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">marker-end</span>=<span class="string">"url(#arrow)"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">marker-mid</span>=<span class="string">"url(#arrow)"</span>/&gt;</span></div></pre></td></tr></table></figure>
+
+<svg style="width:400px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
+  <defs>
+    <lineargradient id="g1">
+      <stop offset="20%" stop-color="#3D9"/>
+      <stop offset="90%" stop-color="#39F"/>
+    </lineargradient>
+    <!--  W|H * markerUnits 计算实际大小 -->
+    <marker viewbox="0 0 10 10" markerwidth="10" markerheight="10" refx="0" refy="3" orient="auto" markerunits="strokeWidth" id="arrow">
+      <path d="M0,0 L0,6 L9,3 Z" fill="#3A9"/>
+    </marker>
+  </defs>
+  <symbol>
+    <circle cx="50" cy="50" r="20" stroke-width="18" stroke="orange" fill="purple" id="r1"/>
+  </symbol>
+  <circle cx="50" cy="50" r="30" fill="url(#g1)"/>
+  <use x="110" y="0" xlink:href="#r1" stroke="orange" stroke-width="5"/>
+  <path d="M240,20 C180,40 360,50 320,80" stroke="grey" marker-end="url(#arrow)" fill="none" stroke-width="2"/>
+  <path d="M260,20 H300 V60" stroke="grey" marker-end="url(#arrow)" fill="none" stroke-width="1" marker-mid="url(#arrow)"/>
+</svg>
+
 <h1 id="3-踩坑记"><a href="#3-踩坑记" class="headerlink" title="3.踩坑记"></a>3.踩坑记</h1><ul>
 <li>一个兼容SVG和IE的样式类操作（删／增）的工具函数</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * SVG元素的增/删样式类工具函数</span></div><div class="line"><span class="comment"> * IE不支持DOMElement.classList,以及jQuery.add/removeClass不支持SVG</span></div><div class="line"><span class="comment"> * @param element</span></div><div class="line"><span class="comment"> * @param className</span></div><div class="line"><span class="comment"> * @param opt 'add' | 'remove'</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">svgElementClassTool</span>(<span class="params">element, className, opt</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> oldClassList =</div><div class="line">    <span class="keyword">typeof</span> element.getAttribute(<span class="string">"class"</span>) !== <span class="string">"string"</span></div><div class="line">      ? []</div><div class="line">      : element.getAttribute(<span class="string">"class"</span>).split(<span class="string">" "</span>);</div><div class="line">  <span class="keyword">if</span> (opt === <span class="string">"add"</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (oldClassList.indexOf(className) &lt; <span class="number">0</span>) &#123;</div><div class="line">      oldClassList.push(className);</div><div class="line">      element.setAttribute(<span class="string">"class"</span>, oldClassList.join(<span class="string">" "</span>));</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (opt === <span class="string">"remove"</span>) &#123;</div><div class="line">    <span class="keyword">var</span> removeIdx;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; oldClassList.length; i++) &#123;</div><div class="line">      <span class="keyword">if</span> (oldClassList[i] === className) &#123;</div><div class="line">        removeIdx = i;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    removeIdx &gt; <span class="number">-1</span> &amp;&amp; oldClassList.splice(removeIdx, <span class="number">1</span>);</div><div class="line">    element.setAttribute(<span class="string">"class"</span>, oldClassList.join(<span class="string">" "</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>svg内可编辑文本</li>
+</ul>
+<p>原本以为下面几行代码就搞定收工了，结果又一次忘记了<strong>兼容</strong>。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">style</span>=<span class="string">"padding:10px;box-shadow: 0 0 8px 0 rgba(0,0,0,.2);"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">foreignObject</span> <span class="attr">requiredExtensions</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- XHTML content goes here --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">"hi~input."</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">textarea</span>&gt;</span>hi~textarea.<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">foreignObject</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>效果（IE不可见^_^）：</p>
+
+<svg width="300" height="100" style="padding:10px;box-shadow: 0 0 8px 0 rgba(0,0,0,.2);">
+
+  <foreignobject requiredextensions="http://www.w3.org/1999/xhtml" x="10" y="10">
+    <!-- XHTML content goes here -->
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <input value="hi~input."/>
+      <textarea>hi~textarea.</textarea>
+    </body>
+  </foreignobject>
+</svg>
+
+<p>又是傲娇的IE不支持<code>&lt;foreignObject&gt;</code>。最终怎么解决的呢：在<code>&lt;svg&gt;</code>标签外，用绝对定位并与svg内元素保持交互同步。（感觉又给自己挖下了一个很深的坑呢— —||）。</p>
 <h1 id="4-SVG库"><a href="#4-SVG库" class="headerlink" title="4. SVG库"></a>4. SVG库</h1><p>一开始没有选择d3.js库，而是手动撸原生，很失误。</p>
 <ul>
 <li><a href="https://d3js.org/" target="_blank" rel="external">D3.js</a></li>

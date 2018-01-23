@@ -88,7 +88,8 @@
 <meta property="og:description" content="小角度总结一下事件。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/12/all-about-event/Event.png">
-<meta property="og:updated_time" content="2018-01-22T15:02:57.000Z">
+<meta property="og:image" content="https://www.w3.org/TR/DOM-Level-3-Events/images/eventflow.svg">
+<meta property="og:updated_time" content="2018-01-23T14:46:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端常见Event总结（待续）">
 <meta name="twitter:description" content="小角度总结一下事件。">
@@ -377,6 +378,14 @@
         <p>小角度总结一下事件。</p>
 <img src="/2017/11/12/all-about-event/Event.png" title="Fig1. Events in This Post">
 <a id="more"></a>
+<h1 id="0-事件派发和传播"><a href="#0-事件派发和传播" class="headerlink" title="0. 事件派发和传播"></a>0. 事件派发和传播</h1><p>一个事件可以通过<code>dispatchEvent()</code>来派发，事件对象（object）通过DOM事件流（flow）来沿着事件传播路径（propagation path）传递给事件目标（target）。在派发前，先要决定传播路径，然后会经历事件一个或多个阶段。事件阶段有三个（如下图所示）：捕获阶段、定位阶段、冒泡阶段。如果<code>bubbles</code>被取消，那么就会跳过冒泡阶段，如果在派发之前调用了<code>stopPropogation()</code>，那么所有的阶段都会被跳过。</p>
+<ul>
+<li>捕获阶段（capture phase）：事件对象从<code>Window</code>传递到事件目标的父元素。</li>
+<li>定位阶段（target phase）：事件对象到达事件目标，如果设置了不冒泡，那么就会在此阶段完成后停止。</li>
+<li>冒泡阶段（bubble phase）：事件对象从事件目标的父元素传递回<code>Window</code>。</li>
+</ul>
+<p>图：DOM树中的事件派发说明</p>
+<p><img src="https://www.w3.org/TR/DOM-Level-3-Events/images/eventflow.svg" alt="img"></p>
 <h1 id="1-MouseEvent"><a href="#1-MouseEvent" class="headerlink" title="1. MouseEvent"></a>1. MouseEvent</h1><h2 id="1-1-鼠标悬浮"><a href="#1-1-鼠标悬浮" class="headerlink" title="1.1 鼠标悬浮"></a>1.1 鼠标悬浮</h2><p>一共有两对，<code>mouseenter</code>/<code>mouseleave</code>和<code>mouseover</code>/<code>mouseout</code>，两者的区别如下：</p>
 <ol>
 <li>后者会事件冒泡，前者只会出发当前层，而冒泡的好处在于只会被触发一次（层级较深时能有效减少开销）；</li>
@@ -419,9 +428,37 @@
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 <h1 id="3-其它"><a href="#3-其它" class="headerlink" title="3. 其它"></a>3. 其它</h1><h2 id="3-1-绑定事件"><a href="#3-1-绑定事件" class="headerlink" title="3.1 绑定事件"></a>3.1 绑定事件</h2><p>除了常见的在html里用<code>onXx=&quot;eventProcess()&quot;</code>绑定js中定义的函数外，还可以在js中查询元素，然后绑定事件，比如<code>document.querySelector(&quot;#aBtn&quot;).onclick = function btnClick(){}</code>，或者<code>addEventLister()</code>来绑定。</p>
-<h3 id="3-1-1-addEventListener"><a href="#3-1-1-addEventListener" class="headerlink" title="3.1.1 addEventListener()"></a>3.1.1 <code>addEventListener()</code></h3><p><code>target.addEventListener(type, listener[, options]);</code><br>|参数|说明|<br>|—-|—-|<br>|<code>type</code>|类型，大小写敏感|<br>|<code>listener</code>|当特定<code>type</code>事件发生时，此<code>listener</code>会收到通知，必须是JS函数，或者实现了<code>EventListener</code>接口的对象|<br>|<code>options</code>|可选，有<code>capture</code>（表示这种<code>type</code>的事件是否会在派发到注册的<code>listener</code>之前被派发给其它任何在DOM树结构上次于它的<code>EventTarget</code>）、<code>once</code>（是否只在添加之后只会激活一次，<code>true</code>代表在激活后会自动移除注册的<code>listener</code>）、<code>passive</code>（表示<code>listener</code>永远也不会调用<code>preventDefault()</code>，如果调用了，那么它会忽略，并在console显示警告信息，查看<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners" target="_blank" rel="external">Improving scrolling performance with passive listeners</a>了解更多）|</p>
+<h3 id="3-1-1-addEventListener"><a href="#3-1-1-addEventListener" class="headerlink" title="3.1.1 addEventListener()"></a>3.1.1 <code>addEventListener()</code></h3><ul>
+<li><code>target.addEventListener(type, listener[, options]);</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>类型，大小写敏感</td>
+</tr>
+<tr>
+<td><code>listener</code></td>
+<td>当特定<code>type</code>事件发生时，此<code>listener</code>会收到通知，必须是JS函数，或者实现了<code>EventListener</code>接口的对象</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>可选，有<code>capture</code>（表示这种<code>type</code>的事件是否会在派发到注册的<code>listener</code>之前被派发给其它任何在DOM树结构上次于它的<code>EventTarget</code>）、<code>once</code>（是否只在添加之后只会激活一次，<code>true</code>代表在激活后会自动移除注册的<code>listener</code>）、<code>passive</code>（表示<code>listener</code>永远也不会调用<code>preventDefault()</code>，如果调用了，那么它会忽略，并在console显示警告信息，查看<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners" target="_blank" rel="external">Improving scrolling performance with passive listeners</a>了解更多）</td>
+</tr>
+</tbody>
+</table>
 <p>其它参数感兴趣可以查看<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="external">DOC</a>。</p>
-<p><code>target.addEventListener(type, listener[, useCapture]);</code></p>
+<ul>
+<li><code>target.addEventListener(type, listener[, useCapture]);</code></li>
+</ul>
+<p><code>userCapture</code>参数与<code>optons</code>中的<code>capture</code>一样。</p>
+<p>两个知识点：<a href="https://www.quirksmode.org/js/events_order.html#link4" target="_blank" rel="external">JavaScript Events Order</a>、<a href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="external">DOM Level 3 Events</a></p>
 <h2 id="3-2-自定义事件"><a href="#3-2-自定义事件" class="headerlink" title="3.2 自定义事件"></a>3.2 自定义事件</h2><p>一般可以通过类似下面这种套路来定义／绑定／派发事件，带参数的事件可以参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="external">CustomEvent</a>，当然，你也可以自定义特定事件，比如<code>new MouseEvent(&#39;&#39;)</code>。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建事件</span></div><div class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> Event(<span class="string">'build'</span>);</div><div class="line"><span class="comment">// 旧时代使用的创建及初始化方法</span></div><div class="line"><span class="comment">// var event = document.createEvent('Event');</span></div><div class="line"><span class="comment">// event.initEvent('build', true, true);</span></div><div class="line"></div><div class="line"><span class="comment">// 监听事件</span></div><div class="line">elem.addEventListener(<span class="string">'build'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123; ... &#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// 派发事件</span></div><div class="line">elem.dispatchEvent(event);</div></pre></td></tr></table></figure>
 <p><strong>注意</strong>：<code>dispatchEvent</code>是事件创建、初始化、派发的最后一步，如果该事件是可取消的且已经被至少一个Event handler处理过，就会返回<code>false</code>，否则返回<code>true</code>，点击查看<a href="https://developer.mozilla.org/samples/domref/dispatchEvent.html" target="_blank" rel="external">dispatchEvent DEMO</a>。</p>
@@ -650,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MouseEvent"><span class="nav-text">1. MouseEvent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-鼠标悬浮"><span class="nav-text">1.1 鼠标悬浮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-鼠标点击"><span class="nav-text">1.2 鼠标点击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-滚动（轮）"><span class="nav-text">1.3 滚动（轮）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-鼠标事件忽略"><span class="nav-text">1.4 鼠标事件忽略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-KeyboardEvent"><span class="nav-text">2. KeyboardEvent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-基础"><span class="nav-text">2.1 基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-组合键"><span class="nav-text">2.2 组合键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-其它"><span class="nav-text">3. 其它</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-绑定事件"><span class="nav-text">3.1 绑定事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-addEventListener"><span class="nav-text">3.1.1 addEventListener()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-自定义事件"><span class="nav-text">3.2 自定义事件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-事件派发和传播"><span class="nav-text">0. 事件派发和传播</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MouseEvent"><span class="nav-text">1. MouseEvent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-鼠标悬浮"><span class="nav-text">1.1 鼠标悬浮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-鼠标点击"><span class="nav-text">1.2 鼠标点击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-滚动（轮）"><span class="nav-text">1.3 滚动（轮）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-鼠标事件忽略"><span class="nav-text">1.4 鼠标事件忽略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-KeyboardEvent"><span class="nav-text">2. KeyboardEvent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-基础"><span class="nav-text">2.1 基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-组合键"><span class="nav-text">2.2 组合键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-其它"><span class="nav-text">3. 其它</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-绑定事件"><span class="nav-text">3.1 绑定事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-addEventListener"><span class="nav-text">3.1.1 addEventListener()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-自定义事件"><span class="nav-text">3.2 自定义事件</span></a></li></ol></li></ol></div>
             
 
           </div>

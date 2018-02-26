@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="angularjs,路由," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta name="description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 ng-include和ui-router ui-routerurl传参123456789101112131415// 路由配置$s">
+<meta name="keywords" content="angularjs,路由">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta property="og:url" content="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/index.html">
+<meta property="og:title" content="angularjs页面分割和路由（ui-router)">
+<meta property="og:url" content="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta property="og:description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 ng-include和ui-router ui-routerurl传参123456789101112131415// 路由配置$s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-12T14:14:01.000Z">
+<meta property="og:updated_time" content="2018-02-26T12:01:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta name="twitter:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta name="twitter:title" content="angularjs页面分割和路由（ui-router)">
+<meta name="twitter:description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 ng-include和ui-router ui-routerurl传参123456789101112131415// 路由配置$s">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/"/>
+  <link rel="canonical" href="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/"/>
 
 
 
 
 
-  <title>阿里云ECS+shadowsocks 科学上网 | 辣手摧花</title>
+  <title>angularjs页面分割和路由（ui-router) | 辣手摧花</title>
   
 
 
@@ -270,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -287,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">阿里云ECS+shadowsocks 科学上网</h2>
+          <h2 class="post-title" itemprop="name headline">angularjs页面分割和路由（ui-router)</h2>
         
 
         <div class="post-meta">
@@ -299,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T23:39:17+08:00">
-                2017-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T19:40:58+08:00">
+                2018-02-26
               </time>
             
 
@@ -322,8 +323,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/利器/" itemprop="url" rel="index">
-                    <span itemprop="name">利器</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -341,8 +342,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/19/ecs-ss-cross-wall/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/19/ecs-ss-cross-wall/" itemprop="commentsCount"></span>
+                <a href="/2018/02/26/angularjs-include-ui-router/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/angularjs-include-ui-router/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -371,35 +372,17 @@
       
 
       
-        <h1 id="嗯，曲线救国—-—-。"><a href="#嗯，曲线救国—-—-。" class="headerlink" title="嗯，曲线救国— —||。"></a>嗯，曲线救国— —||。</h1><blockquote>
-<p>阿里ECS+ShadowSocks.</p>
-</blockquote>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ul>
-<li>STEP_1</li>
-</ul>
-<p>购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）</p>
-<ul>
-<li>STEP_2</li>
-</ul>
-<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<ul>
-<li><p>STEP_3<br>配置ECS开启上面设置的端口，在阿里云控制台，进入ECS实例管理，找到对应的实例，<code>操作</code>列中，<code>更多</code>里选择<code>安全组配置</code>，在<code>配置规则</code>中增加<em>入方向</em>的规则即可。</p>
-</li>
-<li><p>STEP_4</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动ss</span></div><div class="line">启动：/etc/init.d/shadowsocks start</div></pre></td></tr></table></figure>
-<ul>
-<li>STEP_5</li>
-</ul>
-<p>客户端下载及配置。（很简单，下载客户端，添加上面配置的IP:PORT+密码即可）</p>
-<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="external">shadowsocks官网</a></p>
-<p><a href="https://github.com/shadowsocks" target="_blank" rel="external">github地址</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ss相关其它命令</span></div><div class="line">停止：/etc/init.d/shadowsocks stop</div><div class="line">重启：/etc/init.d/shadowsocks restart</div><div class="line">状态：/etc/init.d/shadowsocks status</div><div class="line">卸载：./shadowsocks.sh uninstall</div><div class="line"></div><div class="line"><span class="comment"># ss的配置文件（可以设置多用户什么的）</span></div><div class="line">vi /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<p><strong><a href="https://teddysun.com/342.html" target="_blank" rel="external">shadowsocks python版</a></strong></p>
-<p><strong><a href="https://teddysun.com/399.html" target="_blank" rel="external">开发者提供的FAQ</a></strong></p>
-<p><strong><a href="https://teddysun.com/486.html" target="_blank" rel="external">shadowsocks安装四合一(R/python/Go/libev)版本</a></strong></p>
+        <p>做页面，经常会遇到这样的需求：</p>
+<ol>
+<li>页面太大，需要分割；</li>
+<li>单页面众多状态（页面）切换；</li>
+</ol>
+<p>在angular框架前提下，第1点一般通过<code>ng-include</code>来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用<code>ui-router</code>来控制。</p>
+<p><code>ng-include</code>和<code>ui-router</code></p>
+<h2 id="ui-router"><a href="#ui-router" class="headerlink" title="ui-router"></a><code>ui-router</code></h2><h3 id="url传参"><a href="#url传参" class="headerlink" title="url传参"></a><code>url</code>传参</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 路由配置</span></div><div class="line">$stateProvider.state(&#123;</div><div class="line">    name: <span class="string">'state1'</span>,</div><div class="line">    url: <span class="string">'/test/:say'</span>,</div><div class="line">    templateUrl: <span class="string">'x'</span>,</div><div class="line">    controller: <span class="string">'xx'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 传递参数，url会变为`test/hi~/`</span></div><div class="line">$state.go(<span class="string">'state1'</span>, &#123;<span class="attr">say</span>: <span class="string">'hi~'</span>&#125;); <span class="comment">// 或通过访问url`test/hi~/`传入参数</span></div><div class="line"></div><div class="line"><span class="comment">// controller中获取该参数</span></div><div class="line">$stateParameter.say;</div><div class="line">$state.params; <span class="comment">// 这个能获取到子状态的参数</span></div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：0.2.10版本前不支持$state.go()传递对象参数。</p>
+<h3 id="直接状态带参"><a href="#直接状态带参" class="headerlink" title="直接状态带参"></a>直接状态带参</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(&#123;</div><div class="line">    name: <span class="string">'state1'</span>,</div><div class="line">    url: <span class="string">'/test'</span>,</div><div class="line">    params: &#123;</div><div class="line">        say: <span class="literal">null</span></div><div class="line">    &#125;,</div><div class="line">    templateUrl: <span class="string">'x'</span>,</div><div class="line">    controller: <span class="string">'xx'</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用同<code>url</code>传参，不同在于url中不会出现该传递参数。</p>
 
       
     </div>
@@ -420,7 +403,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/" title="阿里云ECS+shadowsocks 科学上网">https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/</a>
+    <a href="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/" title="angularjs页面分割和路由（ui-router)">https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -433,6 +416,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/angularjs/" rel="tag"># angularjs</a>
+          
+            <a href="/tags/路由/" rel="tag"># 路由</a>
+          
+        </div>
+      
 
       
       
@@ -442,14 +433,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/02/23/scroll-bar-diy/" rel="next" title="自定义浏览器滚动条">
+                <i class="fa fa-chevron-left"></i> 自定义浏览器滚动条
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/20/google-search-skill/" rel="prev" title="Google搜索小技巧">
-                Google搜索小技巧 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/26/mouse-event-position/" rel="prev" title="MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息">
+                MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#嗯，曲线救国—-—-。"><span class="nav-text">嗯，曲线救国— —||。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建过程"><span class="nav-text">搭建过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ui-router"><span class="nav-text">ui-router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#url传参"><span class="nav-text">url传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接状态带参"><span class="nav-text">直接状态带参</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -789,7 +784,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/10/19/ecs-ss-cross-wall/"});
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/02/26/angularjs-include-ui-router/"});
 		
 
 		(function() {

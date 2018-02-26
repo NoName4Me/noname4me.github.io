@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MouseEvent定位,元素尺寸," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta name="description" content="1. 定位clientX: 与页面可视区左侧的距离offsetX: 与元素左侧的距离pageX: 与document左侧的距离screenX: 与屏幕左侧的距离 兼容浏览器的各个position获取方法：">
+<meta name="keywords" content="MouseEvent定位,元素尺寸">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta property="og:url" content="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/index.html">
+<meta property="og:title" content="MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息">
+<meta property="og:url" content="https://noname4me.github.io/2018/02/26/mouse-event-position/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta property="og:description" content="1. 定位clientX: 与页面可视区左侧的距离offsetX: 与元素左侧的距离pageX: 与document左侧的距离screenX: 与屏幕左侧的距离 兼容浏览器的各个position获取方法：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-12T14:14:01.000Z">
+<meta property="og:updated_time" content="2018-02-26T15:16:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta name="twitter:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta name="twitter:title" content="MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息">
+<meta name="twitter:description" content="1. 定位clientX: 与页面可视区左侧的距离offsetX: 与元素左侧的距离pageX: 与document左侧的距离screenX: 与屏幕左侧的距离 兼容浏览器的各个position获取方法：">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/"/>
+  <link rel="canonical" href="https://noname4me.github.io/2018/02/26/mouse-event-position/"/>
 
 
 
 
 
-  <title>阿里云ECS+shadowsocks 科学上网 | 辣手摧花</title>
+  <title>MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息 | 辣手摧花</title>
   
 
 
@@ -270,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/mouse-event-position/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -287,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">阿里云ECS+shadowsocks 科学上网</h2>
+          <h2 class="post-title" itemprop="name headline">MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息</h2>
         
 
         <div class="post-meta">
@@ -299,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T23:39:17+08:00">
-                2017-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T20:39:04+08:00">
+                2018-02-26
               </time>
             
 
@@ -322,8 +323,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/利器/" itemprop="url" rel="index">
-                    <span itemprop="name">利器</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -341,8 +342,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/19/ecs-ss-cross-wall/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/19/ecs-ss-cross-wall/" itemprop="commentsCount"></span>
+                <a href="/2018/02/26/mouse-event-position/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/mouse-event-position/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -371,35 +372,21 @@
       
 
       
-        <h1 id="嗯，曲线救国—-—-。"><a href="#嗯，曲线救国—-—-。" class="headerlink" title="嗯，曲线救国— —||。"></a>嗯，曲线救国— —||。</h1><blockquote>
-<p>阿里ECS+ShadowSocks.</p>
+        <h1 id="1-定位"><a href="#1-定位" class="headerlink" title="1. 定位"></a>1. 定位</h1><p><code>clientX</code>: 与页面可视区左侧的距离<br><code>offsetX</code>: 与元素左侧的距离<br><code>pageX</code>: 与document左侧的距离<br><code>screenX</code>: 与屏幕左侧的距离</p>
+<p>兼容浏览器的各个position获取方法：<br><a id="more"></a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 原文@branneman：https://gist.github.com/branneman/fc66785c082099298955</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * @param &#123;Event&#125; evt</span></div><div class="line"><span class="comment"> * @return &#123;Object&#125;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMousePosition</span>(<span class="params">evt</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> pageX = evt.pageX;</div><div class="line">  <span class="keyword">var</span> pageY = evt.pageY;</div><div class="line">  <span class="keyword">if</span> (pageX === <span class="literal">undefined</span>) &#123;</div><div class="line">    pageX = evt.clientX + <span class="built_in">document</span>.body.scrollLeft + <span class="built_in">document</span>.documentElement.scrollLeft;</div><div class="line">    pageY = evt.clientY + <span class="built_in">document</span>.body.scrollTop + <span class="built_in">document</span>.documentElement.scrollTop;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> rect = evt.target.getBoundingClientRect();</div><div class="line">  <span class="keyword">var</span> offsetX = evt.clientX - rect.left;</div><div class="line">  <span class="keyword">var</span> offsetY = evt.clientY - rect.top;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    client: &#123; <span class="attr">x</span>: evt.clientX, <span class="attr">y</span>: evt.clientY &#125;, <span class="comment">// relative to the viewport</span></div><div class="line">    screen: &#123; <span class="attr">x</span>: evt.screenX, <span class="attr">y</span>: evt.screenY &#125;, <span class="comment">// relative to the physical screen</span></div><div class="line">    offset: &#123; <span class="attr">x</span>: offsetX,     <span class="attr">y</span>: offsetY &#125;,     <span class="comment">// relative to the event target</span></div><div class="line">    page:   &#123; <span class="attr">x</span>: pageX,       <span class="attr">y</span>: pageY &#125;        <span class="comment">// relative to the html document</span></div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-宽高"><a href="#2-宽高" class="headerlink" title="2. 宽高"></a>2. 宽高</h1><blockquote>
+<p>参考<a href="https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively" target="_blank" rel="external">stackoverflow上一个优秀回答</a>。</p>
 </blockquote>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ul>
-<li>STEP_1</li>
-</ul>
-<p>购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）</p>
 <ul>
-<li>STEP_2</li>
+<li><code>offsetWidth</code> / <code>offsetHeight</code>: 包含了边界的盒宽／高，通过<code>width + padding + border</code>计算<code>display:block</code>的元素；</li>
+<li><code>clientWidth</code> / <code>clientHeight</code>: 盒内容的可视部分，不包括边界／滚动条，但是包含内边距<code>padding</code>，无法直接通过CSS计算，依赖于系统滚动条大小；</li>
+<li><code>scrollWidth</code> / <code>scrollHeight</code>: 盒内容的全部尺寸，包括滚动到可视区域外的部分，无法直接通过CSS计算，依赖于内容；</li>
 </ul>
-<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<ul>
-<li><p>STEP_3<br>配置ECS开启上面设置的端口，在阿里云控制台，进入ECS实例管理，找到对应的实例，<code>操作</code>列中，<code>更多</code>里选择<code>安全组配置</code>，在<code>配置规则</code>中增加<em>入方向</em>的规则即可。</p>
-</li>
-<li><p>STEP_4</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动ss</span></div><div class="line">启动：/etc/init.d/shadowsocks start</div></pre></td></tr></table></figure>
-<ul>
-<li>STEP_5</li>
-</ul>
-<p>客户端下载及配置。（很简单，下载客户端，添加上面配置的IP:PORT+密码即可）</p>
-<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="external">shadowsocks官网</a></p>
-<p><a href="https://github.com/shadowsocks" target="_blank" rel="external">github地址</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ss相关其它命令</span></div><div class="line">停止：/etc/init.d/shadowsocks stop</div><div class="line">重启：/etc/init.d/shadowsocks restart</div><div class="line">状态：/etc/init.d/shadowsocks status</div><div class="line">卸载：./shadowsocks.sh uninstall</div><div class="line"></div><div class="line"><span class="comment"># ss的配置文件（可以设置多用户什么的）</span></div><div class="line">vi /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<p><strong><a href="https://teddysun.com/342.html" target="_blank" rel="external">shadowsocks python版</a></strong></p>
-<p><strong><a href="https://teddysun.com/399.html" target="_blank" rel="external">开发者提供的FAQ</a></strong></p>
-<p><strong><a href="https://teddysun.com/486.html" target="_blank" rel="external">shadowsocks安装四合一(R/python/Go/libev)版本</a></strong></p>
+<p>该回答里的示例如下：</p>
+
+<p data-height="520" data-theme-id="dark" data-slug-hash="mXzjyo" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="offsetWidth, clientWidth, scrollWidth" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/mXzjyo/" target="_blank" rel="external">offsetWidth, clientWidth, scrollWidth</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
       
     </div>
@@ -420,7 +407,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/" title="阿里云ECS+shadowsocks 科学上网">https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/</a>
+    <a href="https://noname4me.github.io/2018/02/26/mouse-event-position/" title="MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息">https://noname4me.github.io/2018/02/26/mouse-event-position/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -433,6 +420,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/MouseEvent定位/" rel="tag"># MouseEvent定位</a>
+          
+            <a href="/tags/元素尺寸/" rel="tag"># 元素尺寸</a>
+          
+        </div>
+      
 
       
       
@@ -442,15 +437,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/02/26/angularjs-include-ui-router/" rel="next" title="angularjs页面分割和路由（ui-router)">
+                <i class="fa fa-chevron-left"></i> angularjs页面分割和路由（ui-router)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/google-search-skill/" rel="prev" title="Google搜索小技巧">
-                Google搜索小技巧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -613,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#嗯，曲线救国—-—-。"><span class="nav-text">嗯，曲线救国— —||。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建过程"><span class="nav-text">搭建过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-定位"><span class="nav-text">1. 定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-宽高"><span class="nav-text">2. 宽高</span></a></li></ol></div>
             
 
           </div>
@@ -789,7 +784,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/10/19/ecs-ss-cross-wall/"});
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/02/26/mouse-event-position/"});
 		
 
 		(function() {

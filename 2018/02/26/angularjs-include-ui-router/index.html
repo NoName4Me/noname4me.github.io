@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 ng-include和ui-router ui-routerurl传参123456789101112131415// 路由配置$s">
+<meta name="description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 待续。">
 <meta name="keywords" content="angularjs,路由">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angularjs页面分割和路由（ui-router)">
 <meta property="og:url" content="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 ng-include和ui-router ui-routerurl传参123456789101112131415// 路由配置$s">
+<meta property="og:description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 待续。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-26T12:01:34.000Z">
+<meta property="og:updated_time" content="2018-02-26T15:18:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angularjs页面分割和路由（ui-router)">
-<meta name="twitter:description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 ng-include和ui-router ui-routerurl传参123456789101112131415// 路由配置$s">
+<meta name="twitter:description" content="做页面，经常会遇到这样的需求：  页面太大，需要分割； 单页面众多状态（页面）切换；  在angular框架前提下，第1点一般通过ng-include来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用ui-router来控制。 待续。">
 
 
 
@@ -378,6 +378,8 @@
 <li>单页面众多状态（页面）切换；</li>
 </ol>
 <p>在angular框架前提下，第1点一般通过<code>ng-include</code>来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用<code>ui-router</code>来控制。</p>
+<p>待续。</p>
+<a id="more"></a>
 <p><code>ng-include</code>和<code>ui-router</code></p>
 <h2 id="ui-router"><a href="#ui-router" class="headerlink" title="ui-router"></a><code>ui-router</code></h2><h3 id="url传参"><a href="#url传参" class="headerlink" title="url传参"></a><code>url</code>传参</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 路由配置</span></div><div class="line">$stateProvider.state(&#123;</div><div class="line">    name: <span class="string">'state1'</span>,</div><div class="line">    url: <span class="string">'/test/:say'</span>,</div><div class="line">    templateUrl: <span class="string">'x'</span>,</div><div class="line">    controller: <span class="string">'xx'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 传递参数，url会变为`test/hi~/`</span></div><div class="line">$state.go(<span class="string">'state1'</span>, &#123;<span class="attr">say</span>: <span class="string">'hi~'</span>&#125;); <span class="comment">// 或通过访问url`test/hi~/`传入参数</span></div><div class="line"></div><div class="line"><span class="comment">// controller中获取该参数</span></div><div class="line">$stateParameter.say;</div><div class="line">$state.params; <span class="comment">// 这个能获取到子状态的参数</span></div></pre></td></tr></table></figure>
 <p><strong>注意</strong>：0.2.10版本前不支持$state.go()传递对象参数。</p>

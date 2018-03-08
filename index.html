@@ -383,12 +383,30 @@
       
         
           
-            <h2 id="波浪效果"><a href="#波浪效果" class="headerlink" title="波浪效果"></a>波浪效果</h2><p>通过圆角矩形的旋转，并遮挡部分内容来实现。</p>
+            <h1 id="1-波浪效果"><a href="#1-波浪效果" class="headerlink" title="1. 波浪效果"></a>1. 波浪效果</h1><p>通过圆角矩形的旋转，并遮挡部分内容来实现。</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 动画定义</span></div><div class="line">@keyframes animate-wave &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">transform</span>: translate(-<span class="number">50%</span>, <span class="number">0</span>) rotate(<span class="number">0deg</span>);</div><div class="line">  &#125;</div><div class="line">  50% &#123;<span class="comment">// 这个Y轴的偏移是为了更生动的波浪</span></div><div class="line">    <span class="attribute">transform</span>: translate(-<span class="number">50%</span>, <span class="number">2%</span>) rotate(<span class="number">180deg</span>);</div><div class="line">  &#125;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">transform</span>: translate(-<span class="number">50%</span>, <span class="number">0%</span>) rotate(<span class="number">360deg</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 动画引用</span></div><div class="line"><span class="selector-class">.wave</span> &#123;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">45%</span>;</div><div class="line">    <span class="attribute">animation</span>: animate-wave <span class="number">8s</span> linear infinite;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>效果展示：</p>
 
 <p data-height="330" data-theme-id="dark" data-slug-hash="RQXOGK" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="CSS-sticky-water" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/RQXOGK/" target="_blank" rel="external">CSS-sticky-water</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="2-水滴粘黏效果"><a href="#2-水滴粘黏效果" class="headerlink" title="2. 水滴粘黏效果"></a>2. 水滴粘黏效果</h1><p>这种效果的关键就在于水滴之间的连接是圆润平滑的，如下图所示。</p>
+<p>那么问题来了，在CSS里如何实现这种效果呢？有个变换叫<code>fitler</code>，^__^。</p>
+<p>原理且先不讨论，我们看一下PS里高斯模糊然后高对比度的效果：</p>
+<p><img src=""></p>
+<p>css里就是借助<code>filter: blur()</code>和<code>filter: contrast()</code>。</p>
+<p>效果展示：</p>
+
+<p data-height="320" data-theme-id="dark" data-slug-hash="LdPKjg" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="CSS-wave-sticky-2" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/LdPKjg/" target="_blank" rel="external">CSS-wave-sticky-2</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><p>CSS实现波浪效果：<a href="https://github.com/chokcoco/iCSS/issues/22" target="_blank" rel="external">https://github.com/chokcoco/iCSS/issues/22</a></p>
+</li>
+<li><p><a href="https://codepen.io/blurnull/pen/PQMwpQ" target="_blank" rel="external">100 days CSS challenge 007</a></p>
+</li>
+</ol>
 
           
         

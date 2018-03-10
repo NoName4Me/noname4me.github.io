@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="animation最近在做100 Days CSS chalenges练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。 引用动画这个属性一共有8个子属性，取值（第一个是默认值）如下：">
+<meta name="description" content="最近在做100 Days CSS chalenges练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。 1. 引用动画1.1 基础这个属性一共有8个子属性，取值（第一个是默认值）如下：">
 <meta name="keywords" content="animation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css动画（animation）">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/02/css-animation/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="animation最近在做100 Days CSS chalenges练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。 引用动画这个属性一共有8个子属性，取值（第一个是默认值）如下：">
+<meta property="og:description" content="最近在做100 Days CSS chalenges练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。 1. 引用动画1.1 基础这个属性一共有8个子属性，取值（第一个是默认值）如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-03T15:45:21.000Z">
+<meta property="og:image" content="https://drafts.csswg.org/css-timing-1/timing-function-example.svg">
+<meta property="og:image" content="https://drafts.csswg.org/css-timing-1/cubic-bezier-timing-curve.svg">
+<meta property="og:image" content="https://drafts.csswg.org/css-timing-1/step-timing-func-examples.svg">
+<meta property="og:updated_time" content="2018-03-10T16:59:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css动画（animation）">
-<meta name="twitter:description" content="animation最近在做100 Days CSS chalenges练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。 引用动画这个属性一共有8个子属性，取值（第一个是默认值）如下：">
+<meta name="twitter:description" content="最近在做100 Days CSS chalenges练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。 1. 引用动画1.1 基础这个属性一共有8个子属性，取值（第一个是默认值）如下：">
+<meta name="twitter:image" content="https://drafts.csswg.org/css-timing-1/timing-function-example.svg">
 
 
 
@@ -383,11 +387,11 @@
       
 
       
-        <h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><p>最近在做<a href="https://codepen.io/collection/XgmakG/" target="_blank" rel="external">100 Days CSS chalenges</a>练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。</p>
-<h2 id="引用动画"><a href="#引用动画" class="headerlink" title="引用动画"></a>引用动画</h2><p>这个属性一共有8个子属性，取值（第一个是默认值）如下：<br><a id="more"></a></p>
+        <p>最近在做<a href="https://codepen.io/collection/XgmakG/" target="_blank" rel="external">100 Days CSS chalenges</a>练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。</p>
+<h1 id="1-引用动画"><a href="#1-引用动画" class="headerlink" title="1. 引用动画"></a>1. 引用动画</h1><h1 id="1-1-基础"><a href="#1-1-基础" class="headerlink" title="1.1 基础"></a>1.1 基础</h1><p>这个属性一共有8个子属性，取值（第一个是默认值）如下：<br><a id="more"></a></p>
 <ul>
 <li><code>animation-name</code>: <code>none</code></li>
-<li><code>animation-timing-function</code>: <code>ease</code></li>
+<li><code>animation-timing-function</code>: <code>ease</code>，可取贝塞尔曲线、帧函数<code>frame()</code>，步进函数<code>steps()</code>，具体见<code>1.2</code>节。</li>
 <li><code>animation-duration</code>: <code>0s</code>，即使是<code>0</code>也要带单位哦，还支持<code>ms</code></li>
 <li><code>animation-delay</code>: <code>0s</code></li>
 <li><code>animation-iteration-count</code>: 1，可取<code>infinite</code>无限循环，可以取多值<code>1,2,3</code>，每当动画播放，会顺序的循环取用该多值；</li>
@@ -402,7 +406,36 @@
 <p data-height="265" data-theme-id="dark" data-slug-hash="rJRbJz" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="animation-demo" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/rJRbJz/" target="_blank" rel="external">animation-demo</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<h2 id="定义动画"><a href="#定义动画" class="headerlink" title="定义动画"></a>定义动画</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">@keyframes xx &#123;</div><div class="line">    from &#123;</div><div class="line">        <span class="comment">// 设置CSS样式</span></div><div class="line">    &#125;</div><div class="line">    to &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//上面的就相当于</span></div><div class="line">@keyframes xx &#123;</div><div class="line">    0% &#123;&#125;</div><div class="line">    100% &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当然你可以定义几个帧安全一样</span></div><div class="line">@keyframes xx &#123;</div><div class="line">    0%, 20% &#123;&#125;</div><div class="line">    100% &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="1-2-动画时间函数说明"><a href="#1-2-动画时间函数说明" class="headerlink" title="1.2 动画时间函数说明"></a>1.2 动画时间函数说明</h2><p><code>animation-timing-function</code>已定义好的关键值如下：</p>
+<ul>
+<li><code>ease</code>: <code>cubic-bezier(0.25, 0.1, 0.25, 1)</code></li>
+<li><code>ease-in</code>: <code>cubic-bezier(0.42, 0, 1, 1)</code></li>
+<li><code>ease-out</code>: <code>cubic-bezier(0, 0, 0.58, 1)</code></li>
+<li><code>ease-in-out</code>: <code>cubic-bezier(0.42, 0, 0.58, 1)</code></li>
+<li><code>linear</code>: <code>cubic-bezier(0, 0, 1, 1)</code></li>
+<li><code>step-start</code>: <code>steps(1, start)</code></li>
+<li><code>step-end</code>: <code>steps(1, end)</code></li>
+</ul>
+<p>动画的时间函数如下图所示（图中为<code>ease-in</code>时间函数），这个其实很简单，就是指定给动画的时间（<code>animation-duration</code>），和真实的动画持续时间的关系。</p>
+<p><img src="https://drafts.csswg.org/css-timing-1/timing-function-example.svg" alt="cubic-bezier curve" style="box-shadow:0 2px 16px rgba(0,0,0,.4);width: 400px;border-radius:2px;"></p>
+<p>三个关键的时间函数为：</p>
+<ul>
+<li><code>cubic-bezier()</code>: 如下图示例，曲线的参数对应其实是P1和P2的坐标值(x1, y1, x2, y2)</li>
+</ul>
+<p><img src="https://drafts.csswg.org/css-timing-1/cubic-bezier-timing-curve.svg" alt="cubic-bezier curve" style="box-shadow:0 2px 16px rgba(0,0,0,.4);width: 400px;border-radius:2px;"></p>
+<ul>
+<li><p><code>frames()</code>：感觉这个和<code>steps()</code>一样啊-__-||</p>
+</li>
+<li><p><code>steps()</code>: 第一个参数是指将输入时间均分为几个步骤，第二个参数，感觉就是步骤切换是在刚进入到该步时（<code>start</code>），还是该步结束时要进入下一步前（<code>end</code>）。</p>
+</li>
+</ul>
+<p><img src="https://drafts.csswg.org/css-timing-1/step-timing-func-examples.svg" alt="步进函数" style="box-shadow:0 2px 16px rgba(0,0,0,.4);width: 400px;border-radius:2px;"></p>
+<h1 id="2-定义动画"><a href="#2-定义动画" class="headerlink" title="2. 定义动画"></a>2. 定义动画</h1><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">@keyframes xx &#123;</div><div class="line">    from &#123;</div><div class="line">        <span class="comment">// 设置CSS样式</span></div><div class="line">    &#125;</div><div class="line">    to &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//上面的就相当于</span></div><div class="line">@keyframes xx &#123;</div><div class="line">    0% &#123;&#125;</div><div class="line">    100% &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当然你可以定义几个帧安全一样</span></div><div class="line">@keyframes xx &#123;</div><div class="line">    0%, 20% &#123;&#125;</div><div class="line">    100% &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>W3C CSS Animation Function: <a href="https://drafts.csswg.org/css-timing-1/" target="_blank" rel="external">https://drafts.csswg.org/css-timing-1/</a></li>
+</ol>
+
       
     </div>
     
@@ -625,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#animation"><span class="nav-text">animation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用动画"><span class="nav-text">引用动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义动画"><span class="nav-text">定义动画</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-引用动画"><span class="nav-text">1. 引用动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-1-基础"><span class="nav-text">1.1 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-动画时间函数说明"><span class="nav-text">1.2 动画时间函数说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-定义动画"><span class="nav-text">2. 定义动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

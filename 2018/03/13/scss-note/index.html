@@ -82,14 +82,14 @@
 <meta name="description" content="1. 安装及编译Ruby、Sass（gem install sass） 1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 --style expanded# 单行 --style compact">
 <meta name="keywords" content="SCSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="scss-note">
+<meta property="og:title" content="SCSS学习笔记">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/13/scss-note/index.html">
 <meta property="og:site_name" content="辣手摧花">
 <meta property="og:description" content="1. 安装及编译Ruby、Sass（gem install sass） 1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 --style expanded# 单行 --style compact">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T15:06:16.000Z">
+<meta property="og:updated_time" content="2018-03-13T15:08:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="scss-note">
+<meta name="twitter:title" content="SCSS学习笔记">
 <meta name="twitter:description" content="1. 安装及编译Ruby、Sass（gem install sass） 1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 --style expanded# 单行 --style compact">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>scss-note | 辣手摧花</title>
+  <title>SCSS学习笔记 | 辣手摧花</title>
   
 
 
@@ -288,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">scss-note</h2>
+          <h2 class="post-title" itemprop="name headline">SCSS学习笔记</h2>
         
 
         <div class="post-meta">
@@ -385,11 +385,9 @@
       
         <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><p>Ruby、Sass（gem install sass）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># .scss（同.sass）</span></div><div class="line">sass source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 连续编译</span></div><div class="line">sass --watch source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 输出样式</span></div><div class="line"><span class="comment"># 嵌套 --style nested</span></div><div class="line"><span class="comment"># 嵌套展开 --style expanded</span></div><div class="line"><span class="comment"># 单行 --style compact</span></div><div class="line"><span class="comment"># 压缩（注释、空格删除） --style compressed</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">nav</span> &#123;</div><div class="line">  <span class="selector-tag">ul</span> &#123;<span class="attribute">margin</span>: <span class="number">0</span>;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* nested */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* expanded */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* compact */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123; <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* compressed */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;&#125;</div></pre></td></tr></table></figure>
-<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-全局-局部变量"><a href="#2-1-全局-局部变量" class="headerlink" title="2.1 全局/局部变量"></a>2.1 全局/局部变量</h2><ul>
-<li>全局/局部变量</li>
-</ul>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$color</span>:orange;</div><div class="line"><span class="selector-class">.block</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="variable">$color</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">em</span> &#123;</div><div class="line">  <span class="variable">$color</span>: red;</div><div class="line">  <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">$color</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-全局-局部变量"><a href="#2-1-全局-局部变量" class="headerlink" title="2.1 全局/局部变量"></a>2.1 全局/局部变量</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 全局</span></div><div class="line"><span class="variable">$color</span>:orange;</div><div class="line"><span class="selector-class">.block</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="variable">$color</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">em</span> &#123;</div><div class="line">    <span class="comment">// 局部变量</span></div><div class="line">  <span class="variable">$color</span>: red;</div><div class="line">  <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">$color</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="2-2-混合宏"><a href="#2-2-混合宏" class="headerlink" title="2.2 混合宏"></a>2.2 混合宏</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 有参数的宏</span></div><div class="line">@<span class="keyword">mixin</span> border-radius(<span class="variable">$radius</span>) &#123;</div><div class="line">  -webkit-<span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">     -moz-<span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">      -ms-<span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">          <span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.box</span> &#123; @<span class="keyword">include</span> border-radius(<span class="number">10px</span>); &#125;</div><div class="line"><span class="comment">// 调用</span></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  @<span class="keyword">include</span> border-radius(<span class="number">3px</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 带默认值</span></div><div class="line">@<span class="keyword">mixin</span> border-radius(<span class="variable">$radius</span>: 3px)</div><div class="line"></div><div class="line">// 多参</div><div class="line">@<span class="keyword">mixin</span> size(<span class="variable">$width</span>:<span class="number">30px</span>, <span class="variable">$height</span>:<span class="number">400px</span>)&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="variable">$height</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 可变参数</span></div><div class="line">@<span class="keyword">mixin</span> box-shadow(<span class="variable">$shadow</span>...) &#123;</div><div class="line">  @<span class="keyword">if</span> length(<span class="variable">$shadow</span>) &gt;= 1 &#123;</div><div class="line">    @<span class="keyword">include</span> prefixer(box-shadow, <span class="variable">$shadow</span>);</div><div class="line">  &#125; @<span class="keyword">else</span>&#123;</div><div class="line">    <span class="variable">$shadow</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">4px</span> rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">3</span>);</div><div class="line">    @<span class="keyword">include</span> prefixer(box-shadow, <span class="variable">$shadow</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="2-3-amp-及嵌套"><a href="#2-3-amp-及嵌套" class="headerlink" title="2.3 &amp;及嵌套"></a>2.3 &amp;及嵌套</h2><ul>
 <li>&amp;引用外层结构</li>
@@ -433,7 +431,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2018/03/13/scss-note/" title="scss-note">https://noname4me.github.io/2018/03/13/scss-note/</a>
+    <a href="https://noname4me.github.io/2018/03/13/scss-note/" title="SCSS学习笔记">https://noname4me.github.io/2018/03/13/scss-note/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -461,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/12/css-border/" rel="next" title="css-border">
-                <i class="fa fa-chevron-left"></i> css-border
+              <a href="/2018/03/12/css-border/" rel="next" title="使用CSS用border搞点儿事情">
+                <i class="fa fa-chevron-left"></i> 使用CSS用border搞点儿事情
               </a>
             
           </div>
@@ -577,7 +575,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

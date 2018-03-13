@@ -267,6 +267,331 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/13/scss-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/scss-note/" itemprop="url">scss-note</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T22:28:19+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/13/scss-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/13/scss-note/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><p>Ruby、Sass（gem install sass）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># .scss（同.sass）</span></div><div class="line">sass source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 连续编译</span></div><div class="line">sass --watch source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 输出样式</span></div><div class="line"><span class="comment"># 嵌套 --style nested</span></div><div class="line"><span class="comment"># 嵌套展开 --style expanded</span></div><div class="line"><span class="comment"># 单行 --style compact</span></div><div class="line"><span class="comment"># 压缩（注释、空格删除） --style compressed</span></div></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">nav</span> &#123;</div><div class="line">  <span class="selector-tag">ul</span> &#123;<span class="attribute">margin</span>: <span class="number">0</span>;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* nested */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* expanded */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* compact */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123; <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* compressed */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-全局-局部变量"><a href="#2-1-全局-局部变量" class="headerlink" title="2.1 全局/局部变量"></a>2.1 全局/局部变量</h2><ul>
+<li>全局/局部变量</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$color</span>:orange;</div><div class="line"><span class="selector-class">.block</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="variable">$color</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">em</span> &#123;</div><div class="line">  <span class="variable">$color</span>: red;</div><div class="line">  <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="variable">$color</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-2-混合宏"><a href="#2-2-混合宏" class="headerlink" title="2.2 混合宏"></a>2.2 混合宏</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 有参数的宏</span></div><div class="line">@<span class="keyword">mixin</span> border-radius(<span class="variable">$radius</span>) &#123;</div><div class="line">  -webkit-<span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">     -moz-<span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">      -ms-<span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">          <span class="attribute">border-radius</span>: <span class="variable">$radius</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.box</span> &#123; @<span class="keyword">include</span> border-radius(<span class="number">10px</span>); &#125;</div><div class="line"><span class="comment">// 调用</span></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  @<span class="keyword">include</span> border-radius(<span class="number">3px</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 带默认值</span></div><div class="line">@<span class="keyword">mixin</span> border-radius(<span class="variable">$radius</span>: 3px)</div><div class="line"></div><div class="line">// 多参</div><div class="line">@<span class="keyword">mixin</span> size(<span class="variable">$width</span>:<span class="number">30px</span>, <span class="variable">$height</span>:<span class="number">400px</span>)&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="variable">$height</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 可变参数</span></div><div class="line">@<span class="keyword">mixin</span> box-shadow(<span class="variable">$shadow</span>...) &#123;</div><div class="line">  @<span class="keyword">if</span> length(<span class="variable">$shadow</span>) &gt;= 1 &#123;</div><div class="line">    @<span class="keyword">include</span> prefixer(box-shadow, <span class="variable">$shadow</span>);</div><div class="line">  &#125; @<span class="keyword">else</span>&#123;</div><div class="line">    <span class="variable">$shadow</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">4px</span> rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">3</span>);</div><div class="line">    @<span class="keyword">include</span> prefixer(box-shadow, <span class="variable">$shadow</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-3-amp-及嵌套"><a href="#2-3-amp-及嵌套" class="headerlink" title="2.3 &amp;及嵌套"></a>2.3 &amp;及嵌套</h2><ul>
+<li>&amp;引用外层结构</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#my-id</span> &#123;</div><div class="line">  <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">    &amp;:hover&#123;<span class="attribute">color</span>: green;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 编译结果 */</span></div><div class="line"><span class="selector-id">#my-id</span> <span class="selector-tag">a</span>&#123;<span class="attribute">color</span>: red;&#125;</div><div class="line"><span class="selector-id">#my-id</span> <span class="selector-tag">a</span>:hover(<span class="attribute">color</span>:green;)</div><div class="line"></div><div class="line"><span class="selector-class">.my-class</span> &#123;</div><div class="line">  <span class="attribute">color</span>: red;</div><div class="line">  &amp;-<span class="selector-tag">sub</span>&#123;</div><div class="line">    <span class="attribute">color</span>: green;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 编译结果 */</span></div><div class="line"><span class="selector-class">.my-class</span>&#123;<span class="attribute">color</span>: red;&#125;</div><div class="line"><span class="selector-class">.my-class-sub</span>&#123;<span class="attribute">color</span>: green;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>属性嵌套</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">font</span>: &#123; // 注意冒号</div><div class="line">   size: <span class="number">12px</span>;</div><div class="line">   weight: bold;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-4-继承-占位"><a href="#2-4-继承-占位" class="headerlink" title="2.4 继承/占位"></a>2.4 继承/占位</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.base</span> &#123;</div><div class="line">  <span class="attribute">color</span>: green;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.btn-sub</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">1em</span>;</div><div class="line">  @<span class="keyword">extend</span> .base;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 编译后 */</span></div><div class="line"><span class="selector-class">.base</span>, <span class="selector-class">.btn-sub</span> &#123; <span class="attribute">color</span>: geen;&#125;</div><div class="line"><span class="selector-class">.btn-sub</span> &#123;<span class="attribute">font-size</span>: <span class="number">1em</span>;&#125;</div><div class="line"></div><div class="line"><span class="comment">// 占位符</span></div><div class="line">%mt5 &#123; <span class="attribute">margin-top</span>: <span class="number">5px</span>;&#125;</div><div class="line">%pt10 &#123; <span class="attribute">padding-top</span>: <span class="number">10px</span>;&#125;</div><div class="line"><span class="selector-class">.base</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> %mt5;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 编译后 */</span></div><div class="line"><span class="selector-class">.base</span> &#123; <span class="attribute">margin-top</span>: <span class="number">5px</span>;&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-5-取值（以及nth-）"><a href="#2-5-取值（以及nth-）" class="headerlink" title="2.5 #{}取值（以及nth()）"></a>2.5 <code>#{}</code>取值（以及<code>nth()</code>）</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">key-value中左值（右值也能用）</div><div class="line"><span class="variable">$properties</span>: (margin, padding);</div><div class="line">@<span class="keyword">mixin</span> set-value(<span class="variable">$side</span>, <span class="variable">$value</span>) &#123;</div><div class="line">    @<span class="keyword">each</span> <span class="variable">$prop</span> in <span class="variable">$properties</span> &#123;</div><div class="line">        #&#123;<span class="variable">$prop</span>&#125;-#&#123;<span class="variable">$side</span>&#125;: <span class="variable">$value</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.login-box</span> &#123;</div><div class="line">    @<span class="keyword">include</span> set-value(top, 14px);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// @include不能用</span></div><div class="line"><span class="comment">// @extend可用</span></div><div class="line">%updated-status &#123;</div><div class="line">    <span class="attribute">margin-top</span>: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#F00</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">mixin</span> updated-status &#123;</div><div class="line">    <span class="attribute">margin-top</span>: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#F00</span>;</div><div class="line">&#125;</div><div class="line"><span class="variable">$flag</span>: <span class="string">"status"</span>;</div><div class="line"><span class="selector-class">.navigation</span> &#123;</div><div class="line">    @<span class="keyword">extend</span> %updated-#&#123;<span class="variable">$flag</span>&#125;; <span class="comment">// OK</span></div><div class="line">    @<span class="keyword">include</span> updated-#&#123;<span class="variable">$flag</span>&#125;; <span class="comment">// Error</span></div><div class="line">&#125;</div><div class="line"><span class="variable">$list</span>: (margin, padding)</div><div class="line"><span class="variable">$num</span>: <span class="number">2</span>;</div><div class="line">#&#123;nth(<span class="variable">$table</span>, <span class="variable">$num</span>)&#125;-<span class="attribute">top</span>: <span class="number">20px</span>; <span class="comment">// padding-top: 20px;</span></div></pre></td></tr></table></figure>
+<h2 id="2-6-数据类型"><a href="#2-6-数据类型" class="headerlink" title="2.6 数据类型"></a>2.6 数据类型</h2><p>有引号的字符串在#{}后会去掉引号</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">mixin</span> firefox-message(<span class="variable">$selector</span>) &#123;</div><div class="line">  <span class="selector-tag">body</span><span class="selector-class">.firefox</span> #&#123;<span class="variable">$selector</span>&#125;:before &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="variable">$selector</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">include</span> firefox-message(<span class="string">".header"</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 编译后 */</span></div><div class="line"><span class="selector-tag">body</span><span class="selector-class">.firefox</span> <span class="selector-class">.header</span>:before &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">".header"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-7-基本运算"><a href="#2-7-基本运算" class="headerlink" title="2.7 基本运算"></a>2.7 基本运算</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// + - 必须同单位或纯数字与某个单位或纯数字</span></div><div class="line"><span class="comment">// 乘法同单位会出错</span></div><div class="line"><span class="comment">// 除法同单位会抵消</span></div><div class="line"><span class="attribute">width</span>: (<span class="number">100px</span>/<span class="number">2px</span>); <span class="comment">// width: 50;</span></div><div class="line"><span class="comment">// 单独除法必须括号，有其它运算时可以不加，有变量时也可以不加</span></div><div class="line"></div><div class="line"><span class="comment">// 颜色运算</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#666</span> * <span class="number">2</span>; <span class="comment">// #cccccc，超过F置为F</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 字符运算</span></div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  <span class="attribute">content</span>: X + -Man; <span class="comment">// X-Man</span></div><div class="line">  <span class="attribute">font-family</span>: <span class="string">"微软"</span>+<span class="string">"雅黑"</span>, sans + <span class="string">"serif"</span>; <span class="comment">// "-serif", "sans-serif"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="3-高级语法"><a href="#3-高级语法" class="headerlink" title="3. 高级语法"></a>3. 高级语法</h1><h2 id="3-1-条件和循环"><a href="#3-1-条件和循环" class="headerlink" title="3.1 条件和循环"></a>3.1 条件和循环</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//// 条件</span></div><div class="line"><span class="comment">// @if</span></div><div class="line"><span class="variable">$type</span>: monster;</div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  @<span class="keyword">if</span> <span class="variable">$type</span> == ocean &#123;</div><div class="line">    <span class="attribute">color</span>: blue;</div><div class="line">  &#125; @<span class="keyword">else</span> if <span class="variable">$type</span> == matador &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">  &#125; @<span class="keyword">else</span> if <span class="variable">$type</span> == monster &#123;</div><div class="line">    <span class="attribute">color</span>: green;</div><div class="line">  &#125; @<span class="keyword">else</span> &#123;</div><div class="line">    <span class="attribute">color</span>: black;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//// 循环</span></div><div class="line"><span class="comment">// @for</span></div><div class="line">@<span class="keyword">for</span> <span class="variable">$i</span> from 1 through 3 &#123;</div><div class="line">  <span class="selector-class">.item-</span>#&#123;<span class="variable">$i</span>&#125; &#123; <span class="attribute">width</span>: <span class="number">2em</span> * <span class="variable">$i</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// @while</span></div><div class="line"><span class="variable">$i</span>: <span class="number">6</span>;</div><div class="line">@<span class="keyword">while</span> <span class="variable">$i</span> &gt; 0 &#123;</div><div class="line">  <span class="selector-class">.item-</span>#&#123;<span class="variable">$i</span>&#125; &#123; <span class="attribute">width</span>: <span class="number">2em</span> * <span class="variable">$i</span>; &#125;</div><div class="line">  <span class="variable">$i</span>: <span class="variable">$i</span> - <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="数据和map"><a href="#数据和map" class="headerlink" title="数据和map"></a>数据和map</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 数组</span></div><div class="line"><span class="variable">$colorList</span>: red, yellow, green;</div><div class="line"><span class="variable">$matrix</span>: (x0, y0), (x1, y1), (x2, y2);</div><div class="line"></div><div class="line"><span class="comment">// 遍历数组</span></div><div class="line">@<span class="keyword">each</span> <span class="variable">$animal</span>, <span class="variable">$color</span>, <span class="variable">$cursor</span> in (puma, black, default),</div><div class="line">                                  (sea-slug, blue, pointer),</div><div class="line">                                  (egret, white, move) &#123;</div><div class="line">  .#&#123;<span class="variable">$animal</span>&#125;-<span class="attribute">icon</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">'/images/#&#123;$animal&#125;.png'</span>);</div><div class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="variable">$color</span>;</div><div class="line">    <span class="attribute">cursor</span>: <span class="variable">$cursor</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// map</span></div><div class="line"><span class="variable">$map</span>: (key1: value1, key2: value2, key3: value3);</div><div class="line"></div><div class="line"><span class="comment">// 遍历map</span></div><div class="line">@<span class="keyword">each</span> <span class="variable">$header</span>, <span class="variable">$size</span> in (h1: 2em, h2: 1.5em, h3: 1.2em) &#123;</div><div class="line">  #&#123;<span class="variable">$header</span>&#125; &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="variable">$size</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> SCSS有很多内置方法可以使用，比如操作map的<code>map-get</code>方法：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">map</span>-get(("foo": <span class="number">1</span>, <span class="string">"bar"</span>: <span class="number">2</span>), <span class="string">"foo"</span>) // 得到 <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>更多关于<code>map-get</code>的知识<a href="https://sass-lang.com/documentation/Sass/Script/Functions.html#map_get-instance_method" target="_blank" rel="external">参考这里</a>。</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>sass: <a href="https://sass-lang.com/" target="_blank" rel="external">https://sass-lang.com/</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/12/css-border/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/12/css-border/" itemprop="url">css-border</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T21:36:45+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/css-border/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/12/css-border/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/07/css-wave-sticky-water/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -918,335 +1243,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/23/scroll-bar-diy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/23/scroll-bar-diy/" itemprop="url">自定义浏览器滚动条</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T23:14:38+08:00">
-                2018-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/23/scroll-bar-diy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/23/scroll-bar-diy/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>这篇文章主要讲如何自定义网页滚动条。</p>
-</blockquote>
-<p>webkit内核的浏览器支持使用CSS自定义滚动条，IE仅支持颜色修改，火狐完全不支持，如果要兼容各个浏览器，要么借助三方插件（见文末列举），要么通过js和css等手段自己实现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// TODO</span></div><div class="line"><span class="comment">// 1. js+css滚动到底部后无法触发外部容器的滚动</span></div><div class="line"><span class="comment">// 2. 封装Angular组件（待优化）</span></div><div class="line"><span class="comment">// 3. 可选：jQuery实现（使用mCustomScrollbar）</span></div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/scroll-bar-diy/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/31/node-npm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/31/node-npm/" itemprop="url">node.js和npm</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T16:27:48+08:00">
-                2018-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/31/node-npm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/31/node-npm/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><ul>
-<li>node.js（含npm）安装</li>
-</ul>
-<p>window直接<a href="https://nodejs.org" target="_blank" rel="external">官网</a>下载安装即可。</p>
-<p>其它环境及安装方式见：<a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">https://nodejs.org/en/download/package-manager/</a><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/31/node-npm/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1296,7 +1297,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1318,7 +1319,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

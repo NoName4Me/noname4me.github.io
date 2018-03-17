@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="占坑先，待补充。">
+<meta name="description" content="1. 基础知识 未完待续。  1.1 border-radius引用W3C上的一张图来说明：">
 <meta name="keywords" content="border">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用CSS用border搞点儿事情">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/12/css-border/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="占坑先，待补充。">
+<meta property="og:description" content="1. 基础知识 未完待续。  1.1 border-radius引用W3C上的一张图来说明：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T15:10:23.000Z">
+<meta property="og:image" content="https://www.w3.org/TR/css-backgrounds-3/images/corner.png">
+<meta property="og:updated_time" content="2018-03-17T16:07:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用CSS用border搞点儿事情">
-<meta name="twitter:description" content="占坑先，待补充。">
+<meta name="twitter:description" content="1. 基础知识 未完待续。  1.1 border-radius引用W3C上的一张图来说明：">
+<meta name="twitter:image" content="https://www.w3.org/TR/css-backgrounds-3/images/corner.png">
 
 
 
@@ -383,9 +385,31 @@
       
 
       
-        <blockquote>
-<p>占坑先，待补充。</p>
+        <h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h1><blockquote>
+<p>未完待续。</p>
 </blockquote>
+<h2 id="1-1-border-radius"><a href="#1-1-border-radius" class="headerlink" title="1.1 border-radius"></a>1.1 <code>border-radius</code></h2><p>引用W3C上的一张图来说明：</p>
+<p><img src="https://www.w3.org/TR/css-backgrounds-3/images/corner.png" width="300"></p>
+<a id="more"></a>
+<ul>
+<li><p>如果<code>border-radius</code>的值里有<code>/</code>，那么前面的定义水平半径（左上角顺时针），后面的定义垂直半径。</p>
+</li>
+<li><p>如果<code>border-radius</code>只有一个值（非百分比），且超过了最短边的一半，那么最终值会取最短边的一半。（下方示例中橙色第2个）</p>
+</li>
+</ul>
+
+<p data-height="207" data-theme-id="dark" data-slug-hash="WzGawq" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="border-radius" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/WzGawq/" target="_blank" rel="external">border-radius</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="2-用border做点儿什么"><a href="#2-用border做点儿什么" class="headerlink" title="2. 用border做点儿什么"></a>2. 用border做点儿什么</h1><h2 id="2-1-制作三角形"><a href="#2-1-制作三角形" class="headerlink" title="2.1 制作三角形"></a>2.1 制作三角形</h2><p>对话框（里的小三角）啊，微调框（里的上下三角箭头）啊什么的。</p>
+
+<p data-height="217" data-theme-id="dark" data-slug-hash="bvdPvJ" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="bubble-triangle" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/bvdPvJ/" target="_blank" rel="external">bubble-triangle</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://www.w3.org/TR/css-backgrounds-3/#the-border-radius" target="_blank" rel="external">W3C border-radius</a></li>
+</ol>
 
       
     </div>
@@ -503,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -523,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -545,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -590,6 +623,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基础知识"><span class="nav-text">1. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-border-radius"><span class="nav-text">1.1 border-radius</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-用border做点儿什么"><span class="nav-text">2. 用border做点儿什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-制作三角形"><span class="nav-text">2.1 制作三角形</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

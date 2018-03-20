@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="inline,block,元素对齐," />
+  <meta name="keywords" content="SVG,动画," />
 
 
 
@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="先占坑，后面补写首先span是inline元素，不能直接在CSS中设置宽高。 1、同行对齐，两者同时设置vertical-align: middle，取值视具体需求。注意： vertical-align对block元素无作用。 2、多行文字，图片居于首行（即文字环绕效果）默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。 3、将2中的组">
-<meta name="keywords" content="inline,block,元素对齐">
+<meta name="description" content="有这样一种看起来像动态线性绘制的动效（点击SEND MAIL触发）：  See the Pen 100Days-CSS-Challenge-020 by BlurNull (@blurnull) on CodePen.">
+<meta name="keywords" content="SVG,动画">
 <meta property="og:type" content="article">
-<meta property="og:title" content="inline-block-align">
-<meta property="og:url" content="https://noname4me.github.io/2017/12/12/inline-block-align/index.html">
+<meta property="og:title" content="SVG中stroke属性实现模拟绘制过程动效">
+<meta property="og:url" content="https://noname4me.github.io/2018/03/20/svg-stroke-animation/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="先占坑，后面补写首先span是inline元素，不能直接在CSS中设置宽高。 1、同行对齐，两者同时设置vertical-align: middle，取值视具体需求。注意： vertical-align对block元素无作用。 2、多行文字，图片居于首行（即文字环绕效果）默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。 3、将2中的组">
+<meta property="og:description" content="有这样一种看起来像动态线性绘制的动效（点击SEND MAIL触发）：  See the Pen 100Days-CSS-Challenge-020 by BlurNull (@blurnull) on CodePen.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png">
-<meta property="og:updated_time" content="2017-12-12T13:43:08.000Z">
+<meta property="og:image" content="https://www.w3.org/TR/SVG/images/painting/linecap.png">
+<meta property="og:image" content="https://www.w3.org/TR/SVG/images/painting/linejoin.png">
+<meta property="og:updated_time" content="2018-03-20T13:33:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="inline-block-align">
-<meta name="twitter:description" content="先占坑，后面补写首先span是inline元素，不能直接在CSS中设置宽高。 1、同行对齐，两者同时设置vertical-align: middle，取值视具体需求。注意： vertical-align对block元素无作用。 2、多行文字，图片居于首行（即文字环绕效果）默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。 3、将2中的组">
-<meta name="twitter:image" content="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png">
+<meta name="twitter:title" content="SVG中stroke属性实现模拟绘制过程动效">
+<meta name="twitter:description" content="有这样一种看起来像动态线性绘制的动效（点击SEND MAIL触发）：  See the Pen 100Days-CSS-Challenge-020 by BlurNull (@blurnull) on CodePen.">
+<meta name="twitter:image" content="https://www.w3.org/TR/SVG/images/painting/linecap.png">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://noname4me.github.io/2017/12/12/inline-block-align/"/>
+  <link rel="canonical" href="https://noname4me.github.io/2018/03/20/svg-stroke-animation/"/>
 
 
 
 
 
-  <title>inline-block-align | 辣手摧花</title>
+  <title>SVG中stroke属性实现模拟绘制过程动效 | 辣手摧花</title>
   
 
 
@@ -273,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/12/inline-block-align/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/20/svg-stroke-animation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -290,7 +291,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">inline-block-align</h2>
+          <h2 class="post-title" itemprop="name headline">SVG中stroke属性实现模拟绘制过程动效</h2>
         
 
         <div class="post-meta">
@@ -302,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T21:34:19+08:00">
-                2017-12-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T19:44:34+08:00">
+                2018-03-20
               </time>
             
 
@@ -355,8 +356,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/12/inline-block-align/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/12/inline-block-align/" itemprop="commentsCount"></span>
+                <a href="/2018/03/20/svg-stroke-animation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/20/svg-stroke-animation/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -385,22 +386,35 @@
       
 
       
-        <h1 id="先占坑，后面补写"><a href="#先占坑，后面补写" class="headerlink" title="先占坑，后面补写"></a>先占坑，后面补写</h1><p>首先span是inline元素，不能直接在CSS中设置宽高。</p>
-<p>1、同行对齐，两者同时设置<code>vertical-align: middle</code>，取值视具体需求。<br><em>注意： vertical-align对block元素无作用。</em></p>
-<p>2、多行文字，图片居于首行（即文字环绕效果）<br>默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。</p>
-<p>3、将2中的组合垂直居中<br>使用table或者float来实现。<br><a href="https://jsfiddle.net/jonge/250uua1z/" target="_blank" rel="external">JsFidder示例</a></p>
-<h1 id="span比其同级的img略高"><a href="#span比其同级的img略高" class="headerlink" title="span比其同级的img略高"></a>span比其同级的img略高</h1><p>因为img是inline元素，默认baseline对齐（vertical-align: baseline;）。</p>
-<p><img src="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png" alt="img"></p>
-<ul>
-<li>解决方式</li>
+        <p>有这样一种看起来像动态线性绘制的动效（点击<code>SEND MAIL</code>触发）：</p>
+
+<p data-height="265" data-theme-id="dark" data-slug-hash="BrQvRd" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="100Days-CSS-Challenge-020" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/BrQvRd/" target="_blank" rel="external">100Days-CSS-Challenge-020</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<a id="more"></a>
+<p>这个的根本是利用SVG图形的描边<code>stroke</code>的几个属性来完成，如下拆解：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$path-length</span>: <span class="number">100</span>;</div><div class="line">path &#123;</div><div class="line">    fill: none;</div><div class="line">    stroke: red;</div><div class="line">    stroke-<span class="attribute">width</span>: <span class="number">3</span>;</div><div class="line">    stroke-dasharray: <span class="variable">$path-length</span> <span class="variable">$path-length</span>;</div><div class="line">    stroke-dashoffset: <span class="variable">$path-length</span>; <span class="comment">// 这种偏移整条线，就隐藏了这条线</span></div><div class="line">    <span class="attribute">animation</span>: paint <span class="number">1s</span> linear; <span class="comment">// 动态改变offset大小，实现模拟绘制</span></div><div class="line">&#125;</div><div class="line">@keyframes paint &#123;</div><div class="line">    to &#123;</div><div class="line">        stroke-dashoffset: <span class="number">0</span>; <span class="comment">// 显示这条线</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>示例（左边绿色，从上到下依次为“正常的虚线“、”偏移了一定距离的虚线“、”加了animation的虚线“、”圆滑后的滑动虚线“，右侧为一些扩展）</p>
+
+<p data-height="265" data-theme-id="dark" data-slug-hash="ZxLVLR" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="SVG-stroke-animation" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/ZxLVLR/" target="_blank" rel="external">SVG-stroke-animation</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="一些说明"><a href="#一些说明" class="headerlink" title="一些说明"></a>一些说明</h2><ul>
+<li><code>stroke-linecap</code>: <code>butt</code>、<code>round</code>、<code>square</code></li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">img</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="comment">/* 或 vertical-align: bottom; */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://www.w3.org/TR/SVG/images/painting/linecap.png" width="360/"></p>
 <ul>
-<li>顺带一提</li>
+<li><code>stroke-linejoin</code>: <code>miter</code>、<code>round</code>、<code>bevel</code></li>
 </ul>
-<p>vertical-align只适用于inline级别的元素。</p>
+<p><img src="https://www.w3.org/TR/SVG/images/painting/linejoin.png" width="360/"></p>
+<ul>
+<li>JS获取线条长度</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">document</span>.querySelector(<span class="string">'the selector'</span>);</div><div class="line"><span class="keyword">var</span> length = path.getTotalLength();</div></pre></td></tr></table></figure>
 <hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/en-US/docs/Images,_Tables,_and_Mysterious_Gaps" target="_blank" rel="external">MDN doc: Images, Tables and Mysterious Gaps</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>W3C Stroke Properties: <a href="https://www.w3.org/TR/SVG/painting.html#StrokeProperties" target="_blank" rel="external">https://www.w3.org/TR/SVG/painting.html#StrokeProperties</a></li>
+</ol>
 
       
     </div>
@@ -421,7 +435,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2017/12/12/inline-block-align/" title="inline-block-align">https://noname4me.github.io/2017/12/12/inline-block-align/</a>
+    <a href="https://noname4me.github.io/2018/03/20/svg-stroke-animation/" title="SVG中stroke属性实现模拟绘制过程动效">https://noname4me.github.io/2018/03/20/svg-stroke-animation/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -436,11 +450,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/inline/" rel="tag"># inline</a>
+            <a href="/tags/SVG/" rel="tag"># SVG</a>
           
-            <a href="/tags/block/" rel="tag"># block</a>
-          
-            <a href="/tags/元素对齐/" rel="tag"># 元素对齐</a>
+            <a href="/tags/动画/" rel="tag"># 动画</a>
           
         </div>
       
@@ -453,8 +465,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/12/css-z-index/" rel="next" title="可能，你用了假的z-index">
-                <i class="fa fa-chevron-left"></i> 可能，你用了假的z-index
+              <a href="/2018/03/16/css-background/" rel="next" title="背景（background），了解一下。">
+                <i class="fa fa-chevron-left"></i> 背景（background），了解一下。
               </a>
             
           </div>
@@ -462,10 +474,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/12/css-word-break/" rel="prev" title="css-word-break">
-                css-word-break <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -628,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#先占坑，后面补写"><span class="nav-text">先占坑，后面补写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#span比其同级的img略高"><span class="nav-text">span比其同级的img略高</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些说明"><span class="nav-text">一些说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></div>
             
 
           </div>
@@ -804,7 +812,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/12/12/inline-block-align/"});
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/03/20/svg-stroke-animation/"});
 		
 
 		(function() {

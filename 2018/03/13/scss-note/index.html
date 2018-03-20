@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 安装及编译Ruby、Sass（gem install sass） 1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 --style expanded# 单行 --style compact">
+<meta name="description" content="1. 安装及编译 Ruby、Sass（gem install sass）  nodejs (npm install node-sass)   1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 -">
 <meta name="keywords" content="SCSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SCSS学习笔记">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/13/scss-note/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="1. 安装及编译Ruby、Sass（gem install sass） 1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 --style expanded# 单行 --style compact">
+<meta property="og:description" content="1. 安装及编译 Ruby、Sass（gem install sass）  nodejs (npm install node-sass)   1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 -">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T15:08:40.000Z">
+<meta property="og:updated_time" content="2018-03-19T13:23:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SCSS学习笔记">
-<meta name="twitter:description" content="1. 安装及编译Ruby、Sass（gem install sass） 1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 --style expanded# 单行 --style compact">
+<meta name="twitter:description" content="1. 安装及编译 Ruby、Sass（gem install sass）  nodejs (npm install node-sass)   1234567891011# .scss（同.sass）sass source.scss:target.css# 连续编译sass --watch source.scss:target.css# 输出样式# 嵌套 --style nested# 嵌套展开 -">
 
 
 
@@ -383,7 +383,12 @@
       
 
       
-        <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><p>Ruby、Sass（gem install sass）</p>
+        <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><ul>
+<li><p>Ruby、Sass（<code>gem install sass</code>）</p>
+</li>
+<li><p>nodejs (<code>npm install node-sass</code>)</p>
+</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># .scss（同.sass）</span></div><div class="line">sass source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 连续编译</span></div><div class="line">sass --watch source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 输出样式</span></div><div class="line"><span class="comment"># 嵌套 --style nested</span></div><div class="line"><span class="comment"># 嵌套展开 --style expanded</span></div><div class="line"><span class="comment"># 单行 --style compact</span></div><div class="line"><span class="comment"># 压缩（注释、空格删除） --style compressed</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">nav</span> &#123;</div><div class="line">  <span class="selector-tag">ul</span> &#123;<span class="attribute">margin</span>: <span class="number">0</span>;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* nested */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* expanded */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* compact */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123; <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* compressed */</span></div><div class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span>&#123;<span class="attribute">margin</span>:<span class="number">0</span>;&#125;</div></pre></td></tr></table></figure>
@@ -557,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

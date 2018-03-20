@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 基础知识2. 深入了解2.1 渐变 linear-gradient线性渐变 radical-gradient径向渐变 repeating-上面两个重复其中规则直到铺满背景（很适用于拼贴）  注意，倾斜角度，实际上只是倾斜的最小贴片单位（background-size指定），而不是整个背景。 12345678/* 最小贴片无缝拼贴 */.tile &amp;#123;    background-im">
+<meta name="description" content="1. 基础知识2. 深入了解2.1 渐变 linear-gradient线性渐变 radical-gradient径向渐变 repeating-上面两个重复其中规则直到铺满背景（很适用于拼贴）  注意，倾斜角度，实际上只是倾斜的最小贴片单位（background-size指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用repea">
 <meta name="keywords" content="background">
 <meta property="og:type" content="article">
 <meta property="og:title" content="背景（background），了解一下。">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/16/css-background/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="1. 基础知识2. 深入了解2.1 渐变 linear-gradient线性渐变 radical-gradient径向渐变 repeating-上面两个重复其中规则直到铺满背景（很适用于拼贴）  注意，倾斜角度，实际上只是倾斜的最小贴片单位（background-size指定），而不是整个背景。 12345678/* 最小贴片无缝拼贴 */.tile &amp;#123;    background-im">
+<meta property="og:description" content="1. 基础知识2. 深入了解2.1 渐变 linear-gradient线性渐变 radical-gradient径向渐变 repeating-上面两个重复其中规则直到铺满背景（很适用于拼贴）  注意，倾斜角度，实际上只是倾斜的最小贴片单位（background-size指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用repea">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-16T14:39:32.000Z">
+<meta property="og:updated_time" content="2018-03-18T02:05:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="背景（background），了解一下。">
-<meta name="twitter:description" content="1. 基础知识2. 深入了解2.1 渐变 linear-gradient线性渐变 radical-gradient径向渐变 repeating-上面两个重复其中规则直到铺满背景（很适用于拼贴）  注意，倾斜角度，实际上只是倾斜的最小贴片单位（background-size指定），而不是整个背景。 12345678/* 最小贴片无缝拼贴 */.tile &amp;#123;    background-im">
+<meta name="twitter:description" content="1. 基础知识2. 深入了解2.1 渐变 linear-gradient线性渐变 radical-gradient径向渐变 repeating-上面两个重复其中规则直到铺满背景（很适用于拼贴）  注意，倾斜角度，实际上只是倾斜的最小贴片单位（background-size指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用repea">
 
 
 
@@ -388,7 +388,7 @@
 <li><code>radical-gradient</code>径向渐变</li>
 <li><code>repeating-上面两个</code>重复其中规则直到铺满背景（很适用于拼贴）</li>
 </ul>
-<p><strong>注意</strong>，倾斜角度，实际上只是倾斜的最小贴片单位（<code>background-size</code>指定），而不是整个背景。</p>
+<p><strong>注意</strong>，倾斜角度，实际上只是倾斜的最小贴片单位（<code>background-size</code>指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用<code>repeating-xx-gradient</code>来完成这种需求（图4）。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 最小贴片无缝拼贴 */</span></div><div class="line"><span class="selector-class">.tile</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">linear-gradient</span>(45deg, #000 25%, #fff 0,#fff 50%, #000 0, #000 75%,#fff 0);<span class="attribute">background-size</span>:<span class="number">28.28px</span> <span class="number">28.28px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* repeating-linear-gradient */</span></div><div class="line"><span class="selector-class">.repeat</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">repeating-linear-gradient</span>(45deg, #000, #000 10px,#fff 0,#fff 20px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>示例如下（<em>审查元素</em>查看源码）：</p>
 
@@ -465,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/20/svg-stroke-animation/" rel="prev" title="SVG中stroke属性实现模拟绘制过程动效">
+                SVG中stroke属性实现模拟绘制过程动效 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -550,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +576,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

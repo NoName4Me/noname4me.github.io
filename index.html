@@ -267,6 +267,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/20/svg-stroke-animation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/20/svg-stroke-animation/" itemprop="url">SVG中stroke属性实现模拟绘制过程动效</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T19:44:34+08:00">
+                2018-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/20/svg-stroke-animation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/20/svg-stroke-animation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>有这样一种看起来像动态线性绘制的动效（点击<code>SEND MAIL</code>触发）：</p>
+
+<p data-height="265" data-theme-id="dark" data-slug-hash="BrQvRd" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="100Days-CSS-Challenge-020" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/BrQvRd/" target="_blank" rel="external">100Days-CSS-Challenge-020</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/20/svg-stroke-animation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/16/css-background/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -388,7 +560,7 @@
 <li><code>radical-gradient</code>径向渐变</li>
 <li><code>repeating-上面两个</code>重复其中规则直到铺满背景（很适用于拼贴）</li>
 </ul>
-<p><strong>注意</strong>，倾斜角度，实际上只是倾斜的最小贴片单位（<code>background-size</code>指定），而不是整个背景。</p>
+<p><strong>注意</strong>，倾斜角度，实际上只是倾斜的最小贴片单位（<code>background-size</code>指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用<code>repeating-xx-gradient</code>来完成这种需求（图4）。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 最小贴片无缝拼贴 */</span></div><div class="line"><span class="selector-class">.tile</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">linear-gradient</span>(45deg, #000 25%, #fff 0,#fff 50%, #000 0, #000 75%,#fff 0);<span class="attribute">background-size</span>:<span class="number">28.28px</span> <span class="number">28.28px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* repeating-linear-gradient */</span></div><div class="line"><span class="selector-class">.repeat</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">repeating-linear-gradient</span>(45deg, #000, #000 10px,#fff 0,#fff 20px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>示例如下（<em>审查元素</em>查看源码）：</p>
 
@@ -571,7 +743,12 @@
 
       
         
-          <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><p>Ruby、Sass（gem install sass）</p>
+          <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><ul>
+<li><p>Ruby、Sass（<code>gem install sass</code>）</p>
+</li>
+<li><p>nodejs (<code>npm install node-sass</code>)</p>
+</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># .scss（同.sass）</span></div><div class="line">sass source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 连续编译</span></div><div class="line">sass --watch source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 输出样式</span></div><div class="line"><span class="comment"># 嵌套 --style nested</span></div><div class="line"><span class="comment"># 嵌套展开 --style expanded</span></div><div class="line"><span class="comment"># 单行 --style compact</span></div><div class="line"><span class="comment"># 压缩（注释、空格删除） --style compressed</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1128,165 +1305,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/mouse-event-position/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/26/mouse-event-position/" itemprop="url">MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T20:39:04+08:00">
-                2018-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/26/mouse-event-position/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/mouse-event-position/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-定位"><a href="#1-定位" class="headerlink" title="1. 定位"></a>1. 定位</h1><p><code>clientX</code>: 与页面可视区左侧的距离<br><code>offsetX</code>: 与元素左侧的距离<br><code>pageX</code>: 与document左侧的距离<br><code>screenX</code>: 与屏幕左侧的距离</p>
-<p>兼容浏览器的各个position获取方法：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/26/mouse-event-position/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1341,7 +1359,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1363,7 +1381,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

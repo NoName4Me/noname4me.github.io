@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 perspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origin设置视角的位置，默认在（设置perspective的）元素中心，">
+<meta name="description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 1. perspective和perspective-originperspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origi">
 <meta name="keywords" content="transform,3D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css中3D相关样式浅尝">
+<meta property="og:title" content="css3中3D相关样式浅尝">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/22/css-3d/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 perspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origin设置视角的位置，默认在（设置perspective的）元素中心，">
+<meta property="og:description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 1. perspective和perspective-originperspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T16:12:07.000Z">
+<meta property="og:updated_time" content="2018-03-22T16:13:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css中3D相关样式浅尝">
-<meta name="twitter:description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 perspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origin设置视角的位置，默认在（设置perspective的）元素中心，">
+<meta name="twitter:title" content="css3中3D相关样式浅尝">
+<meta name="twitter:description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 1. perspective和perspective-originperspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origi">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>css中3D相关样式浅尝 | 辣手摧花</title>
+  <title>css3中3D相关样式浅尝 | 辣手摧花</title>
   
 
 
@@ -288,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">css中3D相关样式浅尝</h2>
+          <h2 class="post-title" itemprop="name headline">css3中3D相关样式浅尝</h2>
         
 
         <div class="post-meta">
@@ -384,7 +384,7 @@
 
       
         <p>本文涉及几个CSS样式：<code>perspective</code>、<code>perspective-origin</code>、<code>backface-visibility</code>、<code>transform-style</code>。</p>
-<p><code>perspective</code>设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。</p>
+<h1 id="1-perspective和perspective-origin"><a href="#1-perspective和perspective-origin" class="headerlink" title="1. perspective和perspective-origin"></a>1. <code>perspective</code>和<code>perspective-origin</code></h1><p><code>perspective</code>设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。</p>
 <p><code>perspective-origin</code>设置视角的位置，默认在（设置<code>perspective</code>的）元素中心，用法类似<code>transform-origin</code>，相对于元素的左上角。</p>
 <a id="more"></a>
 <p>看一个设置了<code>perspective</code>和没有设置，内部元素沿着X轴旋转45度的对比（左：一般图形，中：元素X轴旋转45度，右：设置<code>perspective</code>，元素X轴旋转45度。</p>
@@ -397,7 +397,7 @@
 <p data-height="224" data-theme-id="dark" data-slug-hash="jzwOWJ" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="CSS-3D-demo-02" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/jzwOWJ/" target="_blank" rel="external">CSS-3D-demo-02</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<h2 id="backface-visibility和transform-style"><a href="#backface-visibility和transform-style" class="headerlink" title="backface-visibility和transform-style"></a><code>backface-visibility</code>和<code>transform-style</code></h2><p><code>backface-visibility</code>：<code>hidden</code>|<code>visible</code>，拥有元素的背面是否可见（比如设置了<code>hidden</code>，那么Z轴旋转180度，这个元素会隐藏）</p>
+<h1 id="2-backface-visibility和transform-style"><a href="#2-backface-visibility和transform-style" class="headerlink" title="2. backface-visibility和transform-style"></a>2. <code>backface-visibility</code>和<code>transform-style</code></h1><p><code>backface-visibility</code>：<code>hidden</code>|<code>visible</code>，拥有元素的背面是否可见（比如设置了<code>hidden</code>，那么Z轴旋转180度，这个元素会隐藏）</p>
 <p><em>注：一般元素的背面是其正面的镜像。</em></p>
 <p><code>transform-style</code>：<code>perserve-3d</code>会让内部元素拥有3D布局（见下方示例的图1：平面布局下元素X轴旋转45度，图2：3D布局下元素X轴旋转45度），可以看到图2中，圆形的一半（旋转到z=0平面后的部分）会被遮挡（清晰起见，用了半透明效果）</p>
 
@@ -429,7 +429,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2018/03/22/css-3d/" title="css中3D相关样式浅尝">https://noname4me.github.io/2018/03/22/css-3d/</a>
+    <a href="https://noname4me.github.io/2018/03/22/css-3d/" title="css3中3D相关样式浅尝">https://noname4me.github.io/2018/03/22/css-3d/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -630,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#backface-visibility和transform-style"><span class="nav-text">backface-visibility和transform-style</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-perspective和perspective-origin"><span class="nav-text">1. perspective和perspective-origin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-backface-visibility和transform-style"><span class="nav-text">2. backface-visibility和transform-style</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

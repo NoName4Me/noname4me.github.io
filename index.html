@@ -107,7 +107,7 @@
       applicationID: 'PCAKTMI1LK',
       apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
       indexName: 'jonge_club_search',
-      hits: {"per_page":10},
+      hits: {"per_page":30},
       labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
     }
   };
@@ -382,16 +382,35 @@
 
       
         
-          <p>本文涉及几个CSS样式：<code>perspective</code>、<code>perspective-origin</code>、<code>backface-visibility</code>、<code>transform-style</code>。</p>
+          
+            <a id="more"></a>
+<p>本文涉及几个CSS样式：<code>perspective</code>、<code>perspective-origin</code>、<code>backface-visibility</code>、<code>transform-style</code>。</p>
 <h1 id="1-perspective和perspective-origin"><a href="#1-perspective和perspective-origin" class="headerlink" title="1. perspective和perspective-origin"></a>1. <code>perspective</code>和<code>perspective-origin</code></h1><p><code>perspective</code>设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。</p>
 <p><code>perspective-origin</code>设置视角的位置，默认在（设置<code>perspective</code>的）元素中心，用法类似<code>transform-origin</code>，相对于元素的左上角。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/22/css-3d/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>看一个设置了<code>perspective</code>和没有设置，内部元素沿着X轴旋转45度的对比（左：一般图形，中：元素X轴旋转45度，右：设置<code>perspective</code>，元素X轴旋转45度。</p>
+
+<p data-height="212" data-theme-id="dark" data-slug-hash="zWwXwR" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="CSS-3D-demo-01" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/zWwXwR/" target="_blank" rel="external">CSS-3D-demo-01</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>元素在Z轴移动的效果：</p>
+
+<p data-height="224" data-theme-id="dark" data-slug-hash="jzwOWJ" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="CSS-3D-demo-02" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/jzwOWJ/" target="_blank" rel="external">CSS-3D-demo-02</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="2-backface-visibility和transform-style"><a href="#2-backface-visibility和transform-style" class="headerlink" title="2. backface-visibility和transform-style"></a>2. <code>backface-visibility</code>和<code>transform-style</code></h1><p><code>backface-visibility</code>：<code>hidden</code>|<code>visible</code>，拥有元素的背面是否可见（比如设置了<code>hidden</code>，那么Z轴旋转180度，这个元素会隐藏）</p>
+<p><em>注：一般元素的背面是其正面的镜像。</em></p>
+<p><code>transform-style</code>：<code>preserve</code>会让内部元素拥有3D布局（见下方示例的图1：平面布局下元素X轴旋转45度，图2：3D布局下元素X轴旋转45度），可以看到图2中，圆形的一半（旋转到z=0平面后的部分）会被遮挡（清晰起见，用了半透明效果）</p>
+
+<p data-height="240" data-theme-id="dark" data-slug-hash="ZxyEWz" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="CSS-3D-demo-03" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/ZxyEWz/" target="_blank" rel="external">CSS-3D-demo-03</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>我们稍微扩展一下，两个同位置，同一大小的元素，一个旋转180度，如果设置两个元素不同的内容（颜色什么的），那么当两者同步旋转时（比如沿着X或Y轴），那么就会出现类似旋转硬币的效果，结合不同的视角或背景，就可以作出如上图4的效果（清晰起见，背景用了半透明，图3是静止状态下的样式）。</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><code>backface-visibility</code>及相关：<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility</a></li>
+</ol>
+
+          
         
       
     </div>
@@ -1465,6 +1484,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 

@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/ontouchmove.jpg">
 <meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/frame.jpg">
 <meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/frame-with-input.jpg">
-<meta property="og:updated_time" content="2018-03-24T08:58:19.000Z">
+<meta property="og:updated_time" content="2018-03-24T09:04:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化（一、页面卡顿问题）">
 <meta name="twitter:description" content="本文主要针对性能优化中，页面交互上（拖拽、滚动等）的卡顿问题。 1. 为何出现卡顿一般来讲，60FPS（60帧/秒）对人类是最佳体验，那么换算成一帧需要的秒数，就是16.7ms，如果高于这个时间，就可能会出现画面跳跃感（即卡顿），关于FPS和人眼以及同样FPS的电影与游戏的区别参考文末知乎问答链接。">
@@ -407,7 +407,8 @@
 </tr>
 </tbody>
 </table>
-<h1 id="2-实例分析"><a href="#2-实例分析" class="headerlink" title="2. 实例分析"></a>2. 实例分析</h1><h2 id="2-1-利用Chrome-DevTool的Performance分析问题"><a href="#2-1-利用Chrome-DevTool的Performance分析问题" class="headerlink" title="2.1 利用Chrome DevTool的Performance分析问题"></a>2.1 利用Chrome DevTool的<code>Performance</code>分析问题</h2><p>那么在实际开发中，我们如何进行调优？下面通过Chrome DevTool下的<code>Performance</code>中的功能进行演示：</p>
+<h1 id="2-实例分析"><a href="#2-实例分析" class="headerlink" title="2. 实例分析"></a>2. 实例分析</h1><p>演示代码获取：<a href="https://github.com/NoName4Me/blog/tree/master/source/_posts/smooth-animation/code" target="_blank" rel="external">点击这里</a>。</p>
+<h2 id="2-1-利用Chrome-DevTool的Performance分析问题"><a href="#2-1-利用Chrome-DevTool的Performance分析问题" class="headerlink" title="2.1 利用Chrome DevTool的Performance分析问题"></a>2.1 利用Chrome DevTool的<code>Performance</code>分析问题</h2><p>那么在实际开发中，我们如何进行调优？下面通过Chrome DevTool下的<code>Performance</code>中的功能进行演示：</p>
 <p>进入该页签后，点击左上角录制按钮（或<code>Ctrl+E</code>）进行录制，然后操作页面，记录需要分析的交互，点击<code>stop</code>完成录制，下面进行分析。</p>
 <p>在顶部的图标里，从上到下依次为FPS、CPU、NET的表现，我们关注FPS，如果出现红色，说明一秒的帧数过少，有卡顿，红色下面绿色代表FPS，越高说明性能越好。</p>
 <p><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/smooth-animation/performance.png" width="560"></p>

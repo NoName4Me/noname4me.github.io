@@ -1221,7 +1221,6 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  display: none !important;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media (max-width: 767px) {
@@ -1345,7 +1344,7 @@ pre .javascript .function {
   .posts-collapse .post-meta {
     display: block;
     width: auto;
-    text-align: left;
+    text-align: center;
   }
 }
 .posts-collapse {
@@ -1456,6 +1455,7 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
+  text-align: center;
   word-break: break-word;
   font-weight: 400;
 }
@@ -1484,7 +1484,6 @@ pre .javascript .function {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
-  transform-origin: 0 0;
 }
 .posts-expand .post-title-link:hover::before {
   visibility: visible;
@@ -1498,11 +1497,11 @@ pre .javascript .function {
   font-size: 16px;
 }
 .posts-expand .post-meta {
-  margin: 3px 0 10px 0;
+  margin: 3px 0 50px 0;
   color: #999;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
-  text-align: left;
+  text-align: center;
 }
 .posts-expand .post-meta .post-category-list {
   display: inline-block;
@@ -1832,7 +1831,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #08d9ff;
+  background: #b3f008;
 }
 .links-of-blogroll {
   font-size: 13px;

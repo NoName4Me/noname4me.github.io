@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
+<meta name="description" content="最近在做一个前端mock服务器的小工具（点击这里了解），在处理根据配置的数据生成mock文件时顺带学习了nunjucks，记录一下。 nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
 <meta name="keywords" content="JS,nunjucks,template engine">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS模版引擎（nunjucks）">
 <meta property="og:url" content="https://noname4me.github.io/2018/03/25/nodejs-template-engine/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
+<meta property="og:description" content="最近在做一个前端mock服务器的小工具（点击这里了解），在处理根据配置的数据生成mock文件时顺带学习了nunjucks，记录一下。 nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-25T09:48:20.000Z">
+<meta property="og:updated_time" content="2018-03-25T09:50:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS模版引擎（nunjucks）">
-<meta name="twitter:description" content="nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
+<meta name="twitter:description" content="最近在做一个前端mock服务器的小工具（点击这里了解），在处理根据配置的数据生成mock文件时顺带学习了nunjucks，记录一下。 nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
 
 
 
@@ -350,7 +350,8 @@
       
 
       
-        <p><code>nunjacks</code>这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。</p>
+        <p><em>最近在做一个前端mock服务器的小工具（<a href="https://github.com/NoName4Me/light-mock-server" target="_blank" rel="external">点击这里了解</a>），在处理根据配置的数据生成mock文件时顺带学习了<code>nunjucks</code>，记录一下。</em></p>
+<p><code>nunjacks</code>这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。</p>
 <a id="more"></a>
 <h1 id="1-nunjucks使用"><a href="#1-nunjucks使用" class="headerlink" title="1. nunjucks使用"></a>1. nunjucks使用</h1><h2 id="1-1-引入，以及渲染"><a href="#1-1-引入，以及渲染" class="headerlink" title="1.1 引入，以及渲染"></a>1.1 引入，以及渲染</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> nunjucks = <span class="built_in">require</span>(<span class="string">'nunjucks'</span>);</div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> template = fs.readFileSync(<span class="string">'./some.template'</span>).toString();</div><div class="line"><span class="comment">// 模板内容：Hello, &#123;&#123; name &#125;&#125;~</span></div><div class="line"><span class="keyword">let</span> data = &#123; <span class="attr">name</span>: <span class="string">'jonge'</span> &#125;;</div><div class="line"><span class="keyword">var</span> compiledData = nunjucks.renderString(template, data);</div><div class="line"></div><div class="line">fs.writeFileSync(<span class="string">'./test.js'</span>,compiledData);</div><div class="line"><span class="comment">// 生成文件内容：Hello, jonge~</span></div></pre></td></tr></table></figure>
 <h2 id="1-2-两个小技巧"><a href="#1-2-两个小技巧" class="headerlink" title="1.2 两个小技巧"></a>1.2 两个小技巧</h2><ul>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JS,nunjucks,template engine," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta name="description" content="nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
+<meta name="keywords" content="JS,nunjucks,template engine">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta property="og:url" content="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/index.html">
+<meta property="og:title" content="JS模版引擎（nunjucks）">
+<meta property="og:url" content="https://noname4me.github.io/2018/03/25/nodejs-template-engine/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta property="og:description" content="nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-12T14:14:01.000Z">
+<meta property="og:updated_time" content="2018-03-25T09:48:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云ECS+shadowsocks 科学上网">
-<meta name="twitter:description" content="嗯，曲线救国— —||。 阿里ECS+ShadowSocks.  搭建过程 STEP_1  购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）  STEP_2  登陆ECS，安装ShadowSocks1234567891011# 这里只示例一键安装python版，其它的参考文末wget --no-check-certificate -O shadowsocks.sh https://ra">
+<meta name="twitter:title" content="JS模版引擎（nunjucks）">
+<meta name="twitter:description" content="nunjacks这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/"/>
+  <link rel="canonical" href="https://noname4me.github.io/2018/03/25/nodejs-template-engine/"/>
 
 
 
 
 
-  <title>阿里云ECS+shadowsocks 科学上网 | 辣手摧花</title>
+  <title>JS模版引擎（nunjucks） | 辣手摧花</title>
   
 
 
@@ -270,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/25/nodejs-template-engine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -287,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">阿里云ECS+shadowsocks 科学上网</h2>
+          <h2 class="post-title" itemprop="name headline">JS模版引擎（nunjucks）</h2>
         
 
         <div class="post-meta">
@@ -299,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T23:39:17+08:00">
-                2017-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T01:00:09+08:00">
+                2018-03-25
               </time>
             
 
@@ -309,28 +310,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/利器/" itemprop="url" rel="index">
-                    <span itemprop="name">利器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -341,8 +320,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/19/ecs-ss-cross-wall/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/19/ecs-ss-cross-wall/" itemprop="commentsCount"></span>
+                <a href="/2018/03/25/nodejs-template-engine/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/25/nodejs-template-engine/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -371,35 +350,25 @@
       
 
       
-        <h1 id="嗯，曲线救国—-—-。"><a href="#嗯，曲线救国—-—-。" class="headerlink" title="嗯，曲线救国— —||。"></a>嗯，曲线救国— —||。</h1><blockquote>
-<p>阿里ECS+ShadowSocks.</p>
-</blockquote>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><ul>
-<li>STEP_1</li>
-</ul>
-<p>购买阿里ECS（AWS的EC2也行，据说绑定信用卡送一年呢）</p>
-<ul>
-<li>STEP_2</li>
-</ul>
-<p>登陆ECS，安装ShadowSocks<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这里只示例一键安装python版，其它的参考文末</span></div><div class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 设置权限</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"></div><div class="line"><span class="comment"># 配置ss，安装相关依赖库</span></div><div class="line"><span class="comment">## 这里会提示输入IP／端口／密码（其它端使用ss时会用到）</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"></div><div class="line"><span class="comment"># 安装完成会展示刚才输入的信息，注意保存。</span></div></pre></td></tr></table></figure></p>
+        <p><code>nunjacks</code>这个模版引擎，虽然它是用于生成HTML，但是，我们可以利用它的模板语法来生成自己的文件。</p>
 <a id="more"></a>
-<ul>
-<li><p>STEP_3<br>配置ECS开启上面设置的端口，在阿里云控制台，进入ECS实例管理，找到对应的实例，<code>操作</code>列中，<code>更多</code>里选择<code>安全组配置</code>，在<code>配置规则</code>中增加<em>入方向</em>的规则即可。</p>
-</li>
-<li><p>STEP_4</p>
-</li>
+<h1 id="1-nunjucks使用"><a href="#1-nunjucks使用" class="headerlink" title="1. nunjucks使用"></a>1. nunjucks使用</h1><h2 id="1-1-引入，以及渲染"><a href="#1-1-引入，以及渲染" class="headerlink" title="1.1 引入，以及渲染"></a>1.1 引入，以及渲染</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> nunjucks = <span class="built_in">require</span>(<span class="string">'nunjucks'</span>);</div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> template = fs.readFileSync(<span class="string">'./some.template'</span>).toString();</div><div class="line"><span class="comment">// 模板内容：Hello, &#123;&#123; name &#125;&#125;~</span></div><div class="line"><span class="keyword">let</span> data = &#123; <span class="attr">name</span>: <span class="string">'jonge'</span> &#125;;</div><div class="line"><span class="keyword">var</span> compiledData = nunjucks.renderString(template, data);</div><div class="line"></div><div class="line">fs.writeFileSync(<span class="string">'./test.js'</span>,compiledData);</div><div class="line"><span class="comment">// 生成文件内容：Hello, jonge~</span></div></pre></td></tr></table></figure>
+<h2 id="1-2-两个小技巧"><a href="#1-2-两个小技巧" class="headerlink" title="1.2 两个小技巧"></a>1.2 两个小技巧</h2><ul>
+<li>将对象展开到模板里</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动ss</span></div><div class="line">启动：/etc/init.d/shadowsocks start</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> temp = &#123;&#123; obj | dump(<span class="number">2</span>) | safe&#125;&#125;;</div><div class="line"><span class="comment">// obj 是要展开的对象</span></div><div class="line"><span class="comment">// dump作用等同于JSON.stringify</span></div><div class="line"><span class="comment">// safe意思时文本安全，无需编码（如不设置safe，则&lt;被编码为&amp;lt;等特殊字符被编码）</span></div><div class="line"></div><div class="line"><span class="comment">// 假设obj=&#123;name:'jonge'&#125;，那么模板最终被渲染下面的内容（可能格式会稍乱）</span></div><div class="line"><span class="keyword">var</span> temp = &#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"jonge"</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <ul>
-<li>STEP_5</li>
+<li>迭代数组（或对象），末尾移除<code>,</code></li>
 </ul>
-<p>客户端下载及配置。（很简单，下载客户端，添加上面配置的IP:PORT+密码即可）</p>
-<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="external">shadowsocks官网</a></p>
-<p><a href="https://github.com/shadowsocks" target="_blank" rel="external">github地址</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ss相关其它命令</span></div><div class="line">停止：/etc/init.d/shadowsocks stop</div><div class="line">重启：/etc/init.d/shadowsocks restart</div><div class="line">状态：/etc/init.d/shadowsocks status</div><div class="line">卸载：./shadowsocks.sh uninstall</div><div class="line"></div><div class="line"><span class="comment"># ss的配置文件（可以设置多用户什么的）</span></div><div class="line">vi /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<p><strong><a href="https://teddysun.com/342.html" target="_blank" rel="external">shadowsocks python版</a></strong></p>
-<p><strong><a href="https://teddysun.com/399.html" target="_blank" rel="external">开发者提供的FAQ</a></strong></p>
-<p><strong><a href="https://teddysun.com/486.html" target="_blank" rel="external">shadowsocks安装四合一(R/python/Go/libev)版本</a></strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">&#123;%- <span class="keyword">for</span> item <span class="keyword">in</span> list %&#125;</div><div class="line">    &#123;<span class="attr">key1</span>: &#123;&#123;item.sth1&#125;&#125;, <span class="attr">key2</span>: &#123;&#123;item.sth2&#125;&#125;&#125;&#123;% <span class="keyword">if</span> loop.index !== loop.length %&#125;,&#123;% endif %&#125;</div><div class="line">&#123;%- endfor %&#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<h1 id="2-常用指令简记"><a href="#2-常用指令简记" class="headerlink" title="2. 常用指令简记"></a>2. 常用指令简记</h1><ul>
+<li><code>for</code> / <code>if</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;% <span class="keyword">for</span> list <span class="keyword">in</span> lists %&#125;</div><div class="line"><span class="comment">// lists可以是Array可以时Object</span></div><div class="line"><span class="comment">// for key,value in obj</span></div><div class="line"><span class="comment">// loop.index0代表当前索引</span></div><div class="line"><span class="comment">// loop.length代表迭代个数</span></div><div class="line"><span class="comment">// loop.last标志是否到最后一个</span></div><div class="line">&#123;% endor %&#125;</div><div class="line"></div><div class="line">&#123;% <span class="keyword">if</span> x === y %&#125;</div><div class="line">&#123;% endif %&#125;</div><div class="line"></div><div class="line"><span class="comment">// &#123;%- 代表删除其前面的空白字符，-%&#125;代表删除其后空白字符</span></div><div class="line"><span class="comment">// &#123;&#123;- 和 -&#125;&#125;类似</span></div></pre></td></tr></table></figure>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>nunjucks官网：<a href="https://mozilla.github.io/nunjucks/" target="_blank" rel="external">https://mozilla.github.io/nunjucks/</a></li>
+</ol>
 
       
     </div>
@@ -420,7 +389,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/" title="阿里云ECS+shadowsocks 科学上网">https://noname4me.github.io/2017/10/19/ecs-ss-cross-wall/</a>
+    <a href="https://noname4me.github.io/2018/03/25/nodejs-template-engine/" title="JS模版引擎（nunjucks）">https://noname4me.github.io/2018/03/25/nodejs-template-engine/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -433,6 +402,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># JS</a>
+          
+            <a href="/tags/nunjucks/" rel="tag"># nunjucks</a>
+          
+            <a href="/tags/template-engine/" rel="tag"># template engine</a>
+          
+        </div>
+      
 
       
       
@@ -442,15 +421,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/23/smooth-animation/" rel="next" title="前端性能优化（一、页面卡顿问题）">
+                <i class="fa fa-chevron-left"></i> 前端性能优化（一、页面卡顿问题）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/20/google-search-skill/" rel="prev" title="Google搜索小技巧">
-                Google搜索小技巧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -613,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#嗯，曲线救国—-—-。"><span class="nav-text">嗯，曲线救国— —||。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建过程"><span class="nav-text">搭建过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-nunjucks使用"><span class="nav-text">1. nunjucks使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-引入，以及渲染"><span class="nav-text">1.1 引入，以及渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-两个小技巧"><span class="nav-text">1.2 两个小技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-常用指令简记"><span class="nav-text">2. 常用指令简记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -789,7 +768,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/10/19/ecs-ss-cross-wall/"});
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/03/25/nodejs-template-engine/"});
 		
 
 		(function() {

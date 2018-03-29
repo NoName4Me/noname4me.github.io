@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="辣手摧花">
 <meta property="og:description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 1. perspective和perspective-originperspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T15:07:32.000Z">
+<meta property="og:updated_time" content="2018-03-27T13:39:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css3中3D相关样式浅尝">
 <meta name="twitter:description" content="本文涉及几个CSS样式：perspective、perspective-origin、backface-visibility、transform-style。 1. perspective和perspective-originperspective设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。 perspective-origi">
@@ -405,9 +405,15 @@
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 <p>我们稍微扩展一下，两个同位置，同一大小的元素，一个旋转180度，如果设置两个元素不同的内容（颜色什么的），那么当两者同步旋转时（比如沿着X或Y轴），那么就会出现类似旋转硬币的效果，结合不同的视角或背景，就可以作出如上图4的效果（清晰起见，背景用了半透明，图3是静止状态下的样式）。</p>
+<h1 id="3-瞬间flat掉你的3D效果的几个坑"><a href="#3-瞬间flat掉你的3D效果的几个坑" class="headerlink" title="3. 瞬间flat掉你的3D效果的几个坑"></a>3. 瞬间flat掉你的3D效果的几个坑</h1><p>有些CSS属性会影响3D效果，让原本炫酷的3D瞬间成为2D，下面来一一分解。</p>
+<h2 id="3-1-overflow-hidden"><a href="#3-1-overflow-hidden" class="headerlink" title="3.1 overflow: hidden"></a>3.1 <code>overflow: hidden</code></h2><ul>
+<li>解决</li>
+</ul>
+<p><code>transform: perspective(800px) rotateY(45deg)</code></p>
 <hr>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><code>backface-visibility</code>及相关：<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility</a></li>
+<li>CSS 3D不生效场景：<a href="https://css-tricks.com/things-watch-working-css-3d/" target="_blank" rel="external">https://css-tricks.com/things-watch-working-css-3d/</a></li>
 </ol>
 
       
@@ -557,7 +563,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +585,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -634,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-perspective和perspective-origin"><span class="nav-text">1. perspective和perspective-origin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-backface-visibility和transform-style"><span class="nav-text">2. backface-visibility和transform-style</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-perspective和perspective-origin"><span class="nav-text">1. perspective和perspective-origin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-backface-visibility和transform-style"><span class="nav-text">2. backface-visibility和transform-style</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-瞬间flat掉你的3D效果的几个坑"><span class="nav-text">3. 瞬间flat掉你的3D效果的几个坑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-overflow-hidden"><span class="nav-text">3.1 overflow: hidden</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

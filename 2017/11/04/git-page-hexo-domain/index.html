@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/hypercomments.png">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/hypercomments-test1.png">
 <meta property="og:image" content="https://noname4me.github.io/2017/11/04/git-page-hexo-domain/hypercomments-test2.png">
-<meta property="og:updated_time" content="2017-11-25T08:12:13.000Z">
+<meta property="og:updated_time" content="2018-04-01T13:57:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Pages + hexo（及一些博客插件）+ 域名 试水个人博客">
 <meta name="twitter:description" content="轻量级建博客站1. GitHub Page这个就不多说了，见官方doc，创建你的github名字.github.io的仓库，然后上传网站文件到该仓库就可以通过你的github名字.github.io访问啦～✌️ 2. 绑定域名 购买域名（很便宜的啦）阿里云购买(万网)腾讯云购买，同上  绑定域名指向github个人主页   在域名解析管理中，增加类型为CNAME、主机记录分别为@和www、记录值为">
@@ -192,6 +192,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -412,6 +432,10 @@
 <ol>
 <li>设置不解析某些源文件为博文，配置<code>_config.yml</code>中<code>skip_render: [&#39;**/*.html&#39;, &#39;**/*.js&#39;, &#39;**/*.map&#39;]</code></li>
 </ol>
+<h2 id="3-1-自定义页面"><a href="#3-1-自定义页面" class="headerlink" title="3.1 自定义页面"></a>3.1 自定义页面</h2><p>比如自定义分类页面：<code>hexo new page categories</code>，会在source目录下生成<code>categories</code>目录，其中有个<code>index.md</code>，修改其中的信息如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">title:</span> <span class="string">分类</span></div><div class="line"><span class="attr">date:</span> <span class="string">日期（默认会生成）</span></div><div class="line"><span class="attr">type:</span> <span class="string">"categories"</span><span class="string">（注意这个要和主题中设置的相匹配）</span></div><div class="line"><span class="attr">comments:</span> <span class="literal">false</span><span class="string">（这个视自己情况定）</span></div></pre></td></tr></table></figure>
+<p>并在对应的主题配置中开启主页显示分类，以Next为例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">menu:</span></div><div class="line"><span class="attr">  categories:</span> <span class="string">/categories/</span></div></pre></td></tr></table></figure>
 <h2 id="4-搜索（Algolia）"><a href="#4-搜索（Algolia）" class="headerlink" title="4. 搜索（Algolia）"></a>4. 搜索（Algolia）</h2><p>博文一多，自己分类、标签不明确很容易把自己都弄迷路，所以<code>搜索吧，少年～</code>。</p>
 <p>作者使用的是NexT主题，目前已经内置支持，不要配置太多东西。</p>
 <p><a href="http://theme-next.iissnan.com/third-party-services.html#algolia-search" target="_blank" rel="external">官方Doc: NexT主题支持Algolia</a></p>
@@ -437,7 +461,7 @@
 <img src="/2017/11/04/git-page-hexo-domain/hypercomments-test1.png" title="Fig3. 评论输入中">
 <img src="/2017/11/04/git-page-hexo-domain/hypercomments-test2.png" title="Fig4. 评论效果">
 <p>其它主题内置的评论插件看个人喜好按Doc去设置就可以。</p>
-
+<h2 id="6-自定义页面"><a href="#6-自定义页面" class="headerlink" title="6. 自定义页面"></a>6. 自定义页面</h2>
       
     </div>
     
@@ -597,10 +621,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -608,10 +632,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -664,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#轻量级建博客站"><span class="nav-text">轻量级建博客站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-GitHub-Page"><span class="nav-text">1. GitHub Page</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-绑定域名"><span class="nav-text">2. 绑定域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-hexo建站"><span class="nav-text">3. hexo建站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-搜索（Algolia）"><span class="nav-text">4. 搜索（Algolia）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-评论-hypercomment"><span class="nav-text">5. 评论(hypercomment)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#轻量级建博客站"><span class="nav-text">轻量级建博客站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-GitHub-Page"><span class="nav-text">1. GitHub Page</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-绑定域名"><span class="nav-text">2. 绑定域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-hexo建站"><span class="nav-text">3. hexo建站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-自定义页面"><span class="nav-text">3.1 自定义页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-搜索（Algolia）"><span class="nav-text">4. 搜索（Algolia）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-评论-hypercomment"><span class="nav-text">5. 评论(hypercomment)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-自定义页面"><span class="nav-text">6. 自定义页面</span></a></li></ol></li></ol></div>
             
 
           </div>

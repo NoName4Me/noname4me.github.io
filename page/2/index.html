@@ -287,6 +287,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/16/css-background/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/16/css-background/" itemprop="url">背景（background），了解一下。</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T21:44:06+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/16/css-background/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/16/css-background/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h1><h1 id="2-深入了解"><a href="#2-深入了解" class="headerlink" title="2. 深入了解"></a>2. 深入了解</h1><h2 id="2-1-渐变"><a href="#2-1-渐变" class="headerlink" title="2.1 渐变"></a>2.1 渐变</h2><ul>
+<li><code>linear-gradient</code>线性渐变</li>
+<li><code>radical-gradient</code>径向渐变</li>
+<li><code>repeating-上面两个</code>重复其中规则直到铺满背景（很适用于拼贴）</li>
+</ul>
+<p><strong>注意</strong>，倾斜角度，实际上只是倾斜的最小贴片单位（<code>background-size</code>指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用<code>repeating-xx-gradient</code>来完成这种需求（图4）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 最小贴片无缝拼贴 */</span></div><div class="line"><span class="selector-class">.tile</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">linear-gradient</span>(45deg, #000 25%, #fff 0,#fff 50%, #000 0, #000 75%,#fff 0);<span class="attribute">background-size</span>:<span class="number">28.28px</span> <span class="number">28.28px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* repeating-linear-gradient */</span></div><div class="line"><span class="selector-class">.repeat</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">repeating-linear-gradient</span>(45deg, #000, #000 10px,#fff 0,#fff 20px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>示例如下（<em>审查元素</em>查看源码）：</p>
+
+<section style="display:flex;box-sizing:border-box;padding:0 40px;width:100%;justify-content:space-around;flex-flow:wrap;">
+    <div style="width:100px;height:100px;background-image:linear-gradient(to left, #000 50%, #fff 0);background-size:20px 20px;box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+    </div>
+    <div style="width:100px;height:100px;background-image:linear-gradient(45deg, #000 50%, #fff 0);background-size:20px 20px;box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+    </div>
+    <div style="position:relative;width:100px;height:100px;background-image:linear-gradient(45deg, #000 25%, #fff 0,#fff 50%, #000 0, #000 75%,#fff 0);background-size:28.28px 28.28px;box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+        <div style="position:absolute;width:28.28px;height:28.28px;border:1px solid #f93;color:#f93;font-size:16px;text-align:center;font-weight:900;">1</div>
+    </div>
+    <div style="width:100px;height:100px;background-image:repeating-linear-gradient(45deg, #000, #000 10px,#fff 0,#fff 20px);box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+    </div>
+</section>
+
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>《CSS揭秘》</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/13/scss-note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1126,180 +1315,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/26/angularjs-include-ui-router/" itemprop="url">angularjs页面分割和路由（ui-router)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T19:40:58+08:00">
-                2018-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
-                    <span itemprop="name">JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/26/angularjs-include-ui-router/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/angularjs-include-ui-router/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>做页面，经常会遇到这样的需求：</p>
-<ol>
-<li>页面太大，需要分割；</li>
-<li>单页面众多状态（页面）切换；</li>
-</ol>
-<p>在angular框架前提下，第1点一般通过<code>ng-include</code>来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用<code>ui-router</code>来控制。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/26/angularjs-include-ui-router/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1354,7 +1369,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1376,7 +1391,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

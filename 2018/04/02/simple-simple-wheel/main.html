@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body ngl-controller="MainCtrl">
+    <input ngl-model="current" type="text"><button ngl-click="add()">Add</button><br>
+    <span>above item&nbsp;<strong ngl-bind="current" style="color:red"></strong>&nbsp;will be add to the list below:</span>
+    <ul>
+        <li ngl-repeat="item in items" ngl-bind="item"></li>
+    </ul>
+    <script src="./Utils.js"></script>
+    <script src="./Scope.js"></script>
+    <script src="./Provider.js"></script>
+    <script src="./DOMCompiler.js"></script>
+    <script src="./services/interval.js"></script>
+    <script src="./services/timeout.js"></script>
+    <script src="./directives/ngl-bind.js"></script>
+    <script src="./directives/ngl-click.js"></script>
+    <script src="./directives/ngl-controller.js"></script>
+    <script src="./directives/ngl-model.js"></script>
+    <script src="./directives/ngl-repeat.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

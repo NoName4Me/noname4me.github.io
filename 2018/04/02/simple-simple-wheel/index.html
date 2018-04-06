@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="辣手摧花">
 <meta property="og:description" content="本文主要说明如何造一个超轻量的框架，比如xxx行实现vue或AngularJs。（文章比较长，就不拆分了-__-。）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-04T07:24:27.000Z">
+<meta property="og:updated_time" content="2018-04-04T07:45:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="画个圈，假装是轮子">
 <meta name="twitter:description" content="本文主要说明如何造一个超轻量的框架，比如xxx行实现vue或AngularJs。（文章比较长，就不拆分了-__-。）">
@@ -483,14 +483,14 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-model'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    link:  <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      el.onkeyup = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        scope[exp] = el.value; <span class="comment">// 简单起见，只用于input</span></div><div class="line">        scope.$digest();</div><div class="line">      &#125;;</div><div class="line">      scope.$watch(exp, <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">        el.value = val;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
-<li><code>ngl-controller</code></li>
+<li>指定控制器<code>ngl-controller</code></li>
 </ul>
 <p>控制器需要新的作用域，所以 <code>scope</code> 设置为 <code>true</code> ，通过 <code>Provider.get</code> 获取控制器，然后激活它，在控制器里，我们可以给作用域增加属性，我们可以使用<code>ngl-bind/model</code>来绑定这些属性，当属性值改变后，我们需要确保 <code>$digest</code> 被激活，从而<code>ngl-bind/model</code>关联的监听器被激活。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-controller'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    scope: <span class="literal">true</span>,</div><div class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> ctrl = Provider.get(exp + Provider.CONTROLLERS_SUFFIX);</div><div class="line">      Provider.invoke(ctrl, &#123; <span class="attr">$scope</span>: scope &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
-<li><code>ngl-click</code></li>
+<li>点击事件绑定<code>ngl-click</code></li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    scope: <span class="literal">false</span>,</div><div class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        scope.$<span class="built_in">eval</span>(exp);</div><div class="line">        scope.$digest();</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    scope: <span class="literal">false</span>,</div><div class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        scope.$<span class="built_in">eval</span>(exp); <span class="comment">// html里绑定时要带括号的哦</span></div><div class="line">        scope.$digest();</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h3 id="3-2-5-试试这个小轮子"><a href="#3-2-5-试试这个小轮子" class="headerlink" title="3.2.5 试试这个小轮子"></a>3.2.5 试试这个小轮子</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ngl-controller</span>=<span class="string">"MainCtrl"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">ngl-bind</span>=<span class="string">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">ngl-click</span>=<span class="string">"foo()"</span>&gt;</span>Increment<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册一个名为 MainCtrl 的控制器</span></div><div class="line">Provider.controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope</span>) </span>&#123;</div><div class="line">  $scope.bar = <span class="number">0</span>;</div><div class="line">  $scope.foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $scope.bar += <span class="number">1</span>;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 启动编译～</span></div><div class="line">DOMCompiler.bootstrap();</div></pre></td></tr></table></figure>
 <p>一开始 <code>DOMCompiler</code> 发现 <code>ngl-controller</code> 指令，这个指令的 <code>link</code> 函数创建新作用域并且传递给控制器的函数，控制器里我们添加了属性 <code>bar</code> ，以及函数 <code>foo</code> ， <code>DOMCompiler</code> 发现 <code>ngl-bind</code> ，然后给它关联的属性 <code>bar</code> 添加监听器， <code>DOMCompiler</code> 还发现 <code>ngl-click</code> 指令，并为按钮绑定事件处理程序。</p>
@@ -558,6 +558,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/05/something-about-cache/" rel="prev" title="Web缓存之浏览器缓存（HTTP缓存）">
+                Web缓存之浏览器缓存（HTTP缓存） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -643,7 +647,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -665,7 +669,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

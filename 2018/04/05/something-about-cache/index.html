@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。 1. 强缓存1.1 ExpiresExpires是 HTTP/1.0 提出的，它的值是由服务器">
+<meta name="description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。">
 <meta name="keywords" content="性能,缓存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web缓存之浏览器缓存（HTTP缓存）">
 <meta property="og:url" content="https://noname4me.github.io/2018/04/05/something-about-cache/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。 1. 强缓存1.1 ExpiresExpires是 HTTP/1.0 提出的，它的值是由服务器">
+<meta property="og:description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png">
-<meta property="og:updated_time" content="2018-04-06T08:46:30.000Z">
+<meta property="og:updated_time" content="2018-04-06T08:46:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web缓存之浏览器缓存（HTTP缓存）">
-<meta name="twitter:description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。 1. 强缓存1.1 ExpiresExpires是 HTTP/1.0 提出的，它的值是由服务器">
+<meta name="twitter:description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。">
 <meta name="twitter:image" content="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png">
 
 
@@ -373,7 +373,7 @@
 
       
         <p>Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。</p>
-<p>我就不另辟蹊径了，大体就两种：强缓存、协商缓存。<strong>强缓存</strong>意思就是浏览器这边自行判断是否过期而决定是否请求服务器，<strong>协商缓存</strong>意思就是要先去问问服务器咯。</p>
+<p>我就不另辟蹊径了，大体就两种：强缓存、协商缓存。<strong>强缓存</strong>意思就是浏览器这边自行判断是否过期而决定是否请求服务器，<strong>协商缓存</strong>意思就是要先去问问服务器咯。<br><a id="more"></a></p>
 <h1 id="1-强缓存"><a href="#1-强缓存" class="headerlink" title="1. 强缓存"></a>1. 强缓存</h1><h2 id="1-1-Expires"><a href="#1-1-Expires" class="headerlink" title="1.1 Expires"></a>1.1 <code>Expires</code></h2><p><code>Expires</code>是 HTTP/1.0 提出的，它的值是由服务器指定的GMT格式的绝对时间，表示该资源过期时间。使用过程如下：</p>
 <ul>
 <li>首次请求，服务器的response头部有一条：<code>Expires:Fri, 6 Apr 2024 12:56:25 GMT</code>；</li>

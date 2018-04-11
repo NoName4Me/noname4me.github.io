@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-object.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-function.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-inherit.png">
-<meta property="og:updated_time" content="2018-04-07T13:24:22.000Z">
+<meta property="og:updated_time" content="2018-04-10T00:20:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的面向对象（原型到类）">
 <meta name="twitter:description" content="假设你已经有基本的面向对象编程概念，所以……如果没有，请点击这里。">
@@ -411,6 +411,7 @@
 <a id="more"></a>
 <h1 id="1-预热"><a href="#1-预热" class="headerlink" title="1. 预热"></a>1. 预热</h1><h2 id="1-1-对象（里看原型）"><a href="#1-1-对象（里看原型）" class="headerlink" title="1.1 对象（里看原型）"></a>1.1 对象（里看原型）</h2><p>一句<code>var a = { xx: 23 };</code>，都出现了些什么关系网：</p>
 <p><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-object.png" width="560"></p>
+<p><strong>注意：</strong>JavaScript里比较特殊的是<code>Object</code>、<code>String</code>、<code>Number</code>等的构造器都是继承的<code>Function</code>。</p>
 <h2 id="1-2-函数（里看原型）"><a href="#1-2-函数（里看原型）" class="headerlink" title="1.2 函数（里看原型）"></a>1.2 函数（里看原型）</h2><p>假设让你设计一个可以创建对象的方法，你可能首先会想到这种：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createNewPerson</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</div><div class="line">  obj.name = name;</div><div class="line">  obj.greeting = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">'Hi! I\'m '</span> + <span class="keyword">this</span>.name + <span class="string">'.'</span>);</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// create a object `person` named 'Jonge'</span></div><div class="line"><span class="keyword">var</span> person = createNewPerson(<span class="string">'Jonge'</span>);</div><div class="line">person.greeting();</div></pre></td></tr></table></figure>
 <p>好的，我们得到了一个新的对象<code>person</code>。可这个函数每次调用都要创建一个空对象，然后设置相应的属性后返回，总觉的有点儿绕。</p>
@@ -426,7 +427,10 @@
 <p>好，现在我们想要一个可以指定年龄的人，我们复用构造函数<code>Person</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AgedPerson</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">    Person.call(<span class="keyword">this</span>, name); <span class="comment">// 注意这个this的上下文</span></div><div class="line">    <span class="keyword">this</span>.age = age; <span class="comment">// 新的属性：age</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="2-2-继承"><a href="#2-2-继承" class="headerlink" title="2.2 继承"></a>2.2 继承</h2><p>但是<code>AgedPerson</code>的的原型对象不是<code>Person.prototype</code>，而是<code>AgedPerson.prototype</code>，两者仍然没有继承关系，所以我们需要设置它们的关系：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置原型关系：AgedPerson.prototype 继承 Person.prototype</span></div><div class="line"><span class="comment">// Object.create(obj)的意思是创建一个新对象，并且它的原型是对象obj</span></div><div class="line">AgedPerson.prototype = <span class="built_in">Object</span>.create(Person.prototype);</div><div class="line"></div><div class="line"><span class="comment">// 但是这时，AgedPerson的原型构造器成了Person()，而不再是AgedPerson()，所以我们需要让它重新指回来</span></div><div class="line">AgedPerson.prototype.constructor = AgedPerson;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置原型关系：AgedPerson.prototype 继承 Person.prototype</span></div><div class="line">AgedPerson.prototype = <span class="built_in">Object</span>.create(Person.prototype);</div><div class="line"></div><div class="line"><span class="comment">// 但是这时，AgedPerson的原型构造器成了Person()，而不再是AgedPerson()，所以我们需要让它重新指回来</span></div><div class="line">AgedPerson.prototype.constructor = AgedPerson;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 这里解释下前面的<code>Object.create()</code>做了什么，我们可以从它的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Polyfill" target="_blank" rel="external">Polyfill</a>里看出些名堂来：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Object</span>.create !== <span class="string">"function"</span>) &#123;</div><div class="line">    <span class="built_in">Object</span>.create = <span class="function"><span class="keyword">function</span> (<span class="params">proto, propertiesObject</span>) </span>&#123;</div><div class="line">        <span class="comment">// 这里省略一些校验，感兴趣可以点击上面的Polyfill链接查看</span></div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">        F.prototype = proto;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以<code>new MyObject()</code>相当于<code>Object.create(MyObject.prototype)</code>，意思就是创建一个新对象，并且它的原型是<code>MyObject.prototype</code>。</p>
 <p>那我们如果想要覆盖从<code>Person</code>原型继承的方法<code>greeting</code>呢，可以这么写：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">AgedPerson.prototype.greeting = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="comment">// 新的定义</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以上得到的原型关系图如下：</p>
@@ -497,6 +501,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/09/something-about-cache-cookie/" rel="prev" title="something-about-cache-cookie">
+                something-about-cache-cookie <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -582,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -604,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

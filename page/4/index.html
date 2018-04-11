@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/06/async-and-promise/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/02/css-animation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -306,7 +306,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/06/async-and-promise/" itemprop="url">异步以及Promise</a></h2>
+                <a class="post-title-link" href="/2018/03/02/css-animation/" itemprop="url">css动画（animation）</a></h2>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T20:36:21+08:00">
-                2018-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T23:33:58+08:00">
+                2018-03-02
               </time>
             
 
@@ -328,6 +328,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -338,8 +371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/06/async-and-promise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/06/async-and-promise/" itemprop="commentsCount"></span>
+                <a href="/2018/03/02/css-animation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/02/css-animation/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -369,19 +402,15 @@
 
       
         
-          
-            <p>promise如果有多个then，它们相互不会影响，如下例中”C”的处理不会影响也不会先于”B”。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">p.then( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	p.then( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">"C"</span> );</div><div class="line">	&#125; );</div><div class="line">	<span class="built_in">console</span>.log( <span class="string">"A"</span> );</div><div class="line">&#125; );</div><div class="line">p.then( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="string">"B"</span> );</div><div class="line">&#125; );</div><div class="line"><span class="comment">// A B C</span></div></pre></td></tr></table></figure>
-<p>如果你不确定某个函数是返回一个promise结果还是一个即时值，那么最好使用<code>Promise.resolve(..)</code>来封装一下。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// don't just do this:</span></div><div class="line">foo( <span class="number">42</span> )</div><div class="line">.then( <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( v );</div><div class="line">&#125; );</div><div class="line"></div><div class="line"><span class="comment">// instead, do this:</span></div><div class="line"><span class="built_in">Promise</span>.resolve( foo( <span class="number">42</span> ) )</div><div class="line">.then( <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( v );</div><div class="line">&#125; );</div></pre></td></tr></table></figure></p>
-<p><code>Promise.resolve(..)</code>可以将任何thenable的东西转为真正的Promise（递归拆包直到非thenable的值），如果传入的是真正的Promise，那么会直接返回该Promise。结合这一点以及Promise的另外两个特点，我们就会习得Promise的链式调用技能。</p>
-<ul>
-<li>每当你调用一个Promise的<code>then(..)</code>方法，它会返回一个新的Promise，我们可以用来<em>链</em>调用。</li>
-<li>你在调用<code>then(..)</code>传入的fulfilled回调中返回的，都会自动的成为下一个<em>链</em>的fulfilled回调函数的入参。</li>
-</ul>
-<p>当你从fulfillment（或者rejection）里返回一个Promise或thenble时，同样的拆包也会发生，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.resolve( <span class="number">21</span> );</div><div class="line"></div><div class="line">p.then( <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( v );	<span class="comment">// 21</span></div><div class="line"></div><div class="line">	<span class="comment">// create a promise and return it</span></div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">		<span class="comment">// fulfill with value `42`</span></div><div class="line">		resolve( v * <span class="number">2</span> );</div><div class="line">	&#125; );</div><div class="line">&#125; )</div><div class="line">.then( <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( v );	<span class="comment">// 42</span></div><div class="line">&#125; );</div></pre></td></tr></table></figure>
-
-          
+          <p>最近在做<a href="https://codepen.io/collection/XgmakG/" target="_blank" rel="external">100 Days CSS chalenges</a>练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。</p>
+<h1 id="1-引用动画"><a href="#1-引用动画" class="headerlink" title="1. 引用动画"></a>1. 引用动画</h1><h1 id="1-1-基础"><a href="#1-1-基础" class="headerlink" title="1.1 基础"></a>1.1 基础</h1><p>这个属性一共有8个子属性，取值（第一个是默认值）如下：<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/02/css-animation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -428,7 +457,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/18/typeScript-learn-2/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/mouse-event-position/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -447,7 +476,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/18/typeScript-learn-2/" itemprop="url">typeScript学习笔记(2/3)</a></h2>
+                <a class="post-title-link" href="/2018/02/26/mouse-event-position/" itemprop="url">MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息</a></h2>
         
 
         <div class="post-meta">
@@ -459,8 +488,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T23:14:17+08:00">
-                2017-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T20:39:04+08:00">
+                2018-02-26
               </time>
             
 
@@ -501,8 +530,341 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/18/typeScript-learn-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/18/typeScript-learn-2/" itemprop="commentsCount"></span>
+                <a href="/2018/02/26/mouse-event-position/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/mouse-event-position/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-定位"><a href="#1-定位" class="headerlink" title="1. 定位"></a>1. 定位</h1><p><code>clientX</code>: 与页面可视区左侧的距离<br><code>offsetX</code>: 与元素左侧的距离<br><code>pageX</code>: 与document左侧的距离<br><code>screenX</code>: 与屏幕左侧的距离</p>
+<p>兼容浏览器的各个position获取方法：<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/26/mouse-event-position/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/26/angularjs-include-ui-router/" itemprop="url">angularjs页面分割和路由（ui-router)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T19:40:58+08:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/26/angularjs-include-ui-router/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/angularjs-include-ui-router/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>做页面，经常会遇到这样的需求：</p>
+<ol>
+<li>页面太大，需要分割；</li>
+<li>单页面众多状态（页面）切换；</li>
+</ol>
+<p>在angular框架前提下，第1点一般通过<code>ng-include</code>来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用<code>ui-router</code>来控制。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/26/angularjs-include-ui-router/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/23/scroll-bar-diy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/23/scroll-bar-diy/" itemprop="url">自定义浏览器滚动条</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T23:14:38+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/23/scroll-bar-diy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/23/scroll-bar-diy/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -533,13 +895,13 @@
       
         
           <blockquote>
-<p><em>因为这只是个人的学习笔记，不便之处望谅解。</em></p>
-<p><strong>内容：</strong> 类。</p>
+<p>这篇文章主要讲如何自定义网页滚动条。</p>
 </blockquote>
-<h1 id="2-学习（接上一篇"><a href="#2-学习（接上一篇" class="headerlink" title="2. 学习（接上一篇)"></a>2. 学习（接<a href="http://jonge.club/2017/12/16/typeScript-learn-1/" target="_blank" rel="external">上一篇</a>)</h1><h2 id="2-3-类"><a href="#2-3-类" class="headerlink" title="2.3 类"></a>2.3 类</h2><h3 id="2-3-1-继承"><a href="#2-3-1-继承" class="headerlink" title="2.3.1 继承"></a>2.3.1 继承</h3>
+<p>webkit内核的浏览器支持使用CSS自定义滚动条，IE仅支持颜色修改，火狐完全不支持，如果要兼容各个浏览器，要么借助三方插件（见文末列举），要么通过js和css等手段自己实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// TODO</span></div><div class="line"><span class="comment">// 1. js+css滚动到底部后无法触发外部容器的滚动</span></div><div class="line"><span class="comment">// 2. 封装Angular组件（待优化）</span></div><div class="line"><span class="comment">// 3. 可选：jQuery实现（使用mCustomScrollbar）</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/18/typeScript-learn-2/#more" rel="contents">
+            <a class="btn" href="/2018/02/23/scroll-bar-diy/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -590,7 +952,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/16/typeScript-learn-1/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/31/node-npm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -609,7 +971,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/16/typeScript-learn-1/" itemprop="url">typeScript学习笔记(1/3)</a></h2>
+                <a class="post-title-link" href="/2018/01/31/node-npm/" itemprop="url">node.js和npm</a></h2>
         
 
         <div class="post-meta">
@@ -621,8 +983,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T14:19:36+08:00">
-                2017-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T16:27:48+08:00">
+                2018-01-31
               </time>
             
 
@@ -663,8 +1025,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/16/typeScript-learn-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/16/typeScript-learn-1/" itemprop="commentsCount"></span>
+                <a href="/2018/01/31/node-npm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/31/node-npm/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -694,23 +1056,14 @@
 
       
         
-          <blockquote>
-<p><em>因为这只是个人的学习笔记，不便之处望谅解。</em></p>
-<p><strong>内容：</strong> 基本类型、变量声明、接口。</p>
-</blockquote>
-<h1 id="1-官网的5分钟快速入门"><a href="#1-官网的5分钟快速入门" class="headerlink" title="1. 官网的5分钟快速入门"></a>1. 官网的5分钟快速入门</h1><h2 id="1-1-工具准备"><a href="#1-1-工具准备" class="headerlink" title="1.1 工具准备"></a>1.1 工具准备</h2><ul>
-<li>安装</li>
+          <h1 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><ul>
+<li>node.js（含npm）安装</li>
 </ul>
-<p>要编译为<code>.js</code>文件，所以需要安装编译工具。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g typescript</div></pre></td></tr></table></figure>
-<ul>
-<li>编译</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tsc xxx.ts</div></pre></td></tr></table></figure>
-<h2 id="1-2-DEMO"><a href="#1-2-DEMO" class="headerlink" title="1.2 DEMO"></a>1.2 DEMO</h2><p>直接用代码说明。<br>
+<p>window直接<a href="https://nodejs.org" target="_blank" rel="external">官网</a>下载安装即可。</p>
+<p>其它环境及安装方式见：<a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">https://nodejs.org/en/download/package-manager/</a><br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/16/typeScript-learn-1/#more" rel="contents">
+            <a class="btn" href="/2018/01/31/node-npm/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -761,7 +1114,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/12/css-word-break/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/30/ai-talker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -780,7 +1133,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/12/css-word-break/" itemprop="url">css-word-break</a></h2>
+                <a class="post-title-link" href="/2018/01/30/ai-talker/" itemprop="url">ai-talker</a></h2>
         
 
         <div class="post-meta">
@@ -792,8 +1145,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T21:44:18+08:00">
-                2017-12-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T19:48:04+08:00">
+                2018-01-30
               </time>
             
 
@@ -815,19 +1168,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/AI/" itemprop="url" rel="index">
+                    <span itemprop="name">AI</span>
                   </a>
                 </span>
 
@@ -845,8 +1187,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/12/css-word-break/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/12/css-word-break/" itemprop="commentsCount"></span>
+                <a href="/2018/01/30/ai-talker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/30/ai-talker/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -877,374 +1219,12 @@
       
         
           
-            <h1 id="同样，先占坑"><a href="#同样，先占坑" class="headerlink" title="同样，先占坑"></a>同样，先占坑</h1><p>要求同时满足以下两点才会生效：</p>
-<ul>
-<li>有宽度。（100%不算，注意inline元素转为inline-block设置的宽度才会有效）</li>
-<li>同时设置<code>overflow:hidden</code>、<code>white-space: nowrap</code>、<code>text-overflow: ellipsis</code>。</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 或者也可以直接在有宽度的父元素中指定 */</span></div><div class="line"><span class="selector-class">.span-wrapper</span>&#123;</div><div class="line">    <span class="attribute">white-space</span>: nowrap;</div><div class="line">    <span class="attribute">overflow</span>: hidden;</div><div class="line">    <span class="attribute">text-overflow</span>: ellipsis;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <h1 id="先占坑。"><a href="#先占坑。" class="headerlink" title="先占坑。"></a>先占坑。</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 <hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/en/docs/Web/CSS/text-overflow?v=example" target="_blank" rel="external">MDN CSS text-overflow</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] socket.io: <a href="https://socket.io/get-started/chat/" target="_blank" rel="external">https://socket.io/get-started/chat/</a></p>
+<p>[2] SpeechRecognition: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition</a></p>
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/12/inline-block-align/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/12/inline-block-align/" itemprop="url">inline-block-align</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T21:34:19+08:00">
-                2017-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/12/inline-block-align/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/12/inline-block-align/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="先占坑，后面补写"><a href="#先占坑，后面补写" class="headerlink" title="先占坑，后面补写"></a>先占坑，后面补写</h1><p>首先span是inline元素，不能直接在CSS中设置宽高。</p>
-<p>1、同行对齐，两者同时设置<code>vertical-align: middle</code>，取值视具体需求。<br><em>注意： vertical-align对block元素无作用。</em></p>
-<p>2、多行文字，图片居于首行（即文字环绕效果）<br>默认情况下就会环绕，但是如果span被置为inline-block且没有设置width，span元素会另起一行。</p>
-<p>3、将2中的组合垂直居中<br>使用table或者float来实现。<br><a href="https://jsfiddle.net/jonge/250uua1z/" target="_blank" rel="external">JsFidder示例</a></p>
-<h1 id="span比其同级的img略高"><a href="#span比其同级的img略高" class="headerlink" title="span比其同级的img略高"></a>span比其同级的img略高</h1><p>因为img是inline元素，默认baseline对齐（vertical-align: baseline;）。</p>
-<p><img src="https://static.oschina.net/uploads/space/2017/0411/160733_Wla4_3409026.png" alt="img"></p>
-<ul>
-<li>解决方式</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">img</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="comment">/* 或 vertical-align: bottom; */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>顺带一提</li>
-</ul>
-<p>vertical-align只适用于inline级别的元素。</p>
-<hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/en-US/docs/Images,_Tables,_and_Mysterious_Gaps" target="_blank" rel="external">MDN doc: Images, Tables and Mysterious Gaps</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/12/css-z-index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/12/css-z-index/" itemprop="url">可能，你用了假的z-index</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T21:28:14+08:00">
-                2017-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/12/css-z-index/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/12/css-z-index/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>z-index只有在定位元素上才会生效，而且要考虑Stacking Context的层级关系，它只会比较同层的Stacking Context。</p>
-<p>以下都会形成一个Stacking Context：</p>
-<ul>
-<li>HTML根元素the root element (HTML)。</li>
-<li>定位（absolute/relative）元素设置了<code>z-index</code>属性（值不为<code>auto</code>）。</li>
-<li>flex item（即父元素设置<code>display: flex | inline-flex</code>）设置了<code>z-index</code>属性（值不为auto）。</li>
-<li>元素设置了小于1的透明度。</li>
-<li>元素设置了不为<code>none</code>的transform属性。</li>
-<li>元素设置了值非<code>normal</code>的<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode" target="_blank" rel="external"><code>mix-blend-mode</code></a>属性。</li>
-<li>元素设置了非<code>none</code>的<code>filter</code>属性。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/12/css-z-index/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1282,7 +1262,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1332,7 +1312,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1354,7 +1334,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

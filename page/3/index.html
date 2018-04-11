@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/02/css-animation/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/22/css-3d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -306,7 +306,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/02/css-animation/" itemprop="url">css动画（animation）</a></h2>
+                <a class="post-title-link" href="/2018/03/22/css-3d/" itemprop="url">css3中3D相关样式浅尝</a></h2>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T23:33:58+08:00">
-                2018-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T22:26:25+08:00">
+                2018-03-22
               </time>
             
 
@@ -371,8 +371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/02/css-animation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/02/css-animation/" itemprop="commentsCount"></span>
+                <a href="/2018/03/22/css-3d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/22/css-3d/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -402,11 +402,12 @@
 
       
         
-          <p>最近在做<a href="https://codepen.io/collection/XgmakG/" target="_blank" rel="external">100 Days CSS chalenges</a>练习时，发现animation这部分知识原来并没有整体的学过，于是有了这篇学习笔记。</p>
-<h1 id="1-引用动画"><a href="#1-引用动画" class="headerlink" title="1. 引用动画"></a>1. 引用动画</h1><h1 id="1-1-基础"><a href="#1-1-基础" class="headerlink" title="1.1 基础"></a>1.1 基础</h1><p>这个属性一共有8个子属性，取值（第一个是默认值）如下：<br>
+          <p>本文涉及几个CSS样式：<code>perspective</code>、<code>perspective-origin</code>、<code>backface-visibility</code>、<code>transform-style</code>。</p>
+<h1 id="1-perspective和perspective-origin"><a href="#1-perspective和perspective-origin" class="headerlink" title="1. perspective和perspective-origin"></a>1. <code>perspective</code>和<code>perspective-origin</code></h1><p><code>perspective</code>设置z=0那层与用户之间的距离，这样有3D定位的元素，如果其z轴方向上的距离大于0，那么就会比小于0的元素看起来大。</p>
+<p><code>perspective-origin</code>设置视角的位置，默认在（设置<code>perspective</code>的）元素中心，用法类似<code>transform-origin</code>，相对于元素的左上角。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/css-animation/#more" rel="contents">
+            <a class="btn" href="/2018/03/22/css-3d/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -457,7 +458,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/mouse-event-position/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/20/svg-stroke-animation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -476,7 +477,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/26/mouse-event-position/" itemprop="url">MouseEvent中的clientX等定位信息以及元素的clientWidth等尺寸信息</a></h2>
+                <a class="post-title-link" href="/2018/03/20/svg-stroke-animation/" itemprop="url">SVG中stroke属性实现模拟绘制过程动效</a></h2>
         
 
         <div class="post-meta">
@@ -488,167 +489,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T20:39:04+08:00">
-                2018-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/26/mouse-event-position/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/mouse-event-position/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-定位"><a href="#1-定位" class="headerlink" title="1. 定位"></a>1. 定位</h1><p><code>clientX</code>: 与页面可视区左侧的距离<br><code>offsetX</code>: 与元素左侧的距离<br><code>pageX</code>: 与document左侧的距离<br><code>screenX</code>: 与屏幕左侧的距离</p>
-<p>兼容浏览器的各个position获取方法：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/26/mouse-event-position/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/26/angularjs-include-ui-router/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/26/angularjs-include-ui-router/" itemprop="url">angularjs页面分割和路由（ui-router)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T19:40:58+08:00">
-                2018-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T19:44:34+08:00">
+                2018-03-20
               </time>
             
 
@@ -681,8 +523,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
-                    <span itemprop="name">JS</span>
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
                   </a>
                 </span>
 
@@ -700,8 +542,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/26/angularjs-include-ui-router/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/26/angularjs-include-ui-router/" itemprop="commentsCount"></span>
+                <a href="/2018/03/20/svg-stroke-animation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/20/svg-stroke-animation/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -731,15 +573,13 @@
 
       
         
-          <p>做页面，经常会遇到这样的需求：</p>
-<ol>
-<li>页面太大，需要分割；</li>
-<li>单页面众多状态（页面）切换；</li>
-</ol>
-<p>在angular框架前提下，第1点一般通过<code>ng-include</code>来实现（不存在传递参数、不同状态不同显示等问题），所以多用于页眉／页脚／静态页。第2点一般用<code>ui-router</code>来控制。</p>
+          <p>有这样一种看起来像动态线性绘制的动效（点击<code>SEND MAIL</code>触发）：</p>
+
+<p data-height="265" data-theme-id="dark" data-slug-hash="BrQvRd" data-default-tab="css,result" data-user="blurnull" data-embed-version="2" data-pen-title="100Days-CSS-Challenge-020" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/BrQvRd/" target="_blank" rel="external">100Days-CSS-Challenge-020</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/26/angularjs-include-ui-router/#more" rel="contents">
+            <a class="btn" href="/2018/03/20/svg-stroke-animation/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -790,7 +630,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/02/23/scroll-bar-diy/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/16/css-background/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -809,7 +649,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/scroll-bar-diy/" itemprop="url">自定义浏览器滚动条</a></h2>
+                <a class="post-title-link" href="/2018/03/16/css-background/" itemprop="url">背景（background），了解一下。</a></h2>
         
 
         <div class="post-meta">
@@ -821,8 +661,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T23:14:38+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T21:44:06+08:00">
+                2018-03-16
               </time>
             
 
@@ -851,6 +691,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -863,8 +714,548 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/23/scroll-bar-diy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/23/scroll-bar-diy/" itemprop="commentsCount"></span>
+                <a href="/2018/03/16/css-background/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/16/css-background/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h1><h1 id="2-深入了解"><a href="#2-深入了解" class="headerlink" title="2. 深入了解"></a>2. 深入了解</h1><h2 id="2-1-渐变"><a href="#2-1-渐变" class="headerlink" title="2.1 渐变"></a>2.1 渐变</h2><ul>
+<li><code>linear-gradient</code>线性渐变</li>
+<li><code>radical-gradient</code>径向渐变</li>
+<li><code>repeating-上面两个</code>重复其中规则直到铺满背景（很适用于拼贴）</li>
+</ul>
+<p><strong>注意</strong>，倾斜角度，实际上只是倾斜的最小贴片单位（<code>background-size</code>指定），而不是整个背景，如下面示例的图2，要想无缝拼贴，只能手动找出最小拼贴单位（如图3中左上角小方块），所以一般使用<code>repeating-xx-gradient</code>来完成这种需求（图4）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 最小贴片无缝拼贴 */</span></div><div class="line"><span class="selector-class">.tile</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">linear-gradient</span>(45deg, #000 25%, #fff 0,#fff 50%, #000 0, #000 75%,#fff 0);<span class="attribute">background-size</span>:<span class="number">28.28px</span> <span class="number">28.28px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* repeating-linear-gradient */</span></div><div class="line"><span class="selector-class">.repeat</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>:<span class="built_in">repeating-linear-gradient</span>(45deg, #000, #000 10px,#fff 0,#fff 20px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>示例如下（<em>审查元素</em>查看源码）：</p>
+
+<section style="display:flex;box-sizing:border-box;padding:0 40px;width:100%;justify-content:space-around;flex-flow:wrap;">
+    <div style="width:100px;height:100px;background-image:linear-gradient(to left, #000 50%, #fff 0);background-size:20px 20px;box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+    </div>
+    <div style="width:100px;height:100px;background-image:linear-gradient(45deg, #000 50%, #fff 0);background-size:20px 20px;box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+    </div>
+    <div style="position:relative;width:100px;height:100px;background-image:linear-gradient(45deg, #000 25%, #fff 0,#fff 50%, #000 0, #000 75%,#fff 0);background-size:28.28px 28.28px;box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+        <div style="position:absolute;width:28.28px;height:28.28px;border:1px solid #f93;color:#f93;font-size:16px;text-align:center;font-weight:900;">1</div>
+    </div>
+    <div style="width:100px;height:100px;background-image:repeating-linear-gradient(45deg, #000, #000 10px,#fff 0,#fff 20px);box-shadow:0 0 16px 2px rgba(0,0,0,.4);">
+    </div>
+</section>
+
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>《CSS揭秘》</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/13/scss-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/scss-note/" itemprop="url">SCSS学习笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T22:28:19+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/13/scss-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/13/scss-note/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-安装及编译"><a href="#1-安装及编译" class="headerlink" title="1. 安装及编译"></a>1. 安装及编译</h1><ul>
+<li><p>Ruby、Sass（<code>gem install sass</code>）</p>
+</li>
+<li><p>nodejs (<code>npm install node-sass</code>)</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># .scss（同.sass）</span></div><div class="line">sass source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 连续编译</span></div><div class="line">sass --watch source.scss:target.css</div><div class="line"></div><div class="line"><span class="comment"># 输出样式</span></div><div class="line"><span class="comment"># 嵌套 --style nested</span></div><div class="line"><span class="comment"># 嵌套展开 --style expanded</span></div><div class="line"><span class="comment"># 单行 --style compact</span></div><div class="line"><span class="comment"># 压缩（注释、空格删除） --style compressed</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/scss-note/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/12/css-border/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/12/css-border/" itemprop="url">使用CSS用border搞点儿事情</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T21:36:45+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/css-border/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/12/css-border/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h1><blockquote>
+<p>未完待续。</p>
+</blockquote>
+<h2 id="1-1-border-radius"><a href="#1-1-border-radius" class="headerlink" title="1.1 border-radius"></a>1.1 <code>border-radius</code></h2><blockquote>
+<p><strong>注意</strong><code>border-radius</code>一般直接影响背景的形状，而不是其中包含的元素（除非设置了<code>overflow:hidden</code>）。</p>
+</blockquote>
+<p>引用W3C上的一张图来说明：</p>
+<p><img src="https://www.w3.org/TR/css-backgrounds-3/images/corner.png" width="300"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/12/css-border/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/07/css-wave-sticky-water/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/css-wave-sticky-water/" itemprop="url">CSS实现波浪和水滴粘黏效果</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T20:48:46+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/07/css-wave-sticky-water/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/07/css-wave-sticky-water/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -895,336 +1286,16 @@
       
         
           <blockquote>
-<p>这篇文章主要讲如何自定义网页滚动条。</p>
+<p>TODO <code>filter</code>稍微了解一下下。</p>
 </blockquote>
-<p>webkit内核的浏览器支持使用CSS自定义滚动条，IE仅支持颜色修改，火狐完全不支持，如果要兼容各个浏览器，要么借助三方插件（见文末列举），要么通过js和css等手段自己实现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// TODO</span></div><div class="line"><span class="comment">// 1. js+css滚动到底部后无法触发外部容器的滚动</span></div><div class="line"><span class="comment">// 2. 封装Angular组件（待优化）</span></div><div class="line"><span class="comment">// 3. 可选：jQuery实现（使用mCustomScrollbar）</span></div></pre></td></tr></table></figure>
+<h1 id="1-波浪效果"><a href="#1-波浪效果" class="headerlink" title="1. 波浪效果"></a>1. 波浪效果</h1><p>通过半径小于宽度<code>50%</code>（<strong>注意</strong>不能太小，否则不够平滑）的圆角矩形旋转，并遮挡部分内容来实现。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/scroll-bar-diy/#more" rel="contents">
+            <a class="btn" href="/2018/03/07/css-wave-sticky-water/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/31/node-npm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/31/node-npm/" itemprop="url">node.js和npm</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T16:27:48+08:00">
-                2018-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/31/node-npm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/31/node-npm/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><ul>
-<li>node.js（含npm）安装</li>
-</ul>
-<p>window直接<a href="https://nodejs.org" target="_blank" rel="external">官网</a>下载安装即可。</p>
-<p>其它环境及安装方式见：<a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">https://nodejs.org/en/download/package-manager/</a><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/31/node-npm/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/30/ai-talker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/30/ai-talker/" itemprop="url">ai-talker</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T19:48:04+08:00">
-                2018-01-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index">
-                    <span itemprop="name">AI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/30/ai-talker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/30/ai-talker/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="先占坑。"><a href="#先占坑。" class="headerlink" title="先占坑。"></a>先占坑。</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<hr>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] socket.io: <a href="https://socket.io/get-started/chat/" target="_blank" rel="external">https://socket.io/get-started/chat/</a></p>
-<p>[2] SpeechRecognition: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition</a></p>
-
-          
         
       
     </div>
@@ -1262,7 +1333,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1312,7 +1383,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1334,7 +1405,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

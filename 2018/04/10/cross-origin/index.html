@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="npm," />
+  <meta name="keywords" content="跨域," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1. 基本知识1.1 安装 node.js（含npm）安装  window直接官网下载安装即可。 其它环境及安装方式见：https://nodejs.org/en/download/package-manager/">
-<meta name="keywords" content="npm">
+<meta name="description" content="跨域是前端和后端一起促成的，不过一般我们看到的很多问题都是前端限制（浏览器的同源策略）导致的错误（可以从开发者模式下看到请求后端是成功返回的，只是浏览器拦截了它，并抛出了异常）。">
+<meta name="keywords" content="跨域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js和npm">
-<meta property="og:url" content="https://noname4me.github.io/2018/01/31/node-npm/index.html">
+<meta property="og:title" content="同源和跨域">
+<meta property="og:url" content="https://noname4me.github.io/2018/04/10/cross-origin/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="1. 基本知识1.1 安装 node.js（含npm）安装  window直接官网下载安装即可。 其它环境及安装方式见：https://nodejs.org/en/download/package-manager/">
+<meta property="og:description" content="跨域是前端和后端一起促成的，不过一般我们看到的很多问题都是前端限制（浏览器的同源策略）导致的错误（可以从开发者模式下看到请求后端是成功返回的，只是浏览器拦截了它，并抛出了异常）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T16:32:45.000Z">
+<meta property="og:updated_time" content="2018-04-13T09:34:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node.js和npm">
-<meta name="twitter:description" content="1. 基本知识1.1 安装 node.js（含npm）安装  window直接官网下载安装即可。 其它环境及安装方式见：https://nodejs.org/en/download/package-manager/">
+<meta name="twitter:title" content="同源和跨域">
+<meta name="twitter:description" content="跨域是前端和后端一起促成的，不过一般我们看到的很多问题都是前端限制（浏览器的同源策略）导致的错误（可以从开发者模式下看到请求后端是成功返回的，只是浏览器拦截了它，并抛出了异常）。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://noname4me.github.io/2018/01/31/node-npm/"/>
+  <link rel="canonical" href="https://noname4me.github.io/2018/04/10/cross-origin/"/>
 
 
 
 
 
-  <title>node.js和npm | 辣手摧花</title>
+  <title>同源和跨域 | 辣手摧花</title>
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/01/31/node-npm/">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/04/10/cross-origin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="严肃的二叔">
@@ -308,7 +308,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">node.js和npm</h2>
+          <h2 class="post-title" itemprop="name headline">同源和跨域</h2>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T16:27:48+08:00">
-                2018-01-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T00:09:01+08:00">
+                2018-04-10
               </time>
             
 
@@ -362,8 +362,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/31/node-npm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/31/node-npm/" itemprop="commentsCount"></span>
+                <a href="/2018/04/10/cross-origin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/10/cross-origin/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -392,41 +392,53 @@
       
 
       
-        <h1 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h1><h2 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1 安装"></a>1.1 安装</h2><ul>
-<li>node.js（含npm）安装</li>
-</ul>
-<p>window直接<a href="https://nodejs.org" target="_blank" rel="external">官网</a>下载安装即可。</p>
-<p>其它环境及安装方式见：<a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">https://nodejs.org/en/download/package-manager/</a><br><a id="more"></a></p>
+        <p>跨域是前端和后端一起促成的，不过一般我们看到的很多问题都是前端限制（浏览器的同源策略）导致的错误（可以从开发者模式下看到请求后端是成功返回的，只是浏览器拦截了它，并抛出了异常）。<br><a id="more"></a><br>本文涉及源码归档<a href="https://github.com/NoName4Me/cross-origin-demo" target="_blank" rel="external">点击这里</a>。</p>
+<h1 id="1-同源策略和规避方法"><a href="#1-同源策略和规避方法" class="headerlink" title="1. 同源策略和规避方法"></a>1. 同源策略和规避方法</h1><h2 id="1-1-同源策略"><a href="#1-1-同源策略" class="headerlink" title="1.1 同源策略"></a>1.1 同源策略</h2><p><strong>同源</strong>的意思是下面三个都相同：</p>
 <ul>
-<li>npm安装依赖包</li>
+<li>协议</li>
+<li>域名（包括子域名），比如 <code>sub.baidu.com</code> 和 <code>baidu.com</code></li>
+<li>端口</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装最新版本</span></div><div class="line">npm install koa</div><div class="line"><span class="comment"># 安装指定版本</span></div><div class="line">npm install koa@2.3.0</div><div class="line"><span class="comment"># 卸载</span></div><div class="line">npm uninstall koa</div><div class="line"><span class="comment"># 全局安装</span></div><div class="line">npm install -g xx</div><div class="line"></div><div class="line"><span class="comment"># 安装并写入到package.json依赖管理中</span></div><div class="line">npm install xxx --save</div><div class="line"><span class="comment"># --save在dependencies下，--save-dev在devDependencies下</span></div><div class="line"><span class="comment"># 同样的，uninstall也可以--save来删除到package.json</span></div><div class="line"></div><div class="line"><span class="comment"># 生成项目配置文件package.json</span></div><div class="line">npm init</div><div class="line"><span class="comment"># 表示可以接受默认值</span></div><div class="line">npm init -y</div></pre></td></tr></table></figure>
-<p>更多npm使用指导见：<a href="https://docs.npmjs.com/getting-started" target="_blank" rel="external">https://docs.npmjs.com/getting-started</a></p>
-<h2 id="1-2-配置"><a href="#1-2-配置" class="headerlink" title="1.2 配置"></a>1.2 配置</h2><h3 id="1-2-1-中央仓库（镜像）"><a href="#1-2-1-中央仓库（镜像）" class="headerlink" title="1.2.1 中央仓库（镜像）"></a>1.2.1 中央仓库（镜像）</h3><ul>
-<li>指定源（镜像）</li>
-</ul>
-<p>国内<a href="https://npm.taobao.org/" target="_blank" rel="external">淘宝镜像</a>与<code>npmjs.org</code>源10分钟同步一次。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 指定某次安装的源（淘宝镜像）</span></div><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div><div class="line"></div><div class="line"><span class="comment"># 配置当前命令行的源</span></div></pre></td></tr></table></figure>
-<h2 id="1-2-2-配置文件（npmrc）"><a href="#1-2-2-配置文件（npmrc）" class="headerlink" title="1.2.2 配置文件（npmrc）"></a>1.2.2 配置文件（<code>npmrc</code>）</h2><p>优先级依次递减：</p>
+<p>如果非同源，那么这三种行为会受限：</p>
 <ul>
-<li>工程内的配置文件（<code>/path/to/my/project/.npmrc</code>）</li>
-<li>用户配置文件（<code>~/.npmrc</code>）</li>
-<li>全局配置文件（<code>$PREFIX/etc/npmrc</code>）</li>
-<li>npm的内建配置文件（<code>/path/to/npm/npmrc</code>）</li>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
+<li>DOM 无法获得。</li>
+<li>AJAX 请求不能发送。</li>
 </ul>
-<p>npmrc配置文件内各个配置项说明：<a href="https://docs.npmjs.com/misc/config" target="_blank" rel="external">https://docs.npmjs.com/misc/config</a></p>
-<h2 id="1-3-node和npm升级"><a href="#1-3-node和npm升级" class="headerlink" title="1.3 node和npm升级"></a>1.3 node和npm升级</h2><p>window的直接官网下载，覆盖安装即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># node升级</span></div><div class="line">sudo npm cache clean -f</div><div class="line">sudo npm install -g n</div><div class="line">sudo n stable</div><div class="line"></div><div class="line"><span class="comment"># npm升级</span></div><div class="line">sudo npm install npm@latest -g</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>说明</strong></p>
+<h2 id="1-2-规避方法"><a href="#1-2-规避方法" class="headerlink" title="1.2 规避方法"></a>1.2 规避方法</h2><h3 id="1-2-1-JSONP"><a href="#1-2-1-JSONP" class="headerlink" title="1.2.1 JSONP"></a>1.2.1 JSONP</h3><p>几本思路就是利用<code>script</code>标签获取到的内容会被自动执行的特性，请求时说明回调函数名，服务器直接返回该函数的调用（并填入参数），代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 客户端</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addScript</span>(<span class="params">src</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    script.src = src;</div><div class="line">    <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    addScript(<span class="string">'http://target.site/dir?callback=sayHi'</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'#msg'</span>).innerText = <span class="string">'Hi~'</span> + data.name;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 服务器返回</span></div><div class="line">sayHi(&#123;<span class="attr">name</span>:<span class="string">'Jonge'</span>&#125;);</div></pre></td></tr></table></figure>
+<h3 id="1-2-2-跨文档通信-postMessage"><a href="#1-2-2-跨文档通信-postMessage" class="headerlink" title="1.2.2 跨文档通信 postMessage()"></a>1.2.2 跨文档通信 <code>postMessage()</code></h3><p>【MDN简单搬运】</p>
+<ol>
+<li>发送</li>
+</ol>
+<p><code>targetWindow.postMessage(message, targetOrigin, [transfer])</code></p>
 <ul>
-<li><code>npm cache clean</code>：清除npm缓存</li>
-<li><code>npm install -g n</code>：安装管理node的模块</li>
-<li><code>n stable</code>：安装稳定版本，也可以<code>n latest</code>安装最新版本，或者<code>n 版本号</code>安装指定版本</li>
-<li><code>npm install npm@latest -g</code>：安装最新版本npm</li>
+<li><code>targetWindow</code>：目标窗<ul>
+<li><code>Window.open</code>：新打开窗口的引用</li>
+<li><code>Window.opener</code>：打开当前窗口的窗口（父窗口）</li>
+<li><code>HTMLIFrameElement.contentWindow</code>：从父窗口访问 <code>&lt;iframe&gt;</code></li>
+<li><code>Window.parent</code>：在 <code>&lt;iframe&gt;</code> 里访问父窗口</li>
+<li><code>Window.frames</code> + 索引值（数字或名称）</li>
 </ul>
-</blockquote>
-<h1 id="2-一个工程"><a href="#2-一个工程" class="headerlink" title="2. 一个工程"></a>2. 一个工程</h1><h2 id="2-1-package-json"><a href="#2-1-package-json" class="headerlink" title="2.1 package.json"></a>2.1 package.json</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 自定义命令</span></div><div class="line"><span class="comment">## 在package.json的scripts里面设置</span></div><div class="line"><span class="string">"cmd"</span>: <span class="string">"some cmd..."</span></div><div class="line"></div><div class="line"><span class="comment">#执行该命令</span></div><div class="line">npm run cmd</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#执行多个命令</span></div><div class="line"><span class="comment">## 打开网页并启动服务(MAC)</span></div><div class="line"><span class="string">"start"</span>: <span class="string">"open http://localhost:3001 &amp;&amp; node index.js"</span></div><div class="line">npm start</div><div class="line"></div><div class="line"><span class="comment">## 打开网页并启动服务(MAC)</span></div><div class="line"><span class="string">"start"</span>: <span class="string">"open http://localhost:3001 &amp;&amp; node index.js"</span></div><div class="line"></div><div class="line"><span class="comment">## 启动两个服务</span></div><div class="line"><span class="string">"s1"</span>: <span class="string">"node server1.js &amp;"</span>,</div><div class="line"><span class="string">"s2"</span>: <span class="string">"node server2.js &amp;"</span>,</div><div class="line"><span class="string">"start"</span>: <span class="string">"npm run s1 &amp;&amp; npm run s2"</span></div><div class="line"><span class="comment">### 或者"start": "node server1.js &amp; node server2.js"</span></div><div class="line"></div><div class="line"><span class="comment">### 或者使用并发模块</span></div><div class="line">npm install concurrently -g</div><div class="line"><span class="string">"s1"</span>: <span class="string">"node server1.js"</span>,</div><div class="line"><span class="string">"s2"</span>: <span class="string">"node server2.js"</span>,</div><div class="line"><span class="string">"start"</span>: <span class="string">"concurrently \"npm run s1\" \"npm run s2\""</span></div><div class="line">npm start</div></pre></td></tr></table></figure>
+</li>
+<li><code>message</code>：传递的消息</li>
+<li><code>targetOrigin</code>：目标origin，<code>&#39;*&#39;</code>表示所有</li>
+</ul>
+<ol>
+<li>监听</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>, receiveMessage, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">receiveMessage</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (event.origin !== <span class="string">"http://example.org:8080"</span>)</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// event.data：消息</span></div><div class="line"><span class="comment">// event.origin：消息发出者的origin（比如http://father.com）</span></div><div class="line"><span class="comment">// event.source：消息发出者的引用</span></div></pre></td></tr></table></figure>
+<h3 id="1-2-3-CORS（跨域资源共享）"><a href="#1-2-3-CORS（跨域资源共享）" class="headerlink" title="1.2.3 CORS（跨域资源共享）"></a>1.2.3 CORS（跨域资源共享）</h3><ul>
+<li>Client 请求头部加：<code>Origin: xxxx</code>（这个头一般在访问控制请求里默认会添加，比如<code>XMLHttpRequest</code>或<code>Fetch API</code>）</li>
+<li>Server 返回头部加：<code>Access-Control-Allow-Origin: xxxx</code></li>
+</ul>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank" rel="external">更多关于CORS参考MDN文档</a>。</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>Same Origin - wiki：<a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank" rel="external">https://en.wikipedia.org/wiki/Same-origin_policy</a></li>
+<li>浏览器同源政策及其规避方法·阮一峰：<a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a></li>
+</ol>
+
       
     </div>
     
@@ -446,7 +458,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2018/01/31/node-npm/" title="node.js和npm">https://noname4me.github.io/2018/01/31/node-npm/</a>
+    <a href="https://noname4me.github.io/2018/04/10/cross-origin/" title="同源和跨域">https://noname4me.github.io/2018/04/10/cross-origin/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -461,7 +473,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/npm/" rel="tag"># npm</a>
+            <a href="/tags/跨域/" rel="tag"># 跨域</a>
           
         </div>
       
@@ -474,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/30/ai-talker/" rel="next" title="ai-talker">
-                <i class="fa fa-chevron-left"></i> ai-talker
+              <a href="/2018/04/09/first-screen/" rel="next" title="first-screen">
+                <i class="fa fa-chevron-left"></i> first-screen
               </a>
             
           </div>
@@ -484,8 +496,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/23/scroll-bar-diy/" rel="prev" title="自定义浏览器滚动条">
-                自定义浏览器滚动条 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/10/backward-ajax/" rel="prev" title="反向Ajax（手机扫码，PC端自动登陆并跳转）">
+                反向Ajax（手机扫码，PC端自动登陆并跳转） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本知识"><span class="nav-text">1. 基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-安装"><span class="nav-text">1.1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-配置"><span class="nav-text">1.2 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-中央仓库（镜像）"><span class="nav-text">1.2.1 中央仓库（镜像）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2-配置文件（npmrc）"><span class="nav-text">1.2.2 配置文件（npmrc）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-node和npm升级"><span class="nav-text">1.3 node和npm升级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-一个工程"><span class="nav-text">2. 一个工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-package-json"><span class="nav-text">2.1 package.json</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-同源策略和规避方法"><span class="nav-text">1. 同源策略和规避方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-同源策略"><span class="nav-text">1.1 同源策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-规避方法"><span class="nav-text">1.2 规避方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-JSONP"><span class="nav-text">1.2.1 JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-跨文档通信-postMessage"><span class="nav-text">1.2.2 跨文档通信 postMessage()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-CORS（跨域资源共享）"><span class="nav-text">1.2.3 CORS（跨域资源共享）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -825,7 +837,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/01/31/node-npm/"});
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/04/10/cross-origin/"});
 		
 
 		(function() {

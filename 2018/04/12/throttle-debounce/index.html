@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="性能优化,UX," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="想象一下，你在滚动事件里有操作DOM，那么在你快速滚动页面时，会出现什么情况？是的，页面卡甚至崩了。因为滚动事件触发频率太高，而操作DOM又会导致重排、重绘这些大量消耗资源的任务发生。所以，我们要限制事件的频率（确切的说，时限制事件处理的频率，因为事件触发是不可控的），这就是节流了。">
+<meta name="keywords" content="性能优化,UX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="throttle-debounce">
+<meta property="og:title" content="节流和去抖">
 <meta property="og:url" content="https://noname4me.github.io/2018/04/12/throttle-debounce/index.html">
 <meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="想象一下，你在滚动事件里有操作DOM，那么在你快速滚动页面时，会出现什么情况？是的，页面卡甚至崩了。因为滚动事件触发频率太高，而操作DOM又会导致重排、重绘这些大量消耗资源的任务发生。所以，我们要限制事件的频率（确切的说，时限制事件处理的频率，因为事件触发是不可控的），这就是节流了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T02:28:09.000Z">
+<meta property="og:updated_time" content="2018-04-14T16:43:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="throttle-debounce">
+<meta name="twitter:title" content="节流和去抖">
+<meta name="twitter:description" content="想象一下，你在滚动事件里有操作DOM，那么在你快速滚动页面时，会出现什么情况？是的，页面卡甚至崩了。因为滚动事件触发频率太高，而操作DOM又会导致重排、重绘这些大量消耗资源的任务发生。所以，我们要限制事件的频率（确切的说，时限制事件处理的频率，因为事件触发是不可控的），这就是节流了。">
 
 
 
@@ -122,7 +126,7 @@
 
 
 
-  <title>throttle-debounce | 辣手摧花</title>
+  <title>节流和去抖 | 辣手摧花</title>
   
 
 
@@ -304,7 +308,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">throttle-debounce</h2>
+          <h2 class="post-title" itemprop="name headline">节流和去抖</h2>
         
 
         <div class="post-meta">
@@ -326,6 +330,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -366,7 +392,30 @@
       
 
       
-        
+        <p>想象一下，你在滚动事件里有操作DOM，那么在你快速滚动页面时，会出现什么情况？是的，页面卡甚至崩了。因为滚动事件触发频率太高，而操作DOM又会导致重排、重绘这些大量消耗资源的任务发生。所以，我们要限制事件的频率（确切的说，时限制事件处理的频率，因为事件触发是不可控的），这就是<strong>节流</strong>了。</p>
+<a id="more"></a>
+<p>去抖说的是什么呢，比如一个提交按钮，你可能会因为手抖双击了一下，如果没有做任何限制，那么这个按钮绑定的事件会被触发两次，这应该不是你想要的结果。</p>
+<p>上面两个问题，其实表象上是用户体验的问题，而本质是前端性能优化的问题。网上关于这两个概念的讲解有很多，实际上，节流就是采样，去抖就是检波，比如这个示例（改自CSS-trick，使用<code>Lodash</code>库的节流和去抖函数)：</p>
+
+<p data-height="407" data-theme-id="dark" data-slug-hash="yKWRgx" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="Debounce & Throttle" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/yKWRgx/" target="_blank" rel="external">Debounce & Throttle</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="1-去抖"><a href="#1-去抖" class="headerlink" title="1. 去抖"></a>1. 去抖</h1><p>首先想法就是设置时间窗口，在它范围外的就认为是另一个事件而不是抖动了，如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce_v0</span>(<span class="params">coreFunc, safeWin</span>) </span>&#123;</div><div class="line">    <span class="comment">// reset</span></div><div class="line">    <span class="keyword">if</span>(coreFunc.active &amp;&amp; coreFunc.ts &amp;&amp; +<span class="keyword">new</span> <span class="built_in">Date</span> - coreFunc.ts &gt; safeWin) &#123;</div><div class="line">        <span class="keyword">delete</span> coreFunc.active;</div><div class="line">        <span class="keyword">delete</span> coreFunc.ts;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(!coreFunc.ts) &#123;</div><div class="line">        coreFunc.ts = +<span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">        coreFunc.active = <span class="literal">true</span>;</div><div class="line">        coreFunc();</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(+<span class="keyword">new</span> <span class="built_in">Date</span> - coreFunc.ts &lt; safeWin) &#123;</div><div class="line">        coreFunc.ts = +<span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>嗯……好像有点儿low，核心方法上多了两个属性不说，没法给核心方法传入参数，而且只能在事件（抖动）初次触发，不能在末尾触发（比如滚动到底部加载下一页这种场景就无法适用），我们参考一下广大网友的智慧，然后造出这么个版本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这个debounce支持立即触发（即不做防抖），以及设置在什么位置（抖动前还是抖动结束时，后者会有延迟）触发</span></div><div class="line"><span class="comment">// opt</span></div><div class="line"><span class="comment">//    .win: time window for debounce, if not set or 0, NOT debouce</span></div><div class="line"><span class="comment">//    .pos: -1 / 1(or others) as invoke at leading / tailing</span></div><div class="line"><span class="keyword">const</span> debounce_v1 = <span class="function">(<span class="params">coreFunc, opt</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> timeOutRef, ts, result, ctx, args;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> timerFunc = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> last = +<span class="keyword">new</span> <span class="built_in">Date</span> - ts; <span class="comment">// `ts` is set per every event</span></div><div class="line">        <span class="keyword">if</span> (last &lt; opt.win &amp;&amp; last &gt;= <span class="number">0</span>) &#123;</div><div class="line">            timeOutRef = setTimeout(timerFunc, opt.win - last);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (opt.pos !== <span class="number">-1</span>) &#123;</div><div class="line">                result = coreFunc.apply(ctx, args);</div><div class="line">            &#125;</div><div class="line">            timeOutRef = <span class="literal">null</span>; <span class="comment">// 保证可以响应下一个抖动事件</span></div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        ctx = <span class="keyword">this</span>, args = <span class="built_in">arguments</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!opt || !opt.win || opt.win &lt;= <span class="number">0</span>) &#123;</div><div class="line">            coreFunc.apply(ctx, args);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            ts = +<span class="keyword">new</span> <span class="built_in">Date</span>;</div><div class="line">            opt.pos = opt.pos || <span class="number">-1</span>;</div><div class="line">            <span class="keyword">if</span> (opt.pos === <span class="number">-1</span> &amp;&amp; !timeOutRef) &#123;</div><div class="line">                coreFunc.apply(ctx, args);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(!timeOutRef) &#123; <span class="comment">// 当前抖动里不会再进入（没有设置为null）</span></div><div class="line">                timeOutRef = setTimeout(timerFunc, opt.win);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看下效果：</p>
+
+<p data-height="415" data-theme-id="dark" data-slug-hash="GxbmmN" data-default-tab="result" data-user="blurnull" data-embed-version="2" data-pen-title="Debounce & Throttle" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/blurnull/pen/GxbmmN/" target="_blank" rel="external">Debounce & Throttle</a> by BlurNull (<a href="https://codepen.io/blurnull" target="_blank" rel="external">@blurnull</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h1 id="2-节流"><a href="#2-节流" class="headerlink" title="2. 节流"></a>2. 节流</h1><h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a><code>requestAnimationFrame</code></h2><p>实际上，对于操作DOM（或样式）的场景，节流可以选择使用 <code>requestAnimationFrame</code>（后面简称rAF），它和 <code>_.throttle(dosomething, 16)</code> 基本一致，除了rAF的启动/取消逻辑需要自己处理。</p>
+<p>使用参考<a href="http://jonge.club/2018/03/23/smooth-animation/#2-2-requestAnimationFrame%E6%98%AF%E4%BB%80%E4%B9%88" target="_blank" rel="external">这篇博文</a>。</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://css-tricks.com/debouncing-throttling-explained-examples/" target="_blank" rel="external">https://css-tricks.com/debouncing-throttling-explained-examples/</a></li>
+</ol>
+
       
     </div>
     
@@ -386,7 +435,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://noname4me.github.io/2018/04/12/throttle-debounce/" title="throttle-debounce">https://noname4me.github.io/2018/04/12/throttle-debounce/</a>
+    <a href="https://noname4me.github.io/2018/04/12/throttle-debounce/" title="节流和去抖">https://noname4me.github.io/2018/04/12/throttle-debounce/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -398,6 +447,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+          
+            <a href="/tags/UX/" rel="tag"># UX</a>
+          
+        </div>
       
 
       
@@ -473,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -515,7 +581,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -560,6 +626,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-去抖"><span class="nav-text">1. 去抖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-节流"><span class="nav-text">2. 节流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-text">requestAnimationFrame</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

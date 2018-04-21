@@ -287,6 +287,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/04/20/master-regexp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/20/master-regexp/" itemprop="url">正则，get。</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T23:04:38+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/20/master-regexp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/20/master-regexp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h1><h2 id="1-1-反义"><a href="#1-1-反义" class="headerlink" title="1.1 反义"></a>1.1 反义</h2><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\W</code></td>
+<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配任意不是空白符的字符</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td><code>\B</code></td>
+<td>匹配不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td><code>[^x]</code></td>
+<td>匹配除了x以外的任意字符</td>
+</tr>
+<tr>
+<td><code>[^aeiou]</code></td>
+<td>匹配除了aeiou这几个字母以外的任意字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-反向引用"><a href="#1-2-反向引用" class="headerlink" title="1.2 反向引用"></a>1.2 反向引用</h2><p><code>\b(\w+)\b\s+\1\b</code> 中 <code>\1</code> 表示引用前面匹配的第一组内容，即 <code>(\w+)</code>，举个例子：<code>&quot;Jonge, go go!&quot;</code> 会匹配出 <code>&quot;go go&quot;</code>。</p>
+<ul>
+<li>捕获<ul>
+<li><code>(A)</code>：匹配 <code>A</code>，并捕获文本到自动命名的组里，</li>
+<li><code>(?&lt;name&gt;A)</code>：匹配 <code>A</code>，并捕获文本到名称为 <code>name</code> 的组里，引用时使用 <code>\k&lt;name&gt;</code>，比如 <code>/^(?&lt;name&gt;abc)\w*\k&lt;name&gt;$/</code> 匹配 <code>abc</code> 开头和结尾的字符串</li>
+<li><code>(?:A)</code>：匹配 <code>A</code>，不捕获匹配的文本，也不给此分组分配组号：</li>
+</ul>
+</li>
+<li>零宽断言（<strong>注意：</strong> 后两者<code>lookbehind</code>是 ES2018 的特性，但V8已经实现）<ul>
+<li><code>A(?=B)</code>：匹配后面有 <code>B</code> 跟着的 <code>A</code>，<code>/bar(?=bar)/</code> 匹配 <code>foobarbarfoo</code> ，第1个 <code>bar</code>。</li>
+<li><code>A(?=B)</code>：匹配后面不跟 <code>B</code> 的 <code>A</code>，<code>/bar(?!bar)/</code> 匹配<code>foobarbarfoo</code> 到第2个 <code>bar</code>。</li>
+<li><code>(?&lt;=B)A</code>：匹配前面是 <code>B</code> 的 <code>A</code>，<code>/(?&lt;=bar)bar/</code> 匹配 <code>foobarbarfoo</code> ，第2个 <code>bar</code>。</li>
+<li><code>(?&lt;!=B)A</code>：匹配前面不是 <code>B</code> 的 <code>A</code>，<code>/(?=bar)bar/</code> 匹配 <code>foobarbarfoo</code> ，第1个 <code>bar</code>。</li>
+</ul>
+</li>
+<li>注释：<code>(?#comment)</code>，这种类型的分组不对正则表达式的处理产生任何影响</li>
+</ul>
+<h2 id="1-3-正则匹配的原理"><a href="#1-3-正则匹配的原理" class="headerlink" title="1.3 正则匹配的原理"></a>1.3 正则匹配的原理</h2><h3 id="1-3-1-有穷自动机"><a href="#1-3-1-有穷自动机" class="headerlink" title="1.3.1 有穷自动机"></a>1.3.1 有穷自动机</h3><p>有穷自动机一般满足下列4个条件：</p>
+<ol>
+<li>有限多个状态</li>
+<li>有状态切换机制</li>
+<li>有起始状态</li>
+<li>有终止状态</li>
+</ol>
+<p>正则就是基于这种有穷自动机的理论的，举个例子，正则表达式 <code>a(bb)+a</code> 的状态转移图如下：<br><img src="" width="400"></p>
+<p>下面是一个匹配字符串 <code>&quot;abbbba&quot;</code> 的分解步骤：</p>
+<p><img src="" width="400"></p>
+<p>实际上下面两个有穷状态机和前面的是等价的，下面第1个图里在S1中的</p>
+<p><img src="" width="400"></p>
+<h2 id="1-3-2-匹配优先和忽略优先"><a href="#1-3-2-匹配优先和忽略优先" class="headerlink" title="1.3.2 匹配优先和忽略优先"></a>1.3.2 匹配优先和忽略优先</h2><p>匹配优先（贪婪）：当表达式中的某个位置不确定是否匹配时，优先选择<strong>匹配</strong>，如果该位置后的表达式无法继续匹配，则逐步回溯。<br>忽略优先（懒惰）：当表达式中的某个位置不确定是否匹配时，优先选择<strong>忽略</strong>，如果该位置后的表达式无法继续匹配，则选择匹配，继续往下测试。</p>
+<p>以表达式 <code>ab.*a</code> 、 <code>ab.*?a</code> 和字符串 <code>&quot;ababac&quot;</code> 来说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ab.*a（匹配优先）</div><div class="line">ab 匹配 ab</div><div class="line">ab.* 匹配 ababac</div><div class="line">此时，表达式里还有个a未匹配，逐步回溯（此例回溯1步），匹配到ababa，结束。</div><div class="line"></div><div class="line">ab.*a（忽略优先）</div><div class="line">ab 匹配 ab</div><div class="line">.*?选择不匹配，测试表达式里的a，可以匹配，整体匹配到aba，结束。</div></pre></td></tr></table></figure>
+<p><code>*</code>、<code>+</code>、<code>?</code>、<code>{m,n}</code> 是贪婪模式，对应的懒惰模式是 <code>*?、</code>+?<code>、</code>??<code>、</code>{m,n}?` 。</p>
+<h1 id="2-两个工具"><a href="#2-两个工具" class="headerlink" title="2. 两个工具"></a>2. 两个工具</h1><ol>
+<li>可视化正则模式：<a href="https://regexper.com" target="_blank" rel="external">https://regexper.com</a></li>
+<li>正则小抄、拆解：<a href="https://regexr.com/" target="_blank" rel="external">https://regexr.com/</a></li>
+</ol>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="external">正则表达式30分钟入门教程</a></li>
+<li><a href="https://mathiasbynens.be/notes/es-regexp-proposals" target="_blank" rel="external">ECMAScript regular expressions are getting better!</a></li>
+<li><a href="https://v8project.blogspot.com/2016/02/regexp-lookbehind-assertions.html" target="_blank" rel="external">RegExp lookbehind assertions</a></li>
+<li>《正则指引》余晟</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/04/19/how-js-works-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3382,178 +3624,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/07/css-wave-sticky-water/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="严肃的二叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="辣手摧花">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/07/css-wave-sticky-water/" itemprop="url">CSS实现波浪和水滴粘黏效果</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T20:48:46+08:00">
-                2018-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/07/css-wave-sticky-water/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/07/css-wave-sticky-water/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>TODO <code>filter</code>稍微了解一下下。</p>
-</blockquote>
-<h1 id="1-波浪效果"><a href="#1-波浪效果" class="headerlink" title="1. 波浪效果"></a>1. 波浪效果</h1><p>通过半径小于宽度<code>50%</code>（<strong>注意</strong>不能太小，否则不够平滑）的圆角矩形旋转，并遮挡部分内容来实现。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/07/css-wave-sticky-water/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3608,7 +3678,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3630,7 +3700,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="1. 基础1.1 反义   代码 说明     \W 匹配任意不是字母，数字，下划线，汉字的字符   \S 匹配任意不是空白符的字符   \D 匹配任意非数字的字符   \B 匹配不是单词开头或结束的位置   [^x] 匹配除了x以外的任意字符   [^aeiou] 匹配除了aeiou这几个字母以外的任意字符    1.2 反向引用\b(\w+)\b\s+\1\b 中 \1 表示引用前面匹配的第一">
+<meta name="description" content="1. 基础基础的东西就直接查看 MDN RegExp Doc吧。">
 <meta name="keywords" content="正则,regexp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则，get。">
 <meta property="og:url" content="https://noname4me.github.io/2018/04/20/master-regexp/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="1. 基础1.1 反义   代码 说明     \W 匹配任意不是字母，数字，下划线，汉字的字符   \S 匹配任意不是空白符的字符   \D 匹配任意非数字的字符   \B 匹配不是单词开头或结束的位置   [^x] 匹配除了x以外的任意字符   [^aeiou] 匹配除了aeiou这几个字母以外的任意字符    1.2 反向引用\b(\w+)\b\s+\1\b 中 \1 表示引用前面匹配的第一">
+<meta property="og:description" content="1. 基础基础的东西就直接查看 MDN RegExp Doc吧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T16:09:01.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-example.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-example-steps.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-nfa-example-steps.png">
+<meta property="og:updated_time" content="2018-04-21T16:27:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则，get。">
-<meta name="twitter:description" content="1. 基础1.1 反义   代码 说明     \W 匹配任意不是字母，数字，下划线，汉字的字符   \S 匹配任意不是空白符的字符   \D 匹配任意非数字的字符   \B 匹配不是单词开头或结束的位置   [^x] 匹配除了x以外的任意字符   [^aeiou] 匹配除了aeiou这几个字母以外的任意字符    1.2 反向引用\b(\w+)\b\s+\1\b 中 \1 表示引用前面匹配的第一">
+<meta name="twitter:description" content="1. 基础基础的东西就直接查看 MDN RegExp Doc吧。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-example.png">
 
 
 
@@ -403,7 +407,8 @@
       
 
       
-        <h1 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h1><h2 id="1-1-反义"><a href="#1-1-反义" class="headerlink" title="1.1 反义"></a>1.1 反义</h2><table>
+        <h1 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h1><p>基础的东西就直接查看 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="external">MDN RegExp Doc</a>吧。<br><a id="more"></a></p>
+<h2 id="1-1-反义"><a href="#1-1-反义" class="headerlink" title="1.1 反义"></a>1.1 反义</h2><table>
 <thead>
 <tr>
 <th>代码</th>
@@ -454,19 +459,20 @@
 </li>
 <li>注释：<code>(?#comment)</code>，这种类型的分组不对正则表达式的处理产生任何影响</li>
 </ul>
-<h2 id="1-3-正则匹配的原理"><a href="#1-3-正则匹配的原理" class="headerlink" title="1.3 正则匹配的原理"></a>1.3 正则匹配的原理</h2><h3 id="1-3-1-有穷自动机"><a href="#1-3-1-有穷自动机" class="headerlink" title="1.3.1 有穷自动机"></a>1.3.1 有穷自动机</h3><p>有穷自动机一般满足下列4个条件：</p>
+<h2 id="1-3-正则匹配的原理"><a href="#1-3-正则匹配的原理" class="headerlink" title="1.3 正则匹配的原理"></a>1.3 正则匹配的原理</h2><p>正则就是基于这种有穷自动机的理论的，正则里的这种自动机叫做正则引擎。</p>
+<h3 id="1-3-1-有穷自动机"><a href="#1-3-1-有穷自动机" class="headerlink" title="1.3.1 有穷自动机"></a>1.3.1 有穷自动机</h3><p>有穷自动机一般满足下列4个条件：</p>
 <ol>
 <li>有限多个状态</li>
 <li>有状态切换机制</li>
 <li>有起始状态</li>
 <li>有终止状态</li>
 </ol>
-<p>正则就是基于这种有穷自动机的理论的，举个例子，正则表达式 <code>a(bb)+a</code> 的状态转移图如下：<br><img src="" width="400"></p>
+<p>举个例子，正则表达式 <code>a(bb)+a</code> 的状态转移图如下：<br><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-example.png" width="480"></p>
 <p>下面是一个匹配字符串 <code>&quot;abbbba&quot;</code> 的分解步骤：</p>
-<p><img src="" width="400"></p>
-<p>实际上下面两个有穷状态机和前面的是等价的，下面第1个图里在S1中的</p>
-<p><img src="" width="400"></p>
-<h2 id="1-3-2-匹配优先和忽略优先"><a href="#1-3-2-匹配优先和忽略优先" class="headerlink" title="1.3.2 匹配优先和忽略优先"></a>1.3.2 匹配优先和忽略优先</h2><p>匹配优先（贪婪）：当表达式中的某个位置不确定是否匹配时，优先选择<strong>匹配</strong>，如果该位置后的表达式无法继续匹配，则逐步回溯。<br>忽略优先（懒惰）：当表达式中的某个位置不确定是否匹配时，优先选择<strong>忽略</strong>，如果该位置后的表达式无法继续匹配，则选择匹配，继续往下测试。</p>
+<p><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-example-steps.png" width="400"></p>
+<p>实际上下面两个有穷状态机和前面的是等价的，下面第 1 个图里在输入 <code>ab</code> 后，在状态 S2，如果继续输入 <code>b</code>，那么此时的状态就不确定了，可能在S1，也可能在 S3，而第 2 个图更神奇，在没有任何输入的情况，也会转移到 S1，所以这两个状态机叫做非确定型有穷自动机（NFA，Non-definite Finite Automata），最前面那个状态机是确定型有穷自动机（DFA），每一个状态到另一个状态都是确定的。</p>
+<p><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/master-regexp/finite-states-nfa-example-steps.png" width="480"></p>
+<h3 id="1-3-2-匹配优先和忽略优先"><a href="#1-3-2-匹配优先和忽略优先" class="headerlink" title="1.3.2 匹配优先和忽略优先"></a>1.3.2 匹配优先和忽略优先</h3><p>匹配优先（贪婪）：当表达式中的某个位置不确定是否匹配时，优先选择<strong>匹配</strong>，如果该位置后的表达式无法继续匹配，则逐步回溯。<br>忽略优先（懒惰）：当表达式中的某个位置不确定是否匹配时，优先选择<strong>忽略</strong>，如果该位置后的表达式无法继续匹配，则选择匹配，继续往下测试。</p>
 <p>以表达式 <code>ab.*a</code> 、 <code>ab.*?a</code> 和字符串 <code>&quot;ababac&quot;</code> 来说明：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ab.*a（匹配优先）</div><div class="line">ab 匹配 ab</div><div class="line">ab.* 匹配 ababac</div><div class="line">此时，表达式里还有个a未匹配，逐步回溯（此例回溯1步），匹配到ababa，结束。</div><div class="line"></div><div class="line">ab.*a（忽略优先）</div><div class="line">ab 匹配 ab</div><div class="line">.*?选择不匹配，测试表达式里的a，可以匹配，整体匹配到aba，结束。</div></pre></td></tr></table></figure>
 <p><code>*</code>、<code>+</code>、<code>?</code>、<code>{m,n}</code> 是贪婪模式，对应的懒惰模式是 <code>*?、</code>+?<code>、</code>??<code>、</code>{m,n}?` 。</p>
@@ -480,6 +486,7 @@
 <li><a href="https://mathiasbynens.be/notes/es-regexp-proposals" target="_blank" rel="external">ECMAScript regular expressions are getting better!</a></li>
 <li><a href="https://v8project.blogspot.com/2016/02/regexp-lookbehind-assertions.html" target="_blank" rel="external">RegExp lookbehind assertions</a></li>
 <li>《正则指引》余晟</li>
+<li><a href="https://stackoverflow.com/questions/2973436/regex-lookahead-lookbehind-and-atomic-groups" target="_blank" rel="external">https://stackoverflow.com/questions/2973436/regex-lookahead-lookbehind-and-atomic-groups</a></li>
 </ol>
 
       
@@ -702,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基础"><span class="nav-text">1. 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-反义"><span class="nav-text">1.1 反义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-反向引用"><span class="nav-text">1.2 反向引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-正则匹配的原理"><span class="nav-text">1.3 正则匹配的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-有穷自动机"><span class="nav-text">1.3.1 有穷自动机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-2-匹配优先和忽略优先"><span class="nav-text">1.3.2 匹配优先和忽略优先</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-两个工具"><span class="nav-text">2. 两个工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基础"><span class="nav-text">1. 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-反义"><span class="nav-text">1.1 反义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-反向引用"><span class="nav-text">1.2 反向引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-正则匹配的原理"><span class="nav-text">1.3 正则匹配的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-有穷自动机"><span class="nav-text">1.3.1 有穷自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-匹配优先和忽略优先"><span class="nav-text">1.3.2 匹配优先和忽略优先</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-两个工具"><span class="nav-text">2. 两个工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

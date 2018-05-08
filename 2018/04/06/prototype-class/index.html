@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-object.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-function.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/prototype-class/prototype-link-inherit.png">
-<meta property="og:updated_time" content="2018-04-12T01:59:30.000Z">
+<meta property="og:updated_time" content="2018-04-25T23:06:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的面向对象（原型到类）">
 <meta name="twitter:description" content="假设你已经有基本的面向对象编程概念，所以……如果没有，请点击这里。">
@@ -426,8 +426,18 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.greeting = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">'Hi! I\'m '</span> + <span class="keyword">this</span>.name + <span class="string">'.'</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>好，现在我们想要一个可以指定年龄的人，我们复用构造函数<code>Person</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AgedPerson</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">    Person.call(<span class="keyword">this</span>, name); <span class="comment">// 注意这个this的上下文</span></div><div class="line">    <span class="keyword">this</span>.age = age; <span class="comment">// 新的属性：age</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>instanceof</code> 操作符</li>
+</ul>
+<p>以 <code>obj instanceof constructor</code> 为例说明，<code>instanceof</code> 的作用是判断 <code>constructor.prototype</code> 是否在 <code>obj</code> 的原型链上。</p>
+<p><strong>注意2点：</strong></p>
+<ol>
+<li>JS中的对象都是由Object这个构造函数生成的实例（构造函数也不例外）</li>
+<li><code>Object</code>、<code>Function</code>、<code>Array</code> 等构造函数都是构造函数 <code>Function</code> 的实例</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Function instanceof Object &gt; true</span></div><div class="line"><span class="built_in">Function</span>.__proto__.__proto__ === <span class="built_in">Object</span>.prototype</div><div class="line"></div><div class="line"><span class="comment">// Object instanceof Function &gt; true</span></div><div class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype</div><div class="line"></div><div class="line"><span class="comment">// 下面两个也都是true</span></div><div class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span></div><div class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span></div></pre></td></tr></table></figure>
 <h2 id="2-2-继承"><a href="#2-2-继承" class="headerlink" title="2.2 继承"></a>2.2 继承</h2><p>但是<code>AgedPerson</code>的的原型对象不是<code>Person.prototype</code>，而是<code>AgedPerson.prototype</code>，两者仍然没有继承关系，所以我们需要设置它们的关系：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置原型关系：AgedPerson.prototype 继承 Person.prototype</span></div><div class="line">AgedPerson.prototype = <span class="built_in">Object</span>.create(Person.prototype);</div><div class="line"></div><div class="line"><span class="comment">// 但是这时，AgedPerson的原型构造器成了Person()，而不再是AgedPerson()，所以我们需要让它重新指回来</span></div><div class="line">AgedPerson.prototype.constructor = AgedPerson;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置原型关系：AgedPerson.prototype 继承 Person.prototype</span></div><div class="line">AgedPerson.prototype = <span class="built_in">Object</span>.create(Person.prototype);</div><div class="line"></div><div class="line"><span class="comment">// 但是这时，AgedPerson的原型构造器成了Person，而不再是AgedPerson，所以我们需要让它重新指回来</span></div><div class="line">AgedPerson.prototype.constructor = AgedPerson;</div></pre></td></tr></table></figure>
 <p><strong>注意：</strong> 这里解释下前面的<code>Object.create()</code>做了什么，我们可以从它的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create#Polyfill" target="_blank" rel="external">Polyfill</a>里看出些名堂来：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Object</span>.create !== <span class="string">"function"</span>) &#123;</div><div class="line">    <span class="built_in">Object</span>.create = <span class="function"><span class="keyword">function</span> (<span class="params">proto, propertiesObject</span>) </span>&#123;</div><div class="line">        <span class="comment">// 这里省略一些校验，感兴趣可以点击上面的Polyfill链接查看</span></div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">        F.prototype = proto;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>所以<code>new MyObject()</code>相当于<code>Object.create(MyObject.prototype)</code>，意思就是创建一个新对象，并且它的原型是<code>MyObject.prototype</code>，<strong>但是</strong>，<code>new</code>还是有点儿区别的，它经历了这么3个步骤：</p>
@@ -595,7 +605,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +627,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

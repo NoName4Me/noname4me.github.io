@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：  专用 Worker（本文涉及） 共享 Worker：不同 iframe 或 window 之间共享。 服务 Worker：PWA 里常用。 音频 Worker：专门用于处理音频。 Chrome Worker：">
+<meta name="description" content="Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：">
 <meta name="keywords" content="web worker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web Worker">
 <meta property="og:url" content="https://noname4me.github.io/2018/05/09/web-worker/index.html">
 <meta property="og:site_name" content="辣手摧花">
-<meta property="og:description" content="Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：  专用 Worker（本文涉及） 共享 Worker：不同 iframe 或 window 之间共享。 服务 Worker：PWA 里常用。 音频 Worker：专门用于处理音频。 Chrome Worker：">
+<meta property="og:description" content="Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T17:10:01.000Z">
+<meta property="og:updated_time" content="2018-05-09T17:11:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web Worker">
-<meta name="twitter:description" content="Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：  专用 Worker（本文涉及） 共享 Worker：不同 iframe 或 window 之间共享。 服务 Worker：PWA 里常用。 音频 Worker：专门用于处理音频。 Chrome Worker：">
+<meta name="twitter:description" content="Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：">
 
 
 
@@ -404,6 +404,7 @@
 
       
         <p>Web Worker 实际上没有打破 JS 的单线程特性，它不过是浏览器赋能的 API 而已，即 Worker 线程是浏览器提供的。主要有以下几种：</p>
+<a id="more"></a>
 <ul>
 <li>专用 Worker（<strong>本文涉及</strong>）</li>
 <li>共享 Worker：不同 iframe 或 window 之间共享。</li>
@@ -411,14 +412,13 @@
 <li>音频 Worker：专门用于处理音频。</li>
 <li>Chrome Worker：</li>
 </ul>
-<a id="more"></a>
 <h1 id="1-基本使用"><a href="#1-基本使用" class="headerlink" title="1. 基本使用"></a>1. 基本使用</h1><blockquote>
 <p>通过构造器 <code>Worker</code> 生成的可以运行在 Worker 线程的对象。它和主线程的通信借助消息系统完成：<code>onmessage</code> 监听消息 和 <code>postMessgae</code> 发送消息。</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">let</span> worker = <span class="keyword">new</span> Worker(<span class="string">'work.js'</span>)</div><div class="line"></div><div class="line">worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'in main.js: %o'</span>, msg.data);</div><div class="line">    <span class="comment">// 结束 worker</span></div><div class="line">    worker.teminate();</div><div class="line">&#125;</div><div class="line"></div><div class="line">worker.postMessage();</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// work.js</span></div><div class="line"><span class="comment">// 它有自己的上下文</span></div><div class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'in worker defined by file: %o'</span>, msg.data);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当然还可以继续发送消息</span></div><div class="line">postMessage();</div><div class="line"></div><div class="line"><span class="comment">// 结束 worker</span></div><div class="line"><span class="comment">// close();</span></div></pre></td></tr></table></figure>
 <p><strong>这里强调一下</strong>：主线程和 worker 之间的数据传递是复制的不是引用的。对象在传递给 worker 时会被序列化。</p>
 <p>Navigator<br>XMLHttpRequest<br>Array, Date, Math, and String<br>WindowTimers.setTimeout and WindowTimers.setInterval</p>
-<h2 id="2-高级操作"><a href="#2-高级操作" class="headerlink" title="2. 高级操作"></a>2. 高级操作</h2><h2 id="2-1-嵌入-Worker"><a href="#2-1-嵌入-Worker" class="headerlink" title="2.1 嵌入 Worker"></a>2.1 嵌入 Worker</h2><p>通过设置一个 <code>script</code> 标签，在 JS 中使用该标签下定义的代码来初始化 Worker：</p>
+<h1 id="2-高级操作"><a href="#2-高级操作" class="headerlink" title="2. 高级操作"></a>2. 高级操作</h1><h2 id="2-1-给-Worker-传递函数"><a href="#2-1-给-Worker-传递函数" class="headerlink" title="2.1 给 Worker 传递函数"></a>2.1 给 Worker 传递函数</h2><h2 id="2-2-非文件形式定义-Worker"><a href="#2-2-非文件形式定义-Worker" class="headerlink" title="2.2 非文件形式定义 Worker"></a>2.2 非文件形式定义 Worker</h2><p>通过设置一个 <code>script</code> 标签，在 JS 中使用该标签下定义的代码来初始化 Worker：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/js-worker"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'in worker defined by &lt;script&gt;: %o'</span>, msg.data);</span></div><div class="line"><span class="undefined">  &#125;;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob(<span class="built_in">Array</span>.prototype.map.call(<span class="built_in">document</span>.querySelectorAll(<span class="string">'script[type=\'text\/js-worker\']'</span>), <span class="function"><span class="keyword">function</span> (<span class="params">oScript</span>) </span>&#123; <span class="keyword">return</span> oScript.textContent; &#125;),&#123;<span class="attr">type</span>: <span class="string">'text/javascript'</span>&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Creating a new document.worker property containing all our "text/js-worker" scripts.</span></div><div class="line"><span class="built_in">document</span>.worker = <span class="keyword">new</span> Worker(<span class="built_in">window</span>.URL.createObjectURL(blob));</div><div class="line"></div><div class="line"><span class="built_in">document</span>.worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">oEvent</span>) </span>&#123;</div><div class="line">pageLog(<span class="string">'Received: '</span> + oEvent.data);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>使用Blob的话，你还可以这样子不使用文件来传入 Worker 内容：</p>
@@ -647,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本使用"><span class="nav-text">1. 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-高级操作"><span class="nav-text">2. 高级操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-嵌入-Worker"><span class="nav-text">2.1 嵌入 Worker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本使用"><span class="nav-text">1. 基本使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-高级操作"><span class="nav-text">2. 高级操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-给-Worker-传递函数"><span class="nav-text">2.1 给 Worker 传递函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-非文件形式定义-Worker"><span class="nav-text">2.2 非文件形式定义 Worker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

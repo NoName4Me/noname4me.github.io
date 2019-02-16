@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.js"></script>
+    <script src="https://unpkg.com/@uirouter/angularjs@1.0.15/release/angular-ui-router.js"></script>
+    <script src="./script.js"></script>
+    <title>angularjs-ui-router</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- REMOVE the comment flag to active: url router -->
+    <!-- -->
+    <div ng-app="root">
+        <div ng-controller="urlRouterCtrl">
+            <h2>1. Url Router（含以及ui-view嵌套）</h2>
+            <p>
+                <em>Attention to the url change.</em>
+            </p>
+            <a ui-sref="router1" ui-sref-active="active">Router-1</a>
+            <a ui-sref="router2" ui-sref-active="active">Router-2</a>
+            <a ui-sref="router1.sub({desc: 'deliver params by url'})" ui-sref-active="active">Router-1.1</a>
+            <ui-view></ui-view>
+        </div>
+    </div>
+    
+    <!-- REMOVE the comment flag to active: multi named views -->
+    <!-- 
+    <div ng-app="namedView">
+        <h2>2. 命名的ui-view</h2>
+        <a ui-sref="main" ui-sref-active="active">Click to show text</a>
+        <div class="named-scope">
+            <ui-view>
+                <div ui-view="header" class="top"></div>
+                <div class="bottom">
+                    <div ui-view="nav" class="left"></div>
+                    <div ui-view="content" class="right"></div>
+                </div>
+            </ui-view>
+        </div>
+    </div>
+    -->
+</body>
+
+</html>

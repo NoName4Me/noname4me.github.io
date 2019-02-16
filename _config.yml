@@ -1,0 +1,90 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: 辣手摧花
+subtitle: 牢骚太胜防肠断，风物长宜放眼量。
+description:
+author: 严肃的二叔
+language: zh-Hans
+timezone:
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://noname4me.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render: ['**/*.html', '**/*.js', '**/*.map', '**/*.ts', '**/*.css']
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace:
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 20
+  order_by: -date
+  
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map: ['hexo']
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 29
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: next
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://github.com/NoName4Me/noname4me.github.io.git
+  branch: master
+
+# Algolia Search
+algolia:
+  applicationID: 'PCAKTMI1LK'
+  apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c'
+  adminApiKey: 'adminKey'
+  indexName: 'jonge_club_search'
+  chunkSize: 5000

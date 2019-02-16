@@ -5,7 +5,7 @@ node_js: stable
 # 设置只监听哪个分支
 branches:
   only:
-  - hexo
+  - source-hexo
 # 缓存，可以节省集成的时间，这里我用了yarn，如果不用可以删除
 cache:
   apt: true

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SVG," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
+<meta name="keywords" content="SVG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVG学习（及实践）笔记">
+<meta property="og:url" content="https://noname4me.github.io/2017/11/19/svg-use-note/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-17T10:34:30.898Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVG学习（及实践）笔记">
+<meta name="twitter:description" content="整理中……  学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。  1. 基本知识坐标、基本图形（圆、矩形、线、路径等）。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2017/11/19/svg-use-note/"/>
+
+
+
+
+
+  <title>SVG学习（及实践）笔记 | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/11/19/svg-use-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SVG学习（及实践）笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T18:21:00+00:00">
+                2017-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/19/svg-use-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/19/svg-use-note/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>整理中……</em></p>
+<blockquote>
+<p>学习SVG(Scalable Vector Graphics)的笔记，及记录使用中踩过的坑。</p>
+</blockquote>
+<h1 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h1><p>坐标、基本图形（圆、矩形、线、路径等）。<br><a id="more"></a></p>
+<h2 id="1-1-关于坐标"><a href="#1-1-关于坐标" class="headerlink" title="1.1 关于坐标"></a>1.1 关于坐标</h2><h2 id="1-2-基本图形"><a href="#1-2-基本图形" class="headerlink" title="1.2 基本图形"></a>1.2 基本图形</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 圆，(cx, cy): 圆心, r: 半径 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"#fcc"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 椭圆，(cx, cy): 椭圆圆心, (rx,ry): 水平／垂直径 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ellipse</span> <span class="attr">cx</span>=<span class="string">"140"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">rx</span>=<span class="string">"40"</span> <span class="attr">ry</span>=<span class="string">"20"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span> <span class="attr">fill</span>=<span class="string">"#cfc"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 矩形，(x, y): 左上角坐标, (rx,ry): 圆角的横向纵向半径 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"200"</span> <span class="attr">y</span>=<span class="string">"30"</span> <span class="attr">width</span>=<span class="string">"80"</span> <span class="attr">height</span>=<span class="string">"40"</span> <span class="attr">rx</span>=<span class="string">"20"</span> <span class="attr">ry</span>=<span class="string">"10"</span>  <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"#ccf"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 直线，(x1, y1): 起点, (x2,y2): 终点 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"320"</span> <span class="attr">y1</span>=<span class="string">"20"</span> <span class="attr">x2</span>=<span class="string">"400"</span> <span class="attr">y2</span>=<span class="string">"40"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- 点划线，stroke-dasharray: (实 虚),(实 虚), .... --&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"320"</span> <span class="attr">y1</span>=<span class="string">"40"</span> <span class="attr">x2</span>=<span class="string">"400"</span> <span class="attr">y2</span>=<span class="string">"60"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span> <span class="attr">stroke-dasharray</span>=<span class="string">"10 4, 5 10, 4 4, 4 4"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 折线，points: 折线的各个点 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">polyline</span> <span class="attr">points</span>=<span class="string">"420 20, 420 40, 440 40, 440 60, 460, 60"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--线的其它属性--&gt;</span></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"><span class="comment">    stroke-linecap: butt | round | square</span></div><div class="line"><span class="comment">    stroke-linejoin: miter | round | bevel</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 多边形，或者折线（闭合）填充就是多边形咯 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">polygon</span> <span class="attr">fill</span>=<span class="string">"#ff9faf"</span> <span class="attr">stroke</span>=<span class="string">"#df4f9f"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span> <span class="attr">points</span>=<span class="string">"500,40 500,70 520,80 540,70 540,40 520,30"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>如下图所示：<br>
+<svg style="width:600px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
+    <circle cx="50" cy="50" r="20" stroke="#000" stroke-width="1" fill="#fcc"/>
+    <ellipse cx="140" cy="50" rx="40" ry="20" stroke="#000" stroke-width="2" fill="#cfc"/>
+    <rect x="200" y="30" width="80" height="40" rx="20" ry="10" stroke="#000" stroke-width="1" fill="#ccf"/>
+    <line x1="320" y1="20" x2="400" y2="40" stroke="#000" stroke-width="2"/>
+    <line x1="320" y1="40" x2="400" y2="60" stroke="#000" stroke-width="2" stroke-dasharray="10 4, 5 10, 4 4, 4 4"/>
+    <polyline points="420 20, 420 40, 440 40, 440 60, 460, 60" fill="none" stroke="#000"/>
+    <polygon fill="#ff9faf" stroke="#df4f9f" stroke-width="2" points="500,40 500,70 520,80 540,70 540,40 520,30"/>
+</svg>
+</p>
+<h2 id="1-3-path"><a href="#1-3-path" class="headerlink" title="1.3 path"></a>1.3 path</h2><blockquote>
+<p>大写字母：相对于起点的定位，小写：相对前一个点的定位</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>行为</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M</code></td>
+<td>移动到</td>
+<td></td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>绘制直线到</td>
+<td></td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>绘制水平线到</td>
+<td></td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>绘制垂直线到</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>闭合（绘制到起点）</td>
+<td></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>弧线</td>
+<td><code>A30,40 0 0,0 70,70</code>: 画一个（从上一个点）到坐标(70,70)横轴30，纵轴40的逆时针小圆弧线</td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td>二次贝塞尔曲线</td>
+<td><code>Q10,100 40,200</code>画一个（从上一个点）到坐标(40,200)的以(10,100)为控制点的贝塞尔曲线</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>二次贝塞尔简写</td>
+<td><code>T40,200</code>画一个（从上一个点）到坐标(40,200)的以上一个控制点为控制点的贝塞尔曲线</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>三次贝塞尔曲线</td>
+<td><code>C10,40 50,80 100，100</code>画一个（从上一个点）到坐标(100,100)的以(10,40)和(50,80)为第一、第二控制点的曲线</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>三次贝塞尔曲线简写</td>
+<td><code>S50,80 100，100</code>类似<code>T</code>，第一个控制点省略（使用上一个）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M50,50 L100,30 H150 V80 Z"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 不封闭折线 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M60,60 L110,40 H160 V90"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 红色逆时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#f00"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 绿色逆时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,0 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0f0"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 蓝色顺时针小圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 0,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#00f"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 青色顺时针大圆弧 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M220,40 A40,20 0 1,1 250,60"</span> <span class="attr">stroke</span>=<span class="string">"#0ff"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 二次贝塞尔 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M320,40 Q340,10 350,60"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 三次贝塞尔 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M320,80 C320,120 420,10 480,50"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">marker-start</span>=<span class="string">"url(#start)"</span> <span class="attr">marker-end</span>=<span class="string">"url(#end)"</span>/&gt;</span></div></pre></td></tr></table></figure>
+
+<svg style="width:600px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
+  <defs>
+    <marker viewbox="0 0 10 10" markerwidth="10" markerheight="10" refx="5" refy="5" orient="auto" markerunits="strokeWidth" id="start">
+        <circle cx="5" cy="5" r="5" fill="#3A9" stroke="none"/>
+    </marker>
+    <marker viewbox="0 0 10 10" markerwidth="10" markerheight="10" refx="5" refy="5" orient="auto" markerunits="strokeWidth" id="end">
+        <circle cx="5" cy="5" r="5" fill="#A39" stroke="none"/>
+    </marker>
+  </defs>
+  <path d="M10,15 L10,15" marker-start="url(#start)"/>
+  <text x="20" y="20">起点</text>
+  <path d="M60,15 L10,15" marker-start="url(#end)"/>
+  <text x="70" y="20">终点</text>
+  <path d="M50,50 L100,30 H150 V80 Z" stroke="#000" stroke-width="1" fill="none" marker-start="url(#start)"/>
+  <path d="M60,60 L110,40 H160 V90" stroke="#000" stroke-width="1" fill="none" marker-start="url(#start)"/>
+  <path d="M220,40 A40,20 0 0,0 250,60" stroke="#f00" stroke-width="1" fill="none"/>
+  <path d="M220,40 A40,20 0 1,0 250,60" stroke="#0f0" stroke-width="1" fill="none"/>
+  <path d="M220,40 A40,20 0 0,1 250,60" stroke="#00f" stroke-width="1" fill="none"/>
+  <path d="M220,40 A40,20 0 1,1 250,60" stroke="#0ff" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
+  <path d="M320,40 Q340,10 350,60" stroke="grey" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
+  <path d="M320,80 C320,120 420,10 480,50" stroke="grey" stroke-width="1" fill="none" marker-start="url(#start)" marker-end="url(#end)"/>
+</svg>
+
+<h2 id="Coordinate"><a href="#Coordinate" class="headerlink" title="Coordinate"></a>Coordinate</h2><p>viewBox=minX,minY width,height</p>
+<blockquote>
+<p>this can do shift/scale</p>
+</blockquote>
+<p>preserveAspectRatio<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">preserveAspectRatio=<span class="string">"xMinyMin meet"</span></div><div class="line"><span class="comment">// xMin - aligned to left, xMid - middle, xMax - aligned to bottom</span></div><div class="line"><span class="comment">// yMin - top</span></div><div class="line"><span class="comment">// meet: sliced untill the largest side touch the viewport boundary</span></div><div class="line"><span class="comment">// slice: scaled and sliced untill the mallest side touch the viewport boundary</span></div></pre></td></tr></table></figure></p>
+<h1 id="2-高级知识"><a href="#2-高级知识" class="headerlink" title="2. 高级知识"></a>2. 高级知识</h1><ul>
+<li><code>&lt;defs&gt;</code> &amp; <code>&lt;symbol&gt;</code>：定义</li>
+<li><code>&lt;marker&gt;</code>：标记</li>
+<li><code>&lt;use&gt;</code>：引用</li>
+</ul>
+<blockquote>
+<p>可以使用viewBox来scale/transform</p>
+</blockquote>
+<p>refX／refY：X／Y轴的偏移<br><code>marker-end</code>, <code>marker-start</code>, <code>marker-mid</code>(多节点的线才会有效，即至少3个点）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">defs</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 渐变 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">linearGradient</span> <span class="attr">id</span>=<span class="string">"g1"</span>&gt;</span><span class="comment">&lt;!-- x1="0%" y1="0%" x2="0%" y2="100%"这个决定了渐变角度，此时是垂直向下 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"20%"</span> <span class="attr">stop-color</span>=<span class="string">"#3D9"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">stop</span> <span class="attr">offset</span>=<span class="string">"90%"</span> <span class="attr">stop-color</span>=<span class="string">"#39F"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">linearGradient</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--  W|H * markerUnits 计算实际大小 --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">marker</span> <span class="attr">viewBox</span>=<span class="string">"0 0 10 10"</span> <span class="attr">markerWidth</span>=<span class="string">"10"</span> <span class="attr">markerHeight</span>=<span class="string">"10"</span> <span class="attr">refX</span>=<span class="string">"0"</span> <span class="attr">refY</span>=<span class="string">"3"</span> <span class="attr">orient</span>=<span class="string">"auto"</span> <span class="attr">markerUnits</span>=<span class="string">"strokeWidth"</span> <span class="attr">id</span>=<span class="string">"arrow"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M0,0 L0,6 L9,3 Z"</span> <span class="attr">fill</span>=<span class="string">"#3A9"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">marker</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">defs</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">symbol</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">stroke-width</span>=<span class="string">"18"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">fill</span>=<span class="string">"purple"</span> <span class="attr">id</span>=<span class="string">"r1"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 引用上面的定义 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">"30"</span> <span class="attr">fill</span>=<span class="string">"url(#g1)"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">use</span> <span class="attr">x</span>=<span class="string">"110"</span> <span class="attr">y</span>=<span class="string">"0"</span> <span class="attr">xlink:href</span>=<span class="string">"#r1"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M240,20 C180,40 360,50 320,80"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">marker-end</span>=<span class="string">"url(#arrow)"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- marker-mid --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M260,20 H300 V60"</span> <span class="attr">stroke</span>=<span class="string">"grey"</span> <span class="attr">marker-end</span>=<span class="string">"url(#arrow)"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">marker-mid</span>=<span class="string">"url(#arrow)"</span>/&gt;</span></div></pre></td></tr></table></figure>
+
+<svg style="width:400px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
+  <defs>
+    <lineargradient id="g1">
+      <stop offset="20%" stop-color="#3D9"/>
+      <stop offset="90%" stop-color="#39F"/>
+    </lineargradient>
+    <!--  W|H * markerUnits 计算实际大小 -->
+    <marker viewbox="0 0 10 10" markerwidth="10" markerheight="10" refx="0" refy="3" orient="auto" markerunits="strokeWidth" id="arrow">
+      <path d="M0,0 L0,6 L9,3 Z" fill="#3A9"/>
+    </marker>
+  </defs>
+  <symbol>
+    <circle cx="50" cy="50" r="20" stroke-width="18" stroke="orange" fill="purple" id="r1"/>
+  </symbol>
+  <circle cx="50" cy="50" r="30" fill="url(#g1)"/>
+  <use x="110" y="0" xlink:href="#r1" stroke="orange" stroke-width="5"/>
+  <path d="M240,20 C180,40 360,50 320,80" stroke="grey" marker-end="url(#arrow)" fill="none" stroke-width="2"/>
+  <path d="M260,20 H300 V60" stroke="grey" marker-end="url(#arrow)" fill="none" stroke-width="1" marker-mid="url(#arrow)"/>
+</svg>
+
+<h1 id="3-踩坑记"><a href="#3-踩坑记" class="headerlink" title="3.踩坑记"></a>3.踩坑记</h1><h2 id="3-1-一个兼容SVG和IE的样式类操作（删／增）的工具函数"><a href="#3-1-一个兼容SVG和IE的样式类操作（删／增）的工具函数" class="headerlink" title="3.1 一个兼容SVG和IE的样式类操作（删／增）的工具函数"></a>3.1 一个兼容SVG和IE的样式类操作（删／增）的工具函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * SVG元素的增/删样式类工具函数</span></div><div class="line"><span class="comment"> * IE不支持DOMElement.classList,以及jQuery.add/removeClass不支持SVG</span></div><div class="line"><span class="comment"> * @param element</span></div><div class="line"><span class="comment"> * @param className</span></div><div class="line"><span class="comment"> * @param opt 'add' | 'remove'</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">svgElementClassTool</span>(<span class="params">element, className, opt</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> oldClassList =</div><div class="line">    <span class="keyword">typeof</span> element.getAttribute(<span class="string">"class"</span>) !== <span class="string">"string"</span></div><div class="line">      ? []</div><div class="line">      : element.getAttribute(<span class="string">"class"</span>).split(<span class="string">" "</span>);</div><div class="line">  <span class="keyword">if</span> (opt === <span class="string">"add"</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (oldClassList.indexOf(className) &lt; <span class="number">0</span>) &#123;</div><div class="line">      oldClassList.push(className);</div><div class="line">      element.setAttribute(<span class="string">"class"</span>, oldClassList.join(<span class="string">" "</span>));</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (opt === <span class="string">"remove"</span>) &#123;</div><div class="line">    <span class="keyword">var</span> removeIdx;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; oldClassList.length; i++) &#123;</div><div class="line">      <span class="keyword">if</span> (oldClassList[i] === className) &#123;</div><div class="line">        removeIdx = i;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    removeIdx &gt; <span class="number">-1</span> &amp;&amp; oldClassList.splice(removeIdx, <span class="number">1</span>);</div><div class="line">    element.setAttribute(<span class="string">"class"</span>, oldClassList.join(<span class="string">" "</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-2-svg内可编辑文本"><a href="#3-2-svg内可编辑文本" class="headerlink" title="3.2 svg内可编辑文本"></a>3.2 svg内可编辑文本</h2><p>原本以为下面几行代码就搞定收工了，结果又一次忘记了<strong>兼容</strong>。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"100"</span> <span class="attr">style</span>=<span class="string">"padding:10px;box-shadow: 0 0 8px 0 rgba(0,0,0,.2);"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">foreignObject</span> <span class="attr">width</span>=<span class="string">"100"</span> <span class="attr">height</span>=<span class="string">"150"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">"hi~input."</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">textarea</span>&gt;</span>hi~textarea.<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">foreignObject</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>效果（IE不可见^_^）：</p>
+
+<svg width="300" height="100" style="padding:10px;box-shadow: 0 0 8px 0 rgba(0,0,0,.2);">
+  <foreignobject width="100" height="150">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <input value="hi~input."/>
+      <textarea>hi~textarea.</textarea>
+    </div>
+  </foreignobject>
+</svg>
+
+<p>又是傲娇的IE不支持<code>&lt;foreignObject&gt;</code>。最终怎么解决的呢：在<code>&lt;svg&gt;</code>标签外，用绝对定位并与svg内元素保持交互同步。（感觉又给自己挖下了一个很深的坑呢— —||）。</p>
+<h2 id="3-3-使用ng-repeat遇到的删除元素但样式仍被保留问题"><a href="#3-3-使用ng-repeat遇到的删除元素但样式仍被保留问题" class="headerlink" title="3.3 使用ng-repeat遇到的删除元素但样式仍被保留问题"></a>3.3 使用<code>ng-repeat</code>遇到的删除元素但样式仍被保留问题</h2><p>代码中使用了<code>ng-repeat</code>来将一组元素映射为dom，但是在交互中遇到如果删除了repeat中的元素，原来解析出来的dom如果有新设置的样式或类，会保留下来，所以很诡异的现象：明明从页面上删除了某个元素，但是它的样式却传递给了上一个元素，如果各个元素样式都不同，那么会出现样式错乱。</p>
+<p>解决：样式与元素一一对应，而不是依赖元素位置。或者删除元素前先恢复该元素的样式到默认样式。</p>
+<h2 id="3-4-线条太细，hover太难触发"><a href="#3-4-线条太细，hover太难触发" class="headerlink" title="3.4 线条太细，hover太难触发"></a>3.4 线条太细，hover太难触发</h2><p>这个其实不算是坑，只是个小solution罢了，思路就是放置一条比较粗的重叠线，描边颜色是透明的就行。下面的例子为了说明，有效<code>hover</code>区域给成了<code>20px</code>，实际自己取舍。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">style</span>=<span class="string">"width:400px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css"><span class="selector-class">.line-group</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.true-line</span> &#123; <span class="attribute">stroke</span>: <span class="number">#C93</span>; <span class="attribute">stroke-width</span>: <span class="number">4px</span>; &#125;</span></div><div class="line"><span class="css"><span class="selector-class">.line</span><span class="selector-pseudo">:hover</span> &#123; <span class="attribute">stroke</span>: <span class="number">#C93</span>; &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"30"</span> <span class="attr">y</span>=<span class="string">"30"</span>&gt;</span>设置了hover范围的线<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">g</span> <span class="attr">class</span>=<span class="string">"line-group"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">class</span>=<span class="string">"true-line"</span> <span class="attr">d</span>=<span class="string">"M50,50 h100"</span> <span class="attr">stroke</span>=<span class="string">"#39C"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"M50,50 h100"</span> <span class="attr">stroke</span>=<span class="string">"rgba(0,0,0,0)"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"20"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"220"</span> <span class="attr">y</span>=<span class="string">"30"</span>&gt;</span>普通的线<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">class</span>=<span class="string">"line"</span> <span class="attr">d</span>=<span class="string">"M200,50 h100"</span> <span class="attr">stroke</span>=<span class="string">"#39C"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>效果如下：<br>
+<svg style="width:400px;height:100px;box-shadow:0 0 8px 0 rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.1);">
+<style>
+.line-group:hover .true-line { stroke: #C93; stroke-width: 4px; }
+.line:hover { stroke: #C93; }
+</style>
+<text x="30" y="30">设置了hover范围的线</text>
+  <g class="line-group">
+    <path class="true-line" d="M50,50 h100" stroke="#39C" fill="none" stroke-width="2"/>
+    <path d="M50,50 h100" stroke="rgba(0,0,0,0)" fill="none" stroke-width="20"/>
+  </g>
+  <text x="220" y="30">普通的线</text>
+  <path class="line" d="M200,50 h100" stroke="#39C" fill="none" stroke-width="2"/>
+</svg>
+</p>
+<h1 id="4-SVG库"><a href="#4-SVG库" class="headerlink" title="4. SVG库"></a>4. SVG库</h1><p>一开始没有选择d3.js库，而是手动撸原生，很失误。</p>
+<ul>
+<li><a href="https://d3js.org/" target="_blank" rel="external">D3.js</a></li>
+<li><a href="http://svgjs.com/" target="_blank" rel="external">SVG.js</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2017/11/19/svg-use-note/" title="SVG学习（及实践）笔记">https://noname4me.github.io/2017/11/19/svg-use-note/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SVG/" rel="tag"># SVG</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/12/all-about-event/" rel="next" title="前端常见Event总结（待续）">
+                <i class="fa fa-chevron-left"></i> 前端常见Event总结（待续）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/22/chrome-devtool/" rel="prev" title="Chrome DevTool使用">
+                Chrome DevTool使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                      
+                        <i class="fa fa-fw fa-pinterest"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本知识"><span class="nav-text">1. 基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-关于坐标"><span class="nav-text">1.1 关于坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-基本图形"><span class="nav-text">1.2 基本图形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-path"><span class="nav-text">1.3 path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coordinate"><span class="nav-text">Coordinate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-高级知识"><span class="nav-text">2. 高级知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-踩坑记"><span class="nav-text">3.踩坑记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-一个兼容SVG和IE的样式类操作（删／增）的工具函数"><span class="nav-text">3.1 一个兼容SVG和IE的样式类操作（删／增）的工具函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-svg内可编辑文本"><span class="nav-text">3.2 svg内可编辑文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-使用ng-repeat遇到的删除元素但样式仍被保留问题"><span class="nav-text">3.3 使用ng-repeat遇到的删除元素但样式仍被保留问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-线条太细，hover太难触发"><span class="nav-text">3.4 线条太细，hover太难触发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-SVG库"><span class="nav-text">4. SVG库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/11/19/svg-use-note/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

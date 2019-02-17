@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文 cookie 特指浏览器 cookie。  浏览器 cookie 是一小段服务器发送给用户浏览器的数据，一般在 HTTP 请求头里就是 key1=value1; key2=value2 格式的字符串（注意「分号和空格」间隔）。浏览器会存储它，并在下一次请求时附带到请求中（请求头的 cookie 字段）。 Chrome 浏览器查看「语雀」网页的 cookies 信息，部分截图如下：  关键">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 cookie">
+<meta property="og:url" content="https://noname4me.github.io/2019/02/16/yuque/关于 cookie/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="本文 cookie 特指浏览器 cookie。  浏览器 cookie 是一小段服务器发送给用户浏览器的数据，一般在 HTTP 请求头里就是 key1=value1; key2=value2 格式的字符串（注意「分号和空格」间隔）。浏览器会存储它，并在下一次请求时附带到请求中（请求头的 cookie 字段）。 Chrome 浏览器查看「语雀」网页的 cookies 信息，部分截图如下：  关键">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/png/259322/1550300655343-7accf37c-af33-41ef-9414-f5624a5068cd.png">
+<meta property="og:updated_time" content="2019-02-17T10:35:08.187Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于 cookie">
+<meta name="twitter:description" content="本文 cookie 特指浏览器 cookie。  浏览器 cookie 是一小段服务器发送给用户浏览器的数据，一般在 HTTP 请求头里就是 key1=value1; key2=value2 格式的字符串（注意「分号和空格」间隔）。浏览器会存储它，并在下一次请求时附带到请求中（请求头的 cookie 字段）。 Chrome 浏览器查看「语雀」网页的 cookies 信息，部分截图如下：  关键">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2019/png/259322/1550300655343-7accf37c-af33-41ef-9414-f5624a5068cd.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2019/02/16/yuque/关于 cookie/"/>
+
+
+
+
+
+  <title>关于 cookie | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2019/02/16/yuque/关于 cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">关于 cookie</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T07:00:29+00:00">
+                2019-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/16/yuque/关于 cookie/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/02/16/yuque/关于 cookie/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文 cookie 特指浏览器 cookie。</p>
+</blockquote>
+<p>浏览器 cookie 是一小段服务器发送给用户浏览器的数据，一般在 HTTP 请求头里就是 <code>key1=value1; key2=value2</code> 格式的字符串（注意「分号和空格」间隔）。浏览器会存储它，并在下一次请求时附带到请求中（请求头的 <code>cookie</code> 字段）。</p>
+<p>Chrome 浏览器查看「<a href="www.yuque.com">语雀</a>」网页的 cookies 信息，部分截图如下：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/259322/1550300655343-7accf37c-af33-41ef-9414-f5624a5068cd.png" alt="chrome-cookie-view.png | center | 747x115"></p>
+<p>关键信息说明：</p>
+<ul>
+<li>Name: <code>key=value</code> 的 <code>key</code>。</li>
+<li>Value: <code>key=value</code> 的 <code>value</code>。</li>
+<li>Domain: 对应 <code>domain=xx.xx</code> 中的 <code>xx.xx</code>，用来限定 cookie 生效的 host，默认为当前页面的域名，如果是 <code>.jonge.com</code> 则可以在子域名（如 <code>x.jonge.com</code>）生效，<code>jonge.com</code> 只在该域名下生效，子域名不生效。</li>
+<li>Path: 对应 <code>path=/dir</code> 中的 <code>/dir</code>，限定 cookie 生效的 path，默认为 <code>/</code>。</li>
+<li>Expires: http/1.0协议，对应 <code>expires=Fri Feb 15 2019 23:13:05 GMT</code>，cookie 过期时间</li>
+<li>Max-Age: http/1.1协议，对应 <code>max-age=1000</code> 中的 <code>1000</code>，表示还有 1000 秒过期，默认 -1（session关闭则删除），负数同-1，0 表示删除，正数表示 <code>创建时间 + max-age</code> 之后 cookie 删除。</li>
+<li>HTTP: 对应是否有 <code>httonly</code> 字段，有此字段表示只有 HTTP 请求才能取到此 cookie，否则获取不到（比如通过 Javascript 的 <code>document.cookie</code> 来读取。</li>
+<li>Secure: 对应是否有 <code>httonly</code> 字段，有表示只有 HTTPS 协议的请求才会附带此 cookie</li>
+</ul>
+<p>「注意」: 当跨域发送 AJAX 请求时，默认不会附带 cookie，要想在请求时自动附带上 cookie，应该 在 <code>XMLHttpRequest</code> 时设置 <code>xhr.withCredentials = true</code>，或 <code>fetch</code> 时 <code>fetch(url, { credentials: &#39;include&#39; })</code>。</p>
+<p><code>domain</code> 和 <code>path</code> 一起决定了什么请求 URL 可以访问 cookie，如果存在多个域名下的 cookie，那么发起什么请求，会附带对应的 cookie。</p>
+<h2 id="创建-cookie"><a href="#创建-cookie" class="headerlink" title="创建 cookie"></a><a name="c5zeqe"></a>创建 cookie</h2><p>设置 cookie 一般在服务端通过响应头 <code>set-cookie</code> 实现，相同 domain 和 path 下的相同 key 只能有一个。</p>
+<p>nodejs 示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">response.setHeader(<span class="string">'set-cookie'</span>, <span class="string">'key=value'</span>);</div><div class="line"><span class="comment">// 在 Response Header 是</span></div><div class="line"><span class="comment">// Set-Cookie: key=value</span></div><div class="line"></div><div class="line">response.setHeader(<span class="string">'set-cookie'</span>, [<span class="string">'key1=value1'</span>,<span class="string">'key2=value2; httponly'</span>]);</div><div class="line"><span class="comment">// 在 Response Header 是</span></div><div class="line"><span class="comment">// set-cookie: key=value</span></div><div class="line"><span class="comment">// set-cookie: key=value; httponly</span></div></pre></td></tr></table></figure>
+<p>也可以在客户端通过 <code>document.cookie = &#39;key=value&#39;</code> 来设置，需要注意一次只能设置一个<code>key=value</code>，当 <code>domain+path</code> 一样时，相同 <code>key</code> 会覆盖（即修改）。</p>
+<h2 id="删除-cookie"><a href="#删除-cookie" class="headerlink" title="删除 cookie"></a><a name="tvyvku"></a>删除 cookie</h2><p>当不设置 <code>expires</code> 或 <code>max-age</code> 时，默认是 session cookie，即会话关闭（页面关闭）会删除 cookie，但很多时候都是设置了时间的持久性 cookie，即使页面关闭，只要还在有效期内的 cookie 都不会删除。</p>
+<p>设置 <code>max-age=0</code> 直接可以删除 cookie。</p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a><a name="wnqghc"></a>安全</h2><p>浏览器的安全机制，可以保证 httponly 的 cookie 无法被 Javascript 读取，而 secure 可以保证非加密协议下不发送 cookie。</p>
+<p>HttpOnly 防止了 XSS，Secure 防止了请求被中间人抓包获取到明文内容，而对于 CSRF，需要采用其它方式来防御，如二次验证，校验 Referer 请求头，验证 tokne 等，这里提供<a href="https://cloud.tencent.com/developer/article/1004943" target="_blank" rel="external">一篇参考</a>。</p>
+<h2 id="一个示例"><a href="#一个示例" class="headerlink" title="一个示例"></a><a name="ivy7np"></a>一个示例</h2><p>启动两个会设置不同 domain 的 server，一个 server 返回的页面会请求另一个server，从而此页面拥有两个 domain 的 cookie。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">node server1.js</div><div class="line"></div><div class="line">node server2.js</div><div class="line"><span class="meta">#</span><span class="bash"> 访问 http://jonge.com:3001 查看 cookie 情况，和 node 的日志，以及访问 http://x.jonge.com:3001 查看会自动携带什么 cookie</span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 需要设置本地 host: </span></span></div><div class="line">本地非 127.0.0.1 IP jonge.com</div><div class="line">本地非 127.0.0.1 IP x.jonge.com</div></pre></td></tr></table></figure>
+<ul>
+<li>server1，设置 <code>domain=127.0.0.1</code>:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> hostname = <span class="string">'127.0.0.1'</span>;</div><div class="line"><span class="keyword">const</span> port = <span class="number">3000</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'request cookie is: '</span>, req.headers.cookie);</div><div class="line"></div><div class="line">  res.statusCode = <span class="number">200</span>;</div><div class="line">  res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/plain'</span>);</div><div class="line">  res.setHeader(<span class="string">'set-cookie'</span>, [<span class="string">'who=local; domain=127.0.0.1; path=/'</span>, <span class="string">'who=still local; httponly'</span>]);</div><div class="line">  res.end(<span class="string">'Hi Cookie\n'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">server.listen(port, hostname, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>server2:</li>
+</ul>
+<p>注意设置成 <code>domain=jonge.com</code> 和默认的区别。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> hostname = <span class="string">'192.168.0.105'</span>; <span class="comment">// 本地 IP</span></div><div class="line"><span class="keyword">const</span> port = <span class="number">3001</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(req.headers.cookie);</div><div class="line"></div><div class="line">  res.statusCode = <span class="number">200</span>;</div><div class="line">  res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/html'</span>);</div><div class="line">  res.setHeader(<span class="string">'set-cookie'</span>, [</div><div class="line">    <span class="string">'who=jonge; domain=jonge.com; path=/'</span>, <span class="comment">// 最终在浏览器中是 .jonge.com</span></div><div class="line">    <span class="string">'who=httponly jonge; path=/; httponly'</span>, <span class="comment">// 浏览器默认是 jonge.com</span></div><div class="line">    <span class="string">'key=value; domain=.jonge.com'</span></div><div class="line">  ]);</div><div class="line">  res.end(</div><div class="line">    <span class="string">'&lt;p&gt;hi cookie, image below is for fetch cookie from http://127.0.0.1:3000&lt;/p&gt;&lt;img src="http://127.0.0.1:3000"&gt;'</span></div><div class="line">  );</div><div class="line">&#125;);</div><div class="line"></div><div class="line">server.listen(port, hostname, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2019/02/16/yuque/关于 cookie/" title="关于 cookie">https://noname4me.github.io/2019/02/16/yuque/关于 cookie/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/16/yuque/2. webpack-dev-server(WDS)/" rel="next" title="2. webpack-dev-server(WDS)">
+                <i class="fa fa-chevron-left"></i> 2. webpack-dev-server(WDS)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/16/yuque/webpack 4 笔记/" rel="prev" title="webpack 4 笔记">
+                webpack 4 笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                      
+                        <i class="fa fa-fw fa-pinterest"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-cookie"><span class="nav-text">创建 cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除-cookie"><span class="nav-text">删除 cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-text">安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个示例"><span class="nav-text">一个示例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2019/02/16/yuque/关于 cookie/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="缓存,性能," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。">
+<meta name="keywords" content="缓存,性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web缓存之浏览器缓存（HTTP缓存）">
+<meta property="og:url" content="https://noname4me.github.io/2018/04/05/something-about-cache/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png">
+<meta property="og:updated_time" content="2019-02-17T10:34:30.898Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web缓存之浏览器缓存（HTTP缓存）">
+<meta name="twitter:description" content="Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。 我就不另辟蹊径了，大体就两种：强缓存、协商缓存。强缓存意思就是浏览器这边自行判断是否过期而决定是否请求服务器，协商缓存意思就是要先去问问服务器咯。">
+<meta name="twitter:image" content="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2018/04/05/something-about-cache/"/>
+
+
+
+
+
+  <title>Web缓存之浏览器缓存（HTTP缓存） | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/04/05/something-about-cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Web缓存之浏览器缓存（HTTP缓存）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T16:29:29+00:00">
+                2018-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/05/something-about-cache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/05/something-about-cache/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Web缓存这个题相当大，而浏览器这部分的缓存涉及的也不少： HTTP 缓存、cookie、localStorage，我们一点点来，先从 HTTP 缓存开始。</p>
+<p>我就不另辟蹊径了，大体就两种：强缓存、协商缓存。<strong>强缓存</strong>意思就是浏览器这边自行判断是否过期而决定是否请求服务器，<strong>协商缓存</strong>意思就是要先去问问服务器咯。<br><a id="more"></a></p>
+<h1 id="1-强缓存"><a href="#1-强缓存" class="headerlink" title="1. 强缓存"></a>1. 强缓存</h1><h2 id="1-1-Expires"><a href="#1-1-Expires" class="headerlink" title="1.1 Expires"></a>1.1 <code>Expires</code></h2><p><code>Expires</code>是 HTTP/1.0 提出的，它的值是由服务器指定的GMT格式的绝对时间，表示该资源过期时间。使用过程如下：</p>
+<ul>
+<li>首次请求，服务器的response头部有一条：<code>Expires:Fri, 6 Apr 2024 12:56:25 GMT</code>；</li>
+<li>浏览器接收后，缓存<strong>所有头部</strong>和该资源；</li>
+<li>如果再次需要请求该资源，浏览器先比对当前时间和<code>Expires</code>的时间，如果还没到期，就直接使用该缓存的<strong>所有头部</strong>和该资源；</li>
+<li>否则，向服务器请求，新获取的资源和<strong>所有头部</strong>又被缓存（实际是更新原来缓存的）。</li>
+</ul>
+<p><strong>注意：</strong> <code>Expires</code>有个很重要的问题，如果服务器时间和客户端时间差异较大，那么缓存管理会出现问题，所以呢，HTTP/1.1 提出了的<code>Cache-Control</code>，比如服务器返回的头部为<code>Cache-Control:max-age=315360000</code>，我们下一节分析。</p>
+<h2 id="1-2-Cache-Control"><a href="#1-2-Cache-Control" class="headerlink" title="1.2 Cache-Control"></a>1.2 <code>Cache-Control</code></h2><p><code>max-age</code>设置的是相对时间（单位：秒），使用流程与 <code>Expires</code> 类似，只是 <code>Cache-Control</code> 计算缓存时间是第一次请求的时间加上<code>max-age</code>的时间，然后和当前时间比对。</p>
+<p><code>Cache-Control</code>字段可以设置的不仅仅是<code>max-age</code>存储时间，还有其他额外的值可以填写，甚至可以组合。主要使用的值有如下：</p>
+<ul>
+<li><code>s-maxage</code>: 同 <code>max-age</code>，覆盖 <code>max-age</code>、<code>Expires</code>，但仅适用于共享缓存，在私有缓存中被忽略。</li>
+<li><code>public</code>: 表明响应可以被任何对象（发送请求的客户端、代理服务器等等）缓存。</li>
+<li><code>private</code>: 表明响应只能被单个用户（可能是操作系统用户、浏览器用户）缓存，是非共享的，不能被代理服务器缓存，如<code>private, max-age=3600</code>。</li>
+<li><code>no-cache</code>: 看词义是“不缓存”，实际上仍然对资源使用缓存，但每一次在使用缓存之前必须（MUST）向服务器对缓存资源进行验证。</li>
+<li><code>no-store</code>: 不使用任何缓存，这个才是<strong>真·不缓存</strong>。</li>
+<li><code>must-revalidate</code>: 如果你配置了 <code>max-age</code> 信息，当缓存资源仍然新鲜（小于 <code>max-age</code>）时使用缓存，否则需要对资源进行验证。所以 <code>must-revalidate</code> 可以和 <code>max-age</code> 组合使用<code>Cache-Control: must-revalidate, max-age=60</code></li>
+</ul>
+<p><strong>注意：</strong>当<code>Expires</code>和<code>Cache-Control</code>都设置时，后者优先。</p>
+<h2 id="1-3-如何强制刷新强缓存"><a href="#1-3-如何强制刷新强缓存" class="headerlink" title="1.3 如何强制刷新强缓存"></a>1.3 如何强制刷新强缓存</h2><p>对于一些静态资源，设置长时间的强缓存，可以有效提升网页响应速度，但是当版本更新时，需要强制刷新缓存，或者在开发中强制刷新呢？</p>
+<ol>
+<li>浏览器强制刷新<code>ctrl + F5</code>，或者使用隐身模式（chrome)，活着在chrome的network面板里勾选disable cache。</li>
+<li>给资源添加动态参数，比如<code>xx/resource?v=1234</code>，活着资源名称动态修改<code>xx/resource_1234</code>，前端的构建工具都能做到，<a href="https://www.zhihu.com/question/20790576" target="_blank" rel="external">点此了解</a>前端工程化部署方向的演进。</li>
+</ol>
+<h1 id="2-协商缓存"><a href="#2-协商缓存" class="headerlink" title="2. 协商缓存"></a>2. 协商缓存</h1><blockquote>
+<p>浏览器第一次请求数据之后会将数据和响应头部的缓存标识存储起来。再次请求时会带上存储的头部字段，服务器端验证是否可用。如果返回 304 Not Modified，代表资源没有发生改变可以使用缓存的数据，获取新的过期时间。反之返回 200 就相当于重新请求了一遍资源并替换旧资源。</p>
+</blockquote>
+<h2 id="2-1-Last-modified-和-If-Modified-Since"><a href="#2-1-Last-modified-和-If-Modified-Since" class="headerlink" title="2.1 Last-modified 和 If-Modified-Since"></a>2.1 <code>Last-modified</code> 和 <code>If-Modified-Since</code></h2><p>使用流程：</p>
+<ul>
+<li>首次请求，服务器的返回资源，并有个头部<code>Last-modified:Tue, 05 Apr 2016 10:18:17 GMT</code>，标识资源的最后修改时间；</li>
+<li>再次请求，请求带上头部<code>If-Modified-Since:Tue, 05 Apr 2016 10:18:17 GMT</code>；</li>
+<li>服务器用该头部时间比对资源最后的修改时间，如果相同，则返回 <code>304 Not Modified</code>；</li>
+<li>否则，返回新的资源，新的头部<code>Last-modified</code>，并设置状态码为200。</li>
+</ul>
+<p>但是呢，依靠时间来比对，还是会出现意外，比如服务器时间被修改了什么的，某些服务器不能精确得到资源的最后修改时间，一些资源的修改时间变了但内容没有变等等问题，所以就有了用资源唯一标识符这种更强力（资源内容级别）的校验机制。</p>
+<h2 id="2-2-ETag-和-If-None-Match"><a href="#2-2-ETag-和-If-None-Match" class="headerlink" title="2.2 ETag 和 If-None-Match"></a>2.2 <code>ETag</code> 和 <code>If-None-Match</code></h2><p>使用流程：</p>
+<ul>
+<li>首次请求，服务器返回资源，并使用某种算法（比如 MD5）计算出一个该资源的唯一标识，附加到头部里：<code>ETag:&quot;570390e9-2d1&quot;</code>；</li>
+<li>再次请求，请求带上头部<code>If-None-Match:&quot;570390e9-2d1</code>；</li>
+<li>服务器使用相同算法计算该资源的标识符，比对<code>If-None-Match</code>的值，如果相同，则返回 <code>304 Not Modified</code>；</li>
+<li>否则，返回新的资源，重新计算头部<code>ETag</code>，并设置状态码为200。</li>
+</ul>
+<p>以上，具体选用哪种缓存机制，可以参考一下这个决策树：</p>
+<p><img src="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png" width="540"></p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>知乎专栏：<a href="https://zhuanlan.zhihu.com/p/29750583" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/29750583</a></li>
+<li>知乎专栏：<a href="https://zhuanlan.zhihu.com/p/28113197" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/28113197</a></li>
+<li>《图解HTTP》上野宣</li>
+<li>流览器缓存知识小结及应用：<a href="http://www.cnblogs.com/lyzg/p/5125934.html" target="_blank" rel="external">http://www.cnblogs.com/lyzg/p/5125934.html</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2018/04/05/something-about-cache/" title="Web缓存之浏览器缓存（HTTP缓存）">https://noname4me.github.io/2018/04/05/something-about-cache/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+          
+            <a href="/tags/性能/" rel="tag"># 性能</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/simple-simple-wheel/" rel="next" title="画个圈，假装是轮子">
+                <i class="fa fa-chevron-left"></i> 画个圈，假装是轮子
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/06/prototype-class/" rel="prev" title="JS中的面向对象（原型到类）">
+                JS中的面向对象（原型到类） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                      
+                        <i class="fa fa-fw fa-pinterest"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-强缓存"><span class="nav-text">1. 强缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Expires"><span class="nav-text">1.1 Expires</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Cache-Control"><span class="nav-text">1.2 Cache-Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-如何强制刷新强缓存"><span class="nav-text">1.3 如何强制刷新强缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-协商缓存"><span class="nav-text">2. 协商缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Last-modified-和-If-Modified-Since"><span class="nav-text">2.1 Last-modified 和 If-Modified-Since</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-ETag-和-If-None-Match"><span class="nav-text">2.2 ETag 和 If-None-Match</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/04/05/something-about-cache/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

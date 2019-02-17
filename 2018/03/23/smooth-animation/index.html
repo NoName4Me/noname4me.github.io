@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="性能优化,requestAnimationFrame,Web Worker," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要针对性能优化中，页面交互上（拖拽、滚动等）的卡顿问题。 1. 为何出现卡顿一般来讲，60FPS（60帧/秒）对人类是最佳体验，那么换算成一帧需要的秒数，就是16.7ms，如果高于这个时间，就可能会出现画面跳跃感（即卡顿），关于FPS和人眼以及同样FPS的电影与游戏的区别参考文末知乎问答链接。">
+<meta name="keywords" content="性能优化,requestAnimationFrame,Web Worker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端性能优化（一、页面卡顿问题）">
+<meta property="og:url" content="https://noname4me.github.io/2018/03/23/smooth-animation/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="本文主要针对性能优化中，页面交互上（拖拽、滚动等）的卡顿问题。 1. 为何出现卡顿一般来讲，60FPS（60帧/秒）对人类是最佳体验，那么换算成一帧需要的秒数，就是16.7ms，如果高于这个时间，就可能会出现画面跳跃感（即卡顿），关于FPS和人眼以及同样FPS的电影与游戏的区别参考文末知乎问答链接。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/smooth-animation/performance.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/smooth-animation/code-analyze.png">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/compositor-scroll.jpg">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/ontouchmove.jpg">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/frame.jpg">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/frame-with-input.jpg">
+<meta property="og:updated_time" content="2019-02-17T10:34:30.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端性能优化（一、页面卡顿问题）">
+<meta name="twitter:description" content="本文主要针对性能优化中，页面交互上（拖拽、滚动等）的卡顿问题。 1. 为何出现卡顿一般来讲，60FPS（60帧/秒）对人类是最佳体验，那么换算成一帧需要的秒数，就是16.7ms，如果高于这个时间，就可能会出现画面跳跃感（即卡顿），关于FPS和人眼以及同样FPS的电影与游戏的区别参考文末知乎问答链接。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/smooth-animation/performance.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2018/03/23/smooth-animation/"/>
+
+
+
+
+
+  <title>前端性能优化（一、页面卡顿问题） | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/03/23/smooth-animation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端性能优化（一、页面卡顿问题）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T23:19:52+00:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/23/smooth-animation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/23/smooth-animation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>本文主要针对性能优化中，页面交互上（拖拽、滚动等）的卡顿问题。</em></p>
+<h1 id="1-为何出现卡顿"><a href="#1-为何出现卡顿" class="headerlink" title="1. 为何出现卡顿"></a>1. 为何出现卡顿</h1><p>一般来讲，60FPS（60帧/秒）对人类是最佳体验，那么换算成一帧需要的秒数，就是<code>16.7ms</code>，如果高于这个时间，就可能会出现画面跳跃感（即卡顿），关于FPS和人眼以及同样FPS的电影与游戏的区别参考文末<em>知乎问答链接</em>。<br><a id="more"></a><br><strong>注意</strong>：这里一秒60帧，说的是均匀的，不是前半秒59帧，后半秒1帧，这样的看起来依然会卡，即流畅需要<em>帧间隔</em>是稳定的。</p>
+<table>
+<thead>
+<tr>
+<th>FPS</th>
+<th>ms/帧</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>120</code></td>
+<td><code>8.3</code></td>
+</tr>
+<tr>
+<td><code>60</code></td>
+<td><code>16.7</code></td>
+</tr>
+<tr>
+<td><code>30</code></td>
+<td><code>33.3</code></td>
+</tr>
+<tr>
+<td><code>24</code></td>
+<td><code>41.7</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="2-实例分析"><a href="#2-实例分析" class="headerlink" title="2. 实例分析"></a>2. 实例分析</h1><p>演示代码获取：<a href="https://github.com/NoName4Me/blog/tree/master/source/_posts/smooth-animation/code" target="_blank" rel="external">点击这里</a>。</p>
+<h2 id="2-1-利用Chrome-DevTool的Performance分析问题"><a href="#2-1-利用Chrome-DevTool的Performance分析问题" class="headerlink" title="2.1 利用Chrome DevTool的Performance分析问题"></a>2.1 利用Chrome DevTool的<code>Performance</code>分析问题</h2><p>那么在实际开发中，我们如何进行调优？下面通过Chrome DevTool下的<code>Performance</code>中的功能进行演示：</p>
+<p>进入该页签后，点击左上角录制按钮（或<code>Ctrl+E</code>）进行录制，然后操作页面，记录需要分析的交互，点击<code>stop</code>完成录制，下面进行分析。</p>
+<p>在顶部的图标里，从上到下依次为FPS、CPU、NET的表现，我们关注FPS，如果出现红色，说明一秒的帧数过少，有卡顿，红色下面绿色代表FPS，越高说明性能越好。</p>
+<p><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/smooth-animation/performance.png" width="560"></p>
+<p>如果录制时间较长，我们可以点击具体有问题的部分深入分析，图中Main（第2个蓝色框里）中显示了具体的事件，可以看到耗时的地方出在了JS的处理中（黄色是脚本耗时，紫色是渲染耗时），从上到下为JS的调用栈（图中可以看到问题出在了<code>mousemove</code>事件中调用某个函数时），我们选中最下面的（源头），查看图中第3个蓝框里的内容，点击<code>script.js</code>进入到具体代码执行分析，其它tab里的东西感兴趣可以自己了解。</p>
+<p>代码执行耗时分析如下，可以看到是这个<code>delay()</code>函数比较耗时引起的，这里只是为了示例所以用了循环来主动耗时，实际开发中什么神奇的代码都会有，具体问题具体分析。</p>
+<p><img src="https://raw.githubusercontent.com/NoName4Me/blog/master/source/_posts/smooth-animation/code-analyze.png" width="480"></p>
+<p>这种在频繁需要更新页面的事件里，大规模并不直接相关的计算应该避免或异步处理。</p>
+<ul>
+<li>一个看来起来暂时貌似没什么卵用的东西</li>
+</ul>
+<p><code>Ctrl+Shift+P</code>输入<code>rendering</code>，选择<code>Showing Rendering</code>，勾选<code>FPS Meter</code>，会看到右上角的实时FPS等参数，取消勾选<code>FPS Meter</code>，按下<code>ESC</code>退出<code>Show Rendering</code>。</p>
+<h2 id="2-2-requestAnimationFrame是什么"><a href="#2-2-requestAnimationFrame是什么" class="headerlink" title="2.2 requestAnimationFrame是什么"></a>2.2 <code>requestAnimationFrame</code>是什么</h2><p><strong>注</strong>：后面RAF为requestAnimationFrame的简写。</p>
+<p>在一些动画中，我们需要定时去更新页面，来展示不同的信息，一般会采用<code>setTimeout</code>、<code>setInterval</code>，但可能会因为回调触发时间在帧末尾，从而出现丢帧导致的卡顿现象，而RAF可以保证你的JS代码在每帧帧首执行。</p>
+<p>比如，下面的进度展示，在<code>2000ms</code>内随着每一帧更新元素位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> start = <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">'SomeElementYouWantToAnimate'</span>);</div><div class="line">element.style.position = <span class="string">'absolute'</span>;</div><div class="line">element.style.width = <span class="string">'100px'</span>;</div><div class="line">element.style.height = <span class="string">'40px'</span>;</div><div class="line">element.style.background = <span class="string">'red'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">step</span>(<span class="params">timestamp</span>) </span>&#123; <span class="comment">// timestamp是RAF默认的传给handler的入参，由performance.now()生成</span></div><div class="line">  <span class="keyword">if</span> (!start) start = timestamp;</div><div class="line">  <span class="keyword">var</span> progress = timestamp - start;</div><div class="line">  element.style.left = <span class="built_in">Math</span>.min(progress / <span class="number">10</span>, <span class="number">200</span>) + <span class="string">'px'</span>;</div><div class="line">  <span class="keyword">if</span> (progress &lt; <span class="number">2000</span>) &#123;</div><div class="line">    <span class="built_in">window</span>.requestAnimationFrame(step); <span class="comment">// 这里如果没有执行就不会再触发step()</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.requestAnimationFrame(step);</div></pre></td></tr></table></figure>
+<h2 id="2-3-三个原则"><a href="#2-3-三个原则" class="headerlink" title="2.3 三个原则"></a>2.3 三个原则</h2><h3 id="2-3-1-避免耗时的事件handler"><a href="#2-3-1-避免耗时的事件handler" class="headerlink" title="2.3.1 避免耗时的事件handler"></a>2.3.1 避免耗时的事件handler</h3><p>一般的事件处理是在页面的合成器线程中进行，不会触发主线程处理：</p>
+<p><img width="480" src="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/compositor-scroll.jpg"></p>
+<p>而如果，你给事件绑定了handler（比如下图中的<code>onTouchMove</code>），那么页面合成器线程就会一直等待handler完成，这样就会阻塞合成器进行后续的动作：</p>
+<p><img width="480" src="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/ontouchmove.jpg"></p>
+<p>所以呢，要保证你的handler执行速度。</p>
+<h3 id="2-3-2-避免过度的RAF"><a href="#2-3-2-避免过度的RAF" class="headerlink" title="2.3.2 避免过度的RAF"></a>2.3.2 避免过度的RAF</h3><p>关于RAF，W3C上有这么一段<em>Note</em>：</p>
+<blockquote>
+<p>Also note that multiple calls to requestAnimationFrame with the same callback (before callbacks are invoked and the list is cleared) will result in multiple entries being in the list with that same callback, and thus will result in that callback being invoked more than once for the animation frame.</p>
+<p>— <a href="https://www.w3.org/TR/animation-timing/#dom-windowanimationtiming-requestanimationframe" target="_blank" rel="external">w3c: Timing control for script-based animations</a></p>
+</blockquote>
+<p>一个RAF在事件handler里，如果事件触发的非常快速（小于一帧的周期），那么就会出现上面的情况——多次RAF了同一个回调，这样在一帧中会多次激活回调函数，可以在handler里增加标志量来判别：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> onScroll = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (scheduledAnimationFrame) &#123; <span class="keyword">return</span> &#125;</div><div class="line"></div><div class="line">    scheduledAnimationFrame = <span class="literal">true</span></div><div class="line">    <span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="params">timestamp</span> =&gt;</span> &#123;</div><div class="line">        scheduledAnimationFrame = <span class="literal">false</span></div><div class="line">        animation(timestamp)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, onScroll)</div></pre></td></tr></table></figure>
+<h3 id="2-3-3-避免在事件handler里修改样式"><a href="#2-3-3-避免在事件handler里修改样式" class="headerlink" title="2.3.3 避免在事件handler里修改样式"></a>2.3.3 避免在事件handler里修改样式</h3><p>我们知道，一帧的输出是经过这么些步骤的：</p>
+<p><img src="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/frame.jpg"></p>
+<p>首先JS运行，然后计算样式，然后布局。但是，可以使用JS强制浏览器提前执行布局，这被称为强制同步布局：</p>
+<p>事件会在RAF回调执行前触发，如果在事件中进行了某个元素的样式改动，在RAF前，这些改动会挂起，如果在RAF回调中又读取元素样式，这样就会导致强制同步布局（如下图），这种事情应该被避免（比如<strong>可以提前保存要读取的值，后面使用该保存值，而不是直接读取元素样式</strong>），因为它打乱了正常的60FPS触发套路（如上图）。</p>
+<p><img src="https://developers.google.com/web/fundamentals/performance/rendering/images/debounce-your-input-handlers/frame-with-input.jpg"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onScroll</span> (<span class="params">evt</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// Store the scroll value for laterz.</span></div><div class="line">  lastScrollY = <span class="built_in">window</span>.scrollY; <span class="comment">// 2.3.3原则</span></div><div class="line"></div><div class="line">  <span class="comment">// Prevent multiple rAF callbacks.</span></div><div class="line">  <span class="keyword">if</span> (scheduledAnimationFrame) <span class="comment">// 2.3.2原则</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line"></div><div class="line">  scheduledAnimationFrame = <span class="literal">true</span>;</div><div class="line">  requestAnimationFrame(readAndUpdatePage);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, onScroll);</div></pre></td></tr></table></figure>
+<h2 id="2-4-Web-Worker和微任务"><a href="#2-4-Web-Worker和微任务" class="headerlink" title="2.4 Web Worker和微任务"></a>2.4 <code>Web Worker</code>和微任务</h2><blockquote>
+<p>了解更多关于<a href="http://jonge.club/2018/05/09/web-worker/" target="_blank" rel="external">Web Worker</a>。</p>
+</blockquote>
+<p>当一些耗时的JS处理与样式计算、布局在一起时，会阻塞它们对界面的及时更新，此时如果那些JS处理并不关注DOM，可以放到<code>Web Worker</code>里（如下示例），但是注意，<code>Web Worker</code>没有DOM访问权限。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dataSortWorker = <span class="keyword">new</span> Worker(<span class="string">"sort-worker.js"</span>);</div><div class="line">dataSortWorker.postMesssage(dataToSort);</div><div class="line"></div><div class="line"><span class="comment">// The main thread is now free to continue working on other things...</span></div><div class="line"></div><div class="line">dataSortWorker.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> sortedData = evt.data;</div><div class="line">   <span class="comment">// Update data on screen...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>但是很多时候，我们时需要在主线程上运行我们的任务，此时，可以考虑将大任务分割成微任务，通过<code>requestAnimationFrame</code>来处理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> taskList = breakBigTaskIntoMicroTasks(monsterTaskList);</div><div class="line">requestAnimationFrame(processTaskList);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processTaskList</span>(<span class="params">taskStartTime</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> taskFinishTime;</div><div class="line"></div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    <span class="comment">// Assume the next task is pushed onto a stack.</span></div><div class="line">    <span class="keyword">var</span> nextTask = taskList.pop();</div><div class="line"></div><div class="line">    <span class="comment">// Process nextTask.</span></div><div class="line">    processTask(nextTask);</div><div class="line"></div><div class="line">    <span class="comment">// Go again if there’s enough time to do the next task.</span></div><div class="line">    taskFinishTime = <span class="built_in">window</span>.performance.now();</div><div class="line">  &#125; <span class="keyword">while</span> (taskFinishTime - taskStartTime &lt; <span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (taskList.length &gt; <span class="number">0</span>)</div><div class="line">    requestAnimationFrame(processTaskList);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/" target="_blank" rel="external">Google Web Developer #Analyze Runtime Performance</a></li>
+<li><a href="https://www.zhihu.com/question/21081976/answer/34748080" target="_blank" rel="external">知乎问答：是不是游戏帧数一般要到 60 帧每秒才流畅，而过去的大部分电影帧数只有 24 帧每秒却没有不流畅感？</a></li>
+<li><a href="https://www.zhihu.com/question/52397668" target="_blank" rel="external">知乎问答：人眼帧数是否不能高于 30 ，李安 120 帧的电影是否没有意义？</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2018/03/23/smooth-animation/" title="前端性能优化（一、页面卡顿问题）">https://noname4me.github.io/2018/03/23/smooth-animation/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+          
+            <a href="/tags/requestAnimationFrame/" rel="tag"># requestAnimationFrame</a>
+          
+            <a href="/tags/Web-Worker/" rel="tag"># Web Worker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/css-3d/" rel="next" title="css3中3D相关样式浅尝">
+                <i class="fa fa-chevron-left"></i> css3中3D相关样式浅尝
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/25/nodejs-template-engine/" rel="prev" title="JS模版引擎（nunjucks）">
+                JS模版引擎（nunjucks） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                      
+                        <i class="fa fa-fw fa-pinterest"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-为何出现卡顿"><span class="nav-text">1. 为何出现卡顿</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-实例分析"><span class="nav-text">2. 实例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-利用Chrome-DevTool的Performance分析问题"><span class="nav-text">2.1 利用Chrome DevTool的Performance分析问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-requestAnimationFrame是什么"><span class="nav-text">2.2 requestAnimationFrame是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-三个原则"><span class="nav-text">2.3 三个原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-避免耗时的事件handler"><span class="nav-text">2.3.1 避免耗时的事件handler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-避免过度的RAF"><span class="nav-text">2.3.2 避免过度的RAF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-避免在事件handler里修改样式"><span class="nav-text">2.3.3 避免在事件handler里修改样式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Web-Worker和微任务"><span class="nav-text">2.4 Web Worker和微任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/03/23/smooth-animation/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

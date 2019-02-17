@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="引擎,V8," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一些流行的JavaScript引擎：">
+<meta name="keywords" content="引擎,V8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS V8引擎了解，以及5点编码优化">
+<meta property="og:url" content="https://noname4me.github.io/2018/04/19/how-js-works-1/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="一些流行的JavaScript引擎：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*spJ8v7GWivxZZzTAzqVPtA.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*iHfI6MQ-YKQvWvo51J-P0w.png">
+<meta property="og:image" content="https://3.bp.blogspot.com/-mas1Y0fJ2v0/V7yn9fzkzWI/AAAAAAAABcg/gm6b8X66L7oQ8Rw1z2kFO2RcAY9OgaszwCLcB/s1600/ignitionpipeline.png">
+<meta property="og:updated_time" content="2019-02-17T10:34:30.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS V8引擎了解，以及5点编码优化">
+<meta name="twitter:description" content="一些流行的JavaScript引擎：">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*spJ8v7GWivxZZzTAzqVPtA.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2018/04/19/how-js-works-1/"/>
+
+
+
+
+
+  <title>JS V8引擎了解，以及5点编码优化 | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/04/19/how-js-works-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS V8引擎了解，以及5点编码优化</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T10:20:42+00:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/how-js-works-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/19/how-js-works-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一些流行的JavaScript引擎：<br><a id="more"></a></p>
+<ul>
+<li>V8：开源，Google，C++；</li>
+<li>Rhino：Mozilla组织维护，Java；</li>
+<li>SpiderMonkey：第一个JavaScript引擎，曾经被Netscape浏览器采用，如今是火狐；</li>
+<li>JavaScriptCore：开源，Apple 开发给 Safari；</li>
+<li>KJS：KDE的引擎，最初由 Harry Porten 给KDE的Konqueror浏览器项目开发的；</li>
+<li>Chakra： IE（JScript9），Edge（JavaScript）；</li>
+<li>Nashorn：OpenJDK的一部分，由Oracle Java和Tool Group编写；</li>
+<li>JerryScript：Internet of Things 的轻量引擎。</li>
+</ul>
+<p>V8：用于node.js和Chrome。</p>
+<h1 id="1-一些关于V8的知识"><a href="#1-一些关于V8的知识" class="headerlink" title="1. 一些关于V8的知识"></a>1. 一些关于V8的知识</h1><h2 id="1-1-V8概览"><a href="#1-1-V8概览" class="headerlink" title="1.1 V8概览"></a>1.1 V8概览</h2><p>V8通过实现JIT（Just-In-Time）编译器，在执行时将代码编译为机器码，像很多引擎一样，比如 SpiderMonkey、Mozilla的Rhino。</p>
+<p>在V8以前，它使用两个编译器：</p>
+<ul>
+<li>full-codegen：一个产出简单但相对慢一些的机器代码的简单快速编译器</li>
+<li>Crankshaft：一个更复杂的优化编译器（Just-In-Time），可以产出高度优化的代码</li>
+</ul>
+<p>V8引擎内部有这么几个线程：</p>
+<ul>
+<li>一个主线程：取你的代码，编译并且执行；</li>
+<li>一个编译线程：不同于主线程中的编译，它保证主线程在编译线程优化代码时持续执行；</li>
+<li>一个分析线程：它找出耗时的运行时方法，从而 Crankshaft 可以优化它们；</li>
+<li>一些处理垃圾回收的线程。</li>
+</ul>
+<h2 id="1-2-V8工作过程"><a href="#1-2-V8工作过程" class="headerlink" title="1.2 V8工作过程"></a>1.2 V8工作过程</h2><p>当执行 JavaScript 代码时，V8 启动 full-codegen，它将JS代码直接解析（没有任何改变）为机器代码，这样使得它可以快速的执行机器代码。<strong>注意：</strong>V8 没有使用任何任何中间过程的字节码，这样就不需要解释器了。</p>
+<p>当你的代码运行一段时间后，分析线程已经收集了关于该优化那个方法的足够数据。</p>
+<p>然后，Crankshaft 在另一个线程里开始优化，它将JS抽象语法树翻译为高级别的静态单赋值（SSA）方式（<a href="https://zh.wikipedia.org/zh-hans/%E9%9D%99%E6%80%81%E5%8D%95%E8%B5%8B%E5%80%BC%E5%BD%A2%E5%BC%8F" target="_blank" rel="external">百科：SSA</a>），叫做Hydrogen，然后试着优化 Hydrogen 图，很多优化都是在这一级别进行的。</p>
+<h3 id="1-2-1-嵌入"><a href="#1-2-1-嵌入" class="headerlink" title="1.2.1 嵌入"></a>1.2.1 嵌入</h3><p>这个很简单，就是把函数声明（函数体）复制到调用的地方。</p>
+<h3 id="1-2-2-隐蔽类"><a href="#1-2-2-隐蔽类" class="headerlink" title="1.2.2 隐蔽类"></a>1.2.2 隐蔽类</h3><p>很多JS解释器都是使用字典结构来在内存里保存对象的属性的，这让访问属性比非动态语言成本要高出很多，因为后者的类型是固定的，每个属性相对于对象的根地址偏移多少都是确定的，而JS则不同，它的属性类型（确切的说是属性值的类型）是可以在运行时动态修改的，为此，V8 为 JS 实现了一种模仿这种非动态语言的机制，<strong>隐蔽类</strong>。</p>
+<p>假设有这么一段代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">// 我们一步步拆解</span></div><div class="line"> <span class="keyword">new</span> Point(<span class="number">1</span> ,<span class="number">2</span>) <span class="comment">// 生成一个空的类 C0                           p1--&gt;C0</span></div><div class="line"> <span class="keyword">this</span>.x = x      <span class="comment">// 生成一个基于 C0 的，说明属性 x 的偏移量的类 C1，p1--&gt;C1, C0--&gt;C1</span></div><div class="line"> <span class="keyword">this</span>.y = y      <span class="comment">// 生成一个基于 C1 的，说明属性 y 的偏移量的类 C2，p1--&gt;C2, C1--&gt;C2, C0--&gt;C1</span></div></pre></td></tr></table></figure>
+<p>图示如下：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*spJ8v7GWivxZZzTAzqVPtA.png" width="540"></p>
+<p>隐蔽类的生成是依赖于属性生成的顺序的，比如下面的代码，由于 <code>p1</code> 和 <code>p2</code> 的隐蔽类的转移路径不同，从而导致它们的隐蔽类也不同：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">p1.a = <span class="number">5</span>;</div><div class="line">p1.b = <span class="number">6</span>;</div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Point(<span class="number">3</span>, <span class="number">4</span>);</div><div class="line">p2.b = <span class="number">7</span>;</div><div class="line">p2.a = <span class="number">8</span>;</div></pre></td></tr></table></figure>
+<h3 id="1-2-3-内联缓存"><a href="#1-2-3-内联缓存" class="headerlink" title="1.2.3 内联缓存"></a>1.2.3 内联缓存</h3><p>V8 会对重复调用的方法的入参的类型进行评估（根据之前多次被调用的情况），如果它达到一定的置信区间，那么就会直接跳过确定入参类型这一步，而直接使用隐蔽类中缓存的类型来进行后续工作。</p>
+<p>它和隐蔽类是怎么关联的呢？每当一个对象的方法被调用时，V8 引擎都会查找该对象的隐蔽类，从而确定访问某个属性的偏移量，当两个拥有相同隐蔽类的相同方法成功调用两次后，V8 会省略查找隐蔽类，直接将属性的偏移量添加到对象指针上，后面所有该方法的调用，V8 引擎都会假设隐蔽类没有被修改，使用前面查找时缓存的偏移量直接跳到对应属性的内存地址。这样大幅度提升了执行速度。</p>
+<p>这也是为何创建对象时，最好按照固定的顺序来增加属性：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*iHfI6MQ-YKQvWvo51J-P0w.png" width="540"></p>
+<h3 id="1-2-4-垃圾回收"><a href="#1-2-4-垃圾回收" class="headerlink" title="1.2.4 垃圾回收"></a>1.2.4 垃圾回收</h3><p>V8 使用标记清除方式来实现垃圾回收，但它是增量的，即每次GC，不是遍历所有堆，尝试标记所有对象，而是遍历堆的一部分，下一次GC从之前暂停的地方继续标记。</p>
+<h3 id="1-2-5-Ignition-和-TurboFan"><a href="#1-2-5-Ignition-和-TurboFan" class="headerlink" title="1.2.5 Ignition 和 TurboFan"></a>1.2.5 Ignition 和 TurboFan</h3><p>这是从V8 5.9 开始引入的两个东西：</p>
+<ul>
+<li>Ignition：V8 的解释器。</li>
+<li>TurboFan：V8 的优化编译器。</li>
+</ul>
+<p><img src="https://3.bp.blogspot.com/-mas1Y0fJ2v0/V7yn9fzkzWI/AAAAAAAABcg/gm6b8X66L7oQ8Rw1z2kFO2RcAY9OgaszwCLcB/s1600/ignitionpipeline.png" width="540"></p>
+<h1 id="2-编码优化"><a href="#2-编码优化" class="headerlink" title="2. 编码优化"></a>2. 编码优化</h1><ul>
+<li><strong>对象属性的顺序</strong>：初始化对象属性时最好使用相同的顺序，这样后续的优化代码、隐蔽类可以被共享；</li>
+<li><strong>动态属性</strong>：当对象初始化之后，为其增加属性会强制隐蔽类的改变，并且降低为该隐蔽类优化的任何方法，所以最好在构造器里初始化所有属性；</li>
+<li><strong>方法</strong>：那些重复执行相同方法的代码比执行许多只执行一次的不同方法代码快；</li>
+<li><strong>数组</strong>：避免 key 不是递增数字的松散数组，没有任何元素的松散数组是哈希表。这种数组里的元素访问时代价很高。并且，避免预分配大数组，最好是按需增长。最后，不要删除数组里的元素，它会导致松散的key。</li>
+<li><strong>标记的值</strong>：V8 使用 32 位表示对象和数字。它使用一个比特来标示是对象（flag = 1）还是被称为 SMI（SMall Integer，只有31位）的整数（flag = 0）。所以，如果一个数字超过了31位，V8 会把这个数字装箱，将它变成double，并创建一个新对象来存放该数字，尽量使用31位有符号数字防止这种高代价的对象装箱操作。</li>
+</ul>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>本文主要参考：<a href="https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e" target="_blank" rel="external">https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2018/04/19/how-js-works-1/" title="JS V8引擎了解，以及5点编码优化">https://noname4me.github.io/2018/04/19/how-js-works-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/引擎/" rel="tag"># 引擎</a>
+          
+            <a href="/tags/V8/" rel="tag"># V8</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/16/js-async-and-browser/" rel="next" title="JavaScript异步的本质和浏览器的多线程">
+                <i class="fa fa-chevron-left"></i> JavaScript异步的本质和浏览器的多线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/20/master-regexp/" rel="prev" title="正则，get。">
+                正则，get。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                      
+                        <i class="fa fa-fw fa-pinterest"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-一些关于V8的知识"><span class="nav-text">1. 一些关于V8的知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-V8概览"><span class="nav-text">1.1 V8概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-V8工作过程"><span class="nav-text">1.2 V8工作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-嵌入"><span class="nav-text">1.2.1 嵌入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-隐蔽类"><span class="nav-text">1.2.2 隐蔽类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-内联缓存"><span class="nav-text">1.2.3 内联缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-垃圾回收"><span class="nav-text">1.2.4 垃圾回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-Ignition-和-TurboFan"><span class="nav-text">1.2.5 Ignition 和 TurboFan</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-编码优化"><span class="nav-text">2. 编码优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/04/19/how-js-works-1/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

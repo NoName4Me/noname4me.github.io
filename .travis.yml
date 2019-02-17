@@ -24,13 +24,11 @@ script:
 # - hexo generate
 after_success:
 # commit source
-- cd ./source/_posts/yuque
-- git add --all .
+- git add --all ./source/_posts/yuque
 - git commit -m "Sync from yuque"
 - git push --quiet --force https://$REPO_TOKEN@github.com/NoName4Me/NoName4Me.github.io.git
   source-hexo
 # post to blog
-- cd -
 - cd ./public
 - git init
 - git add --all .

@@ -31,6 +31,7 @@ after_success:
 # 这里的 REPO_TOKEN 即之前在 travis 项目的环境变量里添加的
 - git push --quiet --force https://$REPO_TOKEN@github.com/NoName4Me/NoName4Me.github.io.git master
 # commit source
+- cd ..
 - git init
 - git add ./source/_posts
 - git commit -m "Sync from yuque"

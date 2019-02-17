@@ -19,8 +19,9 @@ before_install:
 install:
 - npm i
 script:
-- hexo clean
-- hexo generate
+- npm run deploy
+# - hexo clean
+# - hexo generate
 after_success:
 - cd ./public
 - git init

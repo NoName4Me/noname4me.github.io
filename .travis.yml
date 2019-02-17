@@ -24,15 +24,13 @@ script:
 # - hexo generate
 after_success:
 # commit source
-- git add --all ./source/_posts/yuque
+- git add ./source/_posts/
 - git commit -m "Sync from yuque"
-- git push --quiet --force https://$REPO_TOKEN@github.com/NoName4Me/NoName4Me.github.io.git
-  source-hexo
+- git push --quiet --force https://$REPO_TOKEN@github.com/NoName4Me/NoName4Me.github.io.git source-hexo
 # post to blog
 - cd ./public
 - git init
 - git add --all .
 - git commit -m "Travis CI Auto Builder"
 # 这里的 REPO_TOKEN 即之前在 travis 项目的环境变量里添加的
-- git push --quiet --force https://$REPO_TOKEN@github.com/NoName4Me/NoName4Me.github.io.git
-  master
+- git push --quiet --force https://$REPO_TOKEN@github.com/NoName4Me/NoName4Me.github.io.git master

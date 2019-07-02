@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="TypeScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="因为这只是个人的学习笔记，不便之处望谅解。 内容： 类。  2. 学习（接上一篇)2.3 类2.3.1 继承">
+<meta name="keywords" content="TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="typeScript学习笔记(2&#x2F;3)">
+<meta property="og:url" content="https://noname4me.github.io/2017/12/18/typeScript-learn-2/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="因为这只是个人的学习笔记，不便之处望谅解。 内容： 类。  2. 学习（接上一篇)2.3 类2.3.1 继承">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-02T09:44:00.499Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="typeScript学习笔记(2&#x2F;3)">
+<meta name="twitter:description" content="因为这只是个人的学习笔记，不便之处望谅解。 内容： 类。  2. 学习（接上一篇)2.3 类2.3.1 继承">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2017/12/18/typeScript-learn-2/"/>
+
+
+
+
+
+  <title>typeScript学习笔记(2/3) | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2017/12/18/typeScript-learn-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">typeScript学习笔记(2/3)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T23:14:17+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/18/typeScript-learn-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/18/typeScript-learn-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><em>因为这只是个人的学习笔记，不便之处望谅解。</em></p>
+<p><strong>内容：</strong> 类。</p>
+</blockquote>
+<h1 id="2-学习（接上一篇"><a href="#2-学习（接上一篇" class="headerlink" title="2. 学习（接上一篇)"></a>2. 学习（接<a href="https://noname4me.github.io/2017/12/16/typeScript-learn-1/">上一篇</a>)</h1><h2 id="2-3-类"><a href="#2-3-类" class="headerlink" title="2.3 类"></a>2.3 类</h2><h3 id="2-3-1-继承"><a href="#2-3-1-继承" class="headerlink" title="2.3.1 继承"></a>2.3.1 继承</h3><a id="more"></a>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Animal &#123;</div><div class="line">    name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">    move(distanceInMeters: <span class="built_in">number</span> = <span class="number">0</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;this.name&#125;</span> moved <span class="subst">$&#123;distanceInMeters&#125;</span>m.`</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Snake <span class="keyword">extends</span> Animal &#123;</div><div class="line">    <span class="comment">// 在调用this之前，必须先调用super</span></div><div class="line">    <span class="keyword">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>) &#123; <span class="keyword">super</span>(name); &#125;</div><div class="line">    <span class="comment">// 方法重写（覆盖）</span></div><div class="line">    move(distanceInMeters = <span class="number">5</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Slithering..."</span>);</div><div class="line">        <span class="keyword">super</span>.move(distanceInMeters);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-3-2-private-protected-public"><a href="#2-3-2-private-protected-public" class="headerlink" title="2.3.2 private/protected/public"></a>2.3.2 <code>private</code>/<code>protected</code>/<code>public</code></h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// private</span></div><div class="line"><span class="keyword">class</span> Animal &#123;</div><div class="line">    <span class="comment">// 仅能在Animal域内访问</span></div><div class="line">    <span class="keyword">private</span> name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Rhino <span class="keyword">extends</span> Animal &#123;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123; </div><div class="line">        <span class="keyword">super</span>(<span class="string">"Rhino"</span>);</div><div class="line">        <span class="comment">// a. 这里也无法访问Animal里的name</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">    test() &#123;</div><div class="line">        <span class="comment">// b. 这里也无法访问</span></div><div class="line">        <span class="keyword">this</span>.name;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Employee &#123;</div><div class="line">    <span class="keyword">private</span> name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> animal = <span class="keyword">new</span> Animal(<span class="string">"Goat"</span>);</div><div class="line"><span class="keyword">let</span> rhino = <span class="keyword">new</span> Rhino();</div><div class="line"><span class="keyword">let</span> employee = <span class="keyword">new</span> Employee(<span class="string">"Bob"</span>);</div><div class="line"></div><div class="line">animal = rhino;</div><div class="line"><span class="built_in">console</span>.log(animal.name); <span class="comment">// Property 'name' is private and only accessible within class 'Animal'.</span></div><div class="line">animal = employee; <span class="comment">// Error: 'Animal' and 'Employee' are not compatible</span></div><div class="line"></div><div class="line"><span class="comment">// protected</span></div><div class="line"><span class="comment">// 上面private里的'a'和'b'处可以访问到name</span></div><div class="line"><span class="keyword">class</span> Person &#123;</div><div class="line">    <span class="keyword">protected</span> name: <span class="built_in">string</span>;</div><div class="line">    <span class="comment">// 修饰构造器，表示只可以被继承，不可以直接实例化</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">constructor</span>(<span class="params">theName: <span class="built_in">string</span></span>) &#123; <span class="keyword">this</span>.name = theName; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-3-3-参数属性"><a href="#2-3-3-参数属性" class="headerlink" title="2.3.3 参数属性"></a>2.3.3 参数属性</h3><p>不在类内声明<code>xx</code>属性，而直接在构造器参数里，用<code>private/public/protected/readonly</code>修饰入参<code>xx</code>，使其成为类的属性。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Octopus &#123;</div><div class="line">    readonly name: <span class="built_in">string</span>;</div><div class="line">    readonly numberOfLegs: <span class="built_in">number</span> = <span class="number">8</span>;</div><div class="line">    <span class="keyword">constructor</span> (<span class="params">theName: <span class="built_in">string</span></span>) &#123;</div><div class="line">        <span class="keyword">this</span>.name = theName; <span class="comment">// 注意这个的变化</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 可以演变为</span></div><div class="line"><span class="keyword">class</span> Octopus &#123;</div><div class="line">    readonly numberOfLegs: <span class="built_in">number</span> = <span class="number">8</span>;</div><div class="line">    <span class="comment">// 这里还可以用private／protected／public修饰</span></div><div class="line">    <span class="keyword">constructor</span>(<span class="params">readonly name: <span class="built_in">string</span></span>) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> t = <span class="keyword">new</span> Octopus(<span class="string">"jonge"</span>);</div><div class="line">t.name;</div></pre></td></tr></table></figure>
+<h3 id="2-3-4-访问器"><a href="#2-3-4-访问器" class="headerlink" title="2.3.4 访问器"></a>2.3.4 访问器</h3><p>如果类的属性是公共的，那么可以直接读取或修改，但如果属性名变化了呢，如果读取或修改还有别的业务需求呢，此时前者需要多处改动，后者需要在每一处增加业务需求，所以定义统一维护的<code>get/set</code>很有必要。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> passcode = <span class="string">"secret passcode"</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Employee &#123;</div><div class="line">    <span class="keyword">private</span> _fullName: <span class="built_in">string</span>;</div><div class="line"></div><div class="line">    <span class="keyword">get</span> fullName(): <span class="built_in">string</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._fullName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">set</span> fullName(newName: <span class="built_in">string</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (passcode &amp;&amp; passcode == <span class="string">"secret passcode"</span>) &#123;</div><div class="line">            <span class="keyword">this</span>._fullName = newName;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"Error: Unauthorized update of employee!"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> employee = <span class="keyword">new</span> Employee();</div><div class="line">employee.fullName = <span class="string">"Bob Smith"</span>;</div><div class="line"><span class="keyword">if</span> (employee.fullName) &#123;</div><div class="line">    <span class="built_in">console</span>.log(employee.fullName);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>如果某个属性定义了<code>get</code>而没有定义<code>set</code>，会自动被设置为readonly（如果生成了<code>.d.ts</code>文件，会显式看到）。</p>
+<h3 id="2-3-5-静态属性"><a href="#2-3-5-静态属性" class="headerlink" title="2.3.5 静态属性"></a>2.3.5 静态属性</h3><p>直接通过类名（类似实例的<code>this</code>）来访问静态属性。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Grid &#123;</div><div class="line">    <span class="keyword">static</span> origin = &#123;x: <span class="number">0</span>, y: <span class="number">0</span>&#125;;</div><div class="line">    calculateDistanceFromOrigin(point: &#123;x: <span class="built_in">number</span>; y: <span class="built_in">number</span>;&#125;) &#123;</div><div class="line">        <span class="keyword">let</span> xDist = (point.x - Grid.origin.x); <span class="comment">// 在这里</span></div><div class="line">        <span class="keyword">let</span> yDist = (point.y - Grid.origin.y);</div><div class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(xDist * xDist + yDist * yDist) / <span class="keyword">this</span>.scale;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">constructor</span> (<span class="params"><span class="keyword">public</span> scale: <span class="built_in">number</span></span>) &#123; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> grid1 = <span class="keyword">new</span> Grid(<span class="number">1.0</span>);  <span class="comment">// 1x scale</span></div><div class="line"><span class="keyword">let</span> grid2 = <span class="keyword">new</span> Grid(<span class="number">5.0</span>);  <span class="comment">// 5x scale</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(grid1.calculateDistanceFromOrigin(&#123;x: <span class="number">10</span>, y: <span class="number">10</span>&#125;));</div><div class="line"><span class="built_in">console</span>.log(grid2.calculateDistanceFromOrigin(&#123;x: <span class="number">10</span>, y: <span class="number">10</span>&#125;));</div></pre></td></tr></table></figure>
+<h3 id="2-3-6-抽象类"><a href="#2-3-6-抽象类" class="headerlink" title="2.3.6 抽象类"></a>2.3.6 抽象类</h3><p>不可实例化，抽象方法必须被继承类实现。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> Department &#123;</div><div class="line"></div><div class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span></span>) &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    printName(): <span class="built_in">void</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Department name: "</span> + <span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">abstract</span> printMeeting(): <span class="built_in">void</span>; <span class="comment">// must be implemented in derived classes</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> AccountingDepartment <span class="keyword">extends</span> Department &#123;</div><div class="line"></div><div class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</div><div class="line">        <span class="keyword">super</span>(<span class="string">"Accounting and Auditing"</span>); <span class="comment">// constructors in derived classes must call super()</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    printMeeting(): <span class="built_in">void</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"The Accounting Department meets each Monday at 10am."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    generateReports(): <span class="built_in">void</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"Generating accounting reports..."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> department: Department; <span class="comment">// ok to create a reference to an abstract type</span></div><div class="line">department = <span class="keyword">new</span> Department(); <span class="comment">// error: cannot create an instance of an abstract class</span></div><div class="line">department = <span class="keyword">new</span> AccountingDepartment(); <span class="comment">// ok to create and assign a non-abstract subclass</span></div><div class="line">department.printName();</div><div class="line">department.printMeeting();</div><div class="line">department.generateReports(); <span class="comment">// error: method doesn't exist on declared abstract type</span></div></pre></td></tr></table></figure>
+<h3 id="2-3-7-高级知识"><a href="#2-3-7-高级知识" class="headerlink" title="2.3.7 高级知识"></a>2.3.7 高级知识</h3><p>当声明一个类时，实际上同时创建了好几个东西：</p>
+<ul>
+<li><p>实例的类的类型：<code>let c: MyClass</code>，<code>MyClass</code>是类<code>MyClass</code>的类型；</p>
+</li>
+<li><p>构造器函数：<code>let c: MyClass = new MyClass()</code>时，由<code>new</code>引发；</p>
+</li>
+<li><p>instance side和static side：构造器里可以访问静态属性</p>
+</li>
+</ul>
+<p>将类当作接口</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Point &#123;</div><div class="line">    x: <span class="built_in">number</span>;</div><div class="line">    y: <span class="built_in">number</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">interface</span> Point3d <span class="keyword">extends</span> Point &#123;<span class="comment">// 如上所述，Point也是类型</span></div><div class="line">    z: <span class="built_in">number</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> point3d: Point3d = &#123;x: <span class="number">1</span>, y: <span class="number">2</span>, z: <span class="number">3</span>&#125;;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2017/12/18/typeScript-learn-2/" title="typeScript学习笔记(2/3)">https://noname4me.github.io/2017/12/18/typeScript-learn-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/16/typeScript-learn-1/" rel="next" title="typeScript学习笔记(1/3)">
+                <i class="fa fa-chevron-left"></i> typeScript学习笔记(1/3)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/06/async-and-promise/" rel="prev" title="异步以及Promise">
+                异步以及Promise <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                    
+                      <i class="fa fa-fw fa-pinterest"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-学习（接上一篇"><span class="nav-text">2. 学习（接上一篇)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-类"><span class="nav-text">2.3 类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-继承"><span class="nav-text">2.3.1 继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-private-protected-public"><span class="nav-text">2.3.2 private/protected/public</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-参数属性"><span class="nav-text">2.3.3 参数属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-访问器"><span class="nav-text">2.3.4 访问器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-静态属性"><span class="nav-text">2.3.5 静态属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-6-抽象类"><span class="nav-text">2.3.6 抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-7-高级知识"><span class="nav-text">2.3.7 高级知识</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2017/12/18/typeScript-learn-2/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

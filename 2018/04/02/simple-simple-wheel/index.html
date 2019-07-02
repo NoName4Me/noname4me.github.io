@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="框架," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要说明如何造一个超轻量的框架，比如xxx行实现vue或AngularJs。（文章比较长，就不拆分了-__-。）">
+<meta name="keywords" content="框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="画个圈，假装是轮子">
+<meta property="og:url" content="https://noname4me.github.io/2018/04/02/simple-simple-wheel/index.html">
+<meta property="og:site_name" content="辣手摧花">
+<meta property="og:description" content="本文主要说明如何造一个超轻量的框架，比如xxx行实现vue或AngularJs。（文章比较长，就不拆分了-__-。）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-04T07:45:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="画个圈，假装是轮子">
+<meta name="twitter:description" content="本文主要说明如何造一个超轻量的框架，比如xxx行实现vue或AngularJs。（文章比较长，就不拆分了-__-。）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PCAKTMI1LK',
+      apiKey: 'f2bd0f0cb37fa470984ffb7c66efa97c',
+      indexName: 'jonge_club_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索吧，少年～","hits_empty":"不好意思，木有'${query}'的搜索结果😂","hits_stats":"结果：${hits} ，耗时： ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://noname4me.github.io/2018/04/02/simple-simple-wheel/"/>
+
+
+
+
+
+  <title>画个圈，假装是轮子 | 辣手摧花</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">辣手摧花</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">牢骚太胜防肠断，风物长宜放眼量。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://noname4me.github.io/2018/04/02/simple-simple-wheel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="严肃的二叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="辣手摧花">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">画个圈，假装是轮子</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T20:26:57+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/02/simple-simple-wheel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/02/simple-simple-wheel/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>本文主要说明如何造一个超轻量的框架，比如xxx行实现vue或AngularJs。（文章比较长，就不拆分了-__-。）</em></p>
+<a id="more"></a>
+<h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><h1 id="2-vue"><a href="#2-vue" class="headerlink" title="2. vue"></a>2. vue</h1><h1 id="3-AngularJs"><a href="#3-AngularJs" class="headerlink" title="3. AngularJs"></a>3. AngularJs</h1><h2 id="3-1-说明"><a href="#3-1-说明" class="headerlink" title="3.1 说明"></a>3.1 说明</h2><p>我们会用到AngularJs的三个组件：</p>
+<ul>
+<li>Controllers</li>
+<li>Directives</li>
+<li>Services</li>
+</ul>
+<p>为了实现这些功能，我们首先需要实现<code>$compile</code>服务，我们这里叫做<code>DOMCompiler</code>，以及<code>$provider</code>服务和<code>$injector</code>服务，这两个封装到组件<code>Provider</code>里，为了实现双向数据绑定，我们实现<code>Scope</code>层级，<code>DOMCompiler</code>、<code>Provider</code>、<code>Scope</code>的关系如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//      DOMCompiler</span></div><div class="line"><span class="comment">//       /     \</span></div><div class="line"><span class="comment">//     _/       \_</span></div><div class="line"><span class="comment">//   Provider  Scope</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>Provider</code></li>
+</ul>
+<p>前面已经说过，<code>Provider</code>会合并框架的两个模块：<code>$provide</code>和<code>$injector</code>。</p>
+<p>它是单例的，并且应该提供如下功能：</p>
+<ol>
+<li>注册组件（模块），比如指令、服务、控制器；</li>
+<li>解析组件的依赖项；</li>
+<li>初始化组件。</li>
+</ol>
+<ul>
+<li><code>DOMCompiler</code></li>
+</ul>
+<p><code>DOMCompiler</code>也是一个单例，它遍历DOM树，来寻找指令（比如AngularJs中的<code>ng-if</code>、<code>ng-repeat</code>这些），这里简单起见，我们只支持属性形式的指令。当<code>DOMCompiler</code>找到给定的指令，它会提供作用域管理功能（因为指令可能需要新的作用域），并且激活绑定给它的逻辑（在本文示例指的是<code>link</code>函数），所以它的主要功能如下：</p>
+<ol>
+<li>编译DOM；</li>
+<li>遍历DOM树；</li>
+<li>找到注册的（属性形式的）指令；</li>
+<li>激活绑定给它们的逻辑；</li>
+<li>管理作用域。</li>
+</ol>
+<ul>
+<li><code>Scope</code></li>
+</ul>
+<p>为了实现数据的双向绑定，我们需要给属性附加上<code>$scope</code>，我们可以把这些属性组合成表达式然后监听它们，当我们发现表达式的值有改变时，我们就激活绑定在表达式上的回调函数（观察器）。</p>
+<p>它的主要功能：</p>
+<ol>
+<li>监听表达式；</li>
+<li>在每个<code>$digest</code>循环周期里求表达式的值，直到值不再改变；</li>
+<li>激活绑定在监听表达式上的观察器。</li>
+</ol>
+<h2 id="3-2-实现"><a href="#3-2-实现" class="headerlink" title="3.2 实现"></a>3.2 实现</h2><p>源码获取，<a href="https://github.com/NoName4Me/tiny-wheel" target="_blank" rel="external">点击这里</a>。</p>
+<h3 id="3-2-1-Provider"><a href="#3-2-1-Provider" class="headerlink" title="3.2.1 Provider"></a>3.2.1 <code>Provider</code></h3><p>根据前面说到的它的功能，它需要以下几个接口：</p>
+<ul>
+<li><code>get(name, locals)</code>：根据<code>name</code>和本地依赖项返回服务</li>
+<li><code>invoke(fn, locals)</code>：通过工厂方法和本地依赖项初始化服务</li>
+<li><code>directive(name, fn)</code>：通过<code>name</code>和工厂注册服务</li>
+<li><code>controller(name, fn)</code>：通过<code>name</code>和工厂注册控制器（注意：控制器不是AngularJs的核心，它们只是通过<code>$controller</code>服务实现的）</li>
+<li><code>service(name, fn)</code>：通过<code>name</code>和工厂注册服务</li>
+<li><code>annotate(fn)</code>：返回某个服务的依赖项名字（数组格式）</li>
+</ul>
+<p><strong>注意：</strong>这里说一下依赖项的问题，AngularJs有两种依赖，本地（局部）依赖和全局依赖，后者是在任何组件都能访问到的依赖（比如<code>$http</code>、<code>$resource</code>），局部依赖是针对某个特定组件的依赖，比如<code>$scope</code>、<code>$delegate</code>。</p>
+<p>具体实现从代码里说：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> Provider = &#123;</div><div class="line">    _cache: &#123; <span class="attr">$rootScope</span>: <span class="keyword">new</span> Scope() &#125;, <span class="comment">// 默认先缓存$rootScope，因为全局只有一个，_cache保存激活的各个组件</span></div><div class="line">    _providers: &#123;&#125;, <span class="comment">// 用来换存注册的工厂方法（指令的、控制器的、服务的），可以看到directive／service／controller的调用都委托给了_register</span></div><div class="line">    _register: <span class="function"><span class="keyword">function</span> (<span class="params">name, factory</span>) </span>&#123; <span class="comment">// 内部函数，用来统一注册指令、控制器、服务</span></div><div class="line">        <span class="keyword">this</span>._providers[name] = factory;</div><div class="line">    &#125;</div><div class="line">    get: <span class="function"><span class="keyword">function</span> (<span class="params">name, locals</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>._cache[name]) &#123; <span class="comment">// 如果某个组件存在，直接返回</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._cache[name];</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">var</span> provider = <span class="keyword">this</span>._providers[name];</div><div class="line">      <span class="keyword">if</span> (!provider || <span class="keyword">typeof</span> provider !== <span class="string">'function'</span>) &#123; <span class="comment">// 没有注册，返回null</span></div><div class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 找到这个组件的provider，并激活它</span></div><div class="line">      <span class="keyword">return</span> (<span class="keyword">this</span>._cache[name] = <span class="keyword">this</span>.invoke(provider, locals));</div><div class="line">    &#125;,</div><div class="line">    directive: <span class="function"><span class="keyword">function</span> (<span class="params">name, fn</span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>._register(name + Provider.DIRECTIVES_SUFFIX, fn); <span class="comment">// 委托给_register来调用</span></div><div class="line">    &#125;,</div><div class="line">    controller: <span class="function"><span class="keyword">function</span> (<span class="params">name, fn</span>) </span>&#123; <span class="comment">// 注册：Provider.controller('xxCtrl', ctrlFunc)，ctrlFunc的形式参考annotate</span></div><div class="line">      <span class="keyword">this</span>._register(name + Provider.CONTROLLERS_SUFFIX, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> fn; <span class="comment">// 因为controller会被调用多次，我们不想保留之前调用产生的值，所以包裹在函数里返回</span></div><div class="line">      &#125;);</div><div class="line">    &#125;,</div><div class="line">    service: <span class="function"><span class="keyword">function</span> (<span class="params">name, fn</span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>._register(name, fn);</div><div class="line">    &#125;,</div><div class="line">    annotate: <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> res = fn.toString() <span class="comment">// 比如有个控制器：`function SomeCtrl(depend1, /* some thing, other things */ depend2, $http) &#123; &#125;`</span></div><div class="line">          .replace(<span class="regexp">/((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg</span>, <span class="string">''</span>) <span class="comment">// 这个是为了拿掉注释，成为：`function SomeCtrl(depend1, depend2, $http) &#123; &#125;`</span></div><div class="line">          .match(<span class="regexp">/\((.*?)\)/</span>); <span class="comment">// 取括号里的依赖项：`depend1, depend2, $http`</span></div><div class="line">      <span class="keyword">if</span> (res &amp;&amp; res[<span class="number">1</span>]) &#123;</div><div class="line">        <span class="keyword">return</span> res[<span class="number">1</span>].split(<span class="string">','</span>).map(<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123; <span class="comment">// 通过`,`分割取到依赖名数组</span></div><div class="line">          <span class="keyword">return</span> d.trim();</div><div class="line">        &#125;);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> [];</div><div class="line">    &#125;,</div><div class="line">    invoke: <span class="function"><span class="keyword">function</span> (<span class="params">fn, locals</span>) </span>&#123;</div><div class="line">      locals = locals || &#123;&#125;;</div><div class="line">      <span class="keyword">var</span> deps = <span class="keyword">this</span>.annotate(fn).map(<span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123; <span class="comment">// 取依赖项</span></div><div class="line">        <span class="keyword">return</span> locals[s] || <span class="keyword">this</span>.get(s, locals); <span class="comment">// 可能有多级依赖，注意这里没有考虑循环依赖的问题</span></div><div class="line">      &#125;, <span class="keyword">this</span>);</div><div class="line">      <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, deps); <span class="comment">// 注意这里，fn是传入的工厂方法，会返回一个东西（比如控制器啊、服务啊什么的）</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">Provider.DIRECTIVES_SUFFIX = <span class="string">'Directive'</span>;</div><div class="line">Provider.CONTROLLERS_SUFFIX = <span class="string">'Controller'</span>;</div></pre></td></tr></table></figure>
+<p>用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册一个服务：RESTfulService</span></div><div class="line">Provider.service(<span class="string">'RESTfulService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">url</span>) </span>&#123;</div><div class="line">    <span class="comment">// make restful call &amp; return promise</span></div><div class="line">  &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 注册一个控制器：MainCtrl，它依赖前面注册的RESTfulService</span></div><div class="line">Provider.controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">RESTfulService</span>) </span>&#123;</div><div class="line">  RESTfulService(url)</div><div class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    alert(data);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 激活MainCtrl</span></div><div class="line"><span class="keyword">var</span> ctrl = Provider.get(<span class="string">'MainCtrl'</span> + Provider.CONTROLLERS_SUFFIX);</div><div class="line">Provider.invoke(ctrl);</div></pre></td></tr></table></figure>
+<p>棒棒的，我们已经完成了四分之一的工作。</p>
+<h3 id="3-2-2-DOMCompiler"><a href="#3-2-2-DOMCompiler" class="headerlink" title="3.2.2 DOMCompiler"></a>3.2.2 <code>DOMCompiler</code></h3><p>同样的，回忆前面关于它应该具有的功能，我们设计两个接口：</p>
+<ul>
+<li><code>bootstrap()</code>：启动应用（类似于angular.bootstrap，但是这里固定使用根HTML作为应用的根）</li>
+<li><code>compile(el, scope)</code>：激活所有绑定在指定元素（<code>el</code>）上的逻辑，并且递归的为<code>el</code>子元素调用此接口，我们需要一个绑定给当前元素的作用域，从而实现数据绑定，由于每个指令都会创建不同的作用域，所以我们需要在递归调用时，附带上作用域。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> DOMCompiler = &#123;</div><div class="line">    bootstrap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.compile(<span class="built_in">document</span>.children[<span class="number">0</span>],</div><div class="line">        Provider.get(<span class="string">'$rootScope'</span>)); <span class="comment">// 还记得前面Provider._cache里默认生成的$rootScope么</span></div><div class="line">    &#125;,</div><div class="line">    compile: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> dirs = <span class="keyword">this</span>._getElDirectives(el);</div><div class="line">      <span class="keyword">var</span> dir;</div><div class="line">      <span class="keyword">var</span> scopeCreated;</div><div class="line">      dirs.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</div><div class="line">        dir = Provider.get(d.name + Provider.DIRECTIVES_SUFFIX);</div><div class="line">        <span class="keyword">if</span> (dir.scope &amp;&amp; !scopeCreated) &#123; <span class="comment">// 是否需要创建作用域以及是否已创建</span></div><div class="line">          scope = scope.$<span class="keyword">new</span>();</div><div class="line">          scopeCreated = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        dir.link(el, scope, d.value); <span class="comment">// 激活该指令定义的逻辑</span></div><div class="line">      &#125;);</div><div class="line">      <span class="built_in">Array</span>.prototype.slice.call(el.children).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">c</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.compile(c, scope);</div><div class="line">      &#125;, <span class="keyword">this</span>);</div><div class="line">    &#125;,</div><div class="line">    _getElDirectives: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> attrs = el.attributes; <span class="comment">// 最开始有提到，只实现了属性方式的绑定，所以……</span></div><div class="line">      <span class="keyword">var</span> result = [];</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; attrs.length; i += <span class="number">1</span>) &#123;</div><div class="line">        <span class="comment">// 查找是否是注册的指令</span></div><div class="line">        <span class="keyword">if</span> (Provider.get(attrs[i].name + Provider.DIRECTIVES_SUFFIX)) &#123;</div><div class="line">          result.push(&#123;</div><div class="line">            name: attrs[i].name,</div><div class="line">            value: attrs[i].value</div><div class="line">          &#125;);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="3-2-3-Scope"><a href="#3-2-3-Scope" class="headerlink" title="3.2.3 Scope"></a>3.2.3 <code>Scope</code></h3><ul>
+<li><code>$watch(expr, fn)</code>：坚挺表达式 <code>expr</code>，一旦监测到值的改变，就用新的值激活回调函数 <code>fn</code></li>
+<li><code>$destroy()</code>：销毁当前作用域</li>
+<li><code>$eval(expr)</code>：计算表达式 <code>expr</code> 在当前作用域下的值</li>
+<li><code>$new()</code>：创建一个新的作用域，原型继承调用者（的作用域）</li>
+<li><code>$digest()</code>：执行脏检查循环</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Scope</span>(<span class="params">parent, id</span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line">  <span class="keyword">this</span>.$$watchers = [];</div><div class="line">  <span class="keyword">this</span>.$$children = [];</div><div class="line">  <span class="keyword">this</span>.$parent = parent;</div><div class="line">  <span class="keyword">this</span>.$id = id || <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Scope.counter = <span class="number">0</span>;</div><div class="line"></div><div class="line">Scope.prototype.$watch = <span class="function"><span class="keyword">function</span> (<span class="params">exp, fn</span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line">  <span class="keyword">this</span>.$$watchers.push(&#123;</div><div class="line">    exp: exp,</div><div class="line">    fn: fn,</div><div class="line">    last: Utils.clone(<span class="keyword">this</span>.$<span class="built_in">eval</span>(exp))</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Scope.prototype.$<span class="built_in">eval</span> = <span class="function"><span class="keyword">function</span> (<span class="params">exp</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> val;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> exp === <span class="string">'function'</span>) &#123;</div><div class="line">    val = exp.call(<span class="keyword">this</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      <span class="keyword">with</span> (<span class="keyword">this</span>) &#123;</div><div class="line">        val = <span class="built_in">eval</span>(exp);</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">      val = <span class="literal">undefined</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> val;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Scope.prototype.$<span class="keyword">new</span> = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line">  Scope.counter += <span class="number">1</span>;</div><div class="line">  <span class="keyword">var</span> obj = <span class="keyword">new</span> Scope(<span class="keyword">this</span>, Scope.counter);</div><div class="line">  <span class="built_in">Object</span>.setPrototypeOf(obj, <span class="keyword">this</span>); <span class="comment">// 将新生成的作用域原型指向当前作用域</span></div><div class="line">  <span class="keyword">this</span>.$$children.push(obj);</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Scope.prototype.$destroy = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line">  <span class="keyword">var</span> pc = <span class="keyword">this</span>.$parent.$$children; <span class="comment">// 从父作用域的子作用域数组中删除自己</span></div><div class="line">  pc.splice(pc.indexOf(<span class="keyword">this</span>), <span class="number">1</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Scope.prototype.$digest = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 遍历watcher里所有项</span></div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line">  <span class="keyword">var</span> dirty, watcher, current, i;</div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    dirty = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.$$watchers.length; i += <span class="number">1</span>) &#123;</div><div class="line">      watcher = <span class="keyword">this</span>.$$watchers[i];</div><div class="line">      current = <span class="keyword">this</span>.$<span class="built_in">eval</span>(watcher.exp);</div><div class="line">      <span class="keyword">if</span> (!Utils.equals(watcher.last, current)) &#123;</div><div class="line">        watcher.last = Utils.clone(current);</div><div class="line">        dirty = <span class="literal">true</span>;</div><div class="line">        watcher.fn(current);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">while</span> (dirty);</div><div class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.$$children.length; i += <span class="number">1</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.$$children[i].$digest();</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="3-2-4-定义几个指令"><a href="#3-2-4-定义几个指令" class="headerlink" title="3.2.4 定义几个指令"></a>3.2.4 定义几个指令</h3><ul>
+<li>单向数据绑定<code>ngl-bind</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-bind'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    scope: <span class="literal">false</span>,</div><div class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      el.innerHTML = scope.$<span class="built_in">eval</span>(exp);</div><div class="line">      scope.$watch(exp, <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">        el.innerHTML = val;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>双向绑定<code>ngl-model</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-model'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    link:  <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      el.onkeyup = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        scope[exp] = el.value; <span class="comment">// 简单起见，只用于input</span></div><div class="line">        scope.$digest();</div><div class="line">      &#125;;</div><div class="line">      scope.$watch(exp, <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">        el.value = val;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>指定控制器<code>ngl-controller</code></li>
+</ul>
+<p>控制器需要新的作用域，所以 <code>scope</code> 设置为 <code>true</code> ，通过 <code>Provider.get</code> 获取控制器，然后激活它，在控制器里，我们可以给作用域增加属性，我们可以使用<code>ngl-bind/model</code>来绑定这些属性，当属性值改变后，我们需要确保 <code>$digest</code> 被激活，从而<code>ngl-bind/model</code>关联的监听器被激活。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-controller'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    scope: <span class="literal">true</span>,</div><div class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> ctrl = Provider.get(exp + Provider.CONTROLLERS_SUFFIX);</div><div class="line">      Provider.invoke(ctrl, &#123; <span class="attr">$scope</span>: scope &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>点击事件绑定<code>ngl-click</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Provider.directive(<span class="string">'ngl-click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    scope: <span class="literal">false</span>,</div><div class="line">    link: <span class="function"><span class="keyword">function</span> (<span class="params">el, scope, exp</span>) </span>&#123;</div><div class="line">      el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        scope.$<span class="built_in">eval</span>(exp); <span class="comment">// html里绑定时要带括号的哦</span></div><div class="line">        scope.$digest();</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="3-2-5-试试这个小轮子"><a href="#3-2-5-试试这个小轮子" class="headerlink" title="3.2.5 试试这个小轮子"></a>3.2.5 试试这个小轮子</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ngl-controller</span>=<span class="string">"MainCtrl"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">ngl-bind</span>=<span class="string">"bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">ngl-click</span>=<span class="string">"foo()"</span>&gt;</span>Increment<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册一个名为 MainCtrl 的控制器</span></div><div class="line">Provider.controller(<span class="string">'MainCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope</span>) </span>&#123;</div><div class="line">  $scope.bar = <span class="number">0</span>;</div><div class="line">  $scope.foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $scope.bar += <span class="number">1</span>;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 启动编译～</span></div><div class="line">DOMCompiler.bootstrap();</div></pre></td></tr></table></figure>
+<p>一开始 <code>DOMCompiler</code> 发现 <code>ngl-controller</code> 指令，这个指令的 <code>link</code> 函数创建新作用域并且传递给控制器的函数，控制器里我们添加了属性 <code>bar</code> ，以及函数 <code>foo</code> ， <code>DOMCompiler</code> 发现 <code>ngl-bind</code> ，然后给它关联的属性 <code>bar</code> 添加监听器， <code>DOMCompiler</code> 还发现 <code>ngl-click</code> 指令，并为按钮绑定事件处理程序。</p>
+<p>如果用户点击了按钮， <code>foo</code> 方法会通过 <code>$scope.$eval</code> 被计算然后调用， <code>$scope</code> 类似， 它被当作值传递给 <code>MainCtrl</code> 。然后， <code>ngl-click</code> 激活了 <code>$scope.$digest</code> 。<code>$digest</code> 遍历所有的监听器，检测表达式 <code>bar</code> 值的变化， 因为我们已经在 <code>ngl-bind</code> 指令定义中给定了回调函数（ <code>$watch</code>里的<code>function(val) {el.innerHTML = val;}</code>），此时该函数会被调用，然后我们看到 <code>span</code> 元素的值被更新。</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><span class="fa fa-fw fa-file-text" style="margin-right: 8px;"></span><a href="https://saul-mirone.github.io/2016/12/19/simple-mvvm/" target="_blank" rel="external">250行实现一个简单的MVVM</a></li>
+<li><span class="fa fa-fw fa-file-text" style="margin-right: 8px;"></span><a href="http://blog.mgechev.com/2015/03/09/build-learn-your-own-light-lightweight-angularjs/" target="_blank" rel="external">Build Your own Simplified AngularJS in 200 Lines of JavaScript</a></li>
+<li><span class="fa fa-book" style="margin-right: 8px;"></span><a href="http://teropa.info/build-your-own-angular/" target="_blank" rel="external"><em>Build Your Own AngularJS</em>, by Tero Parviainen</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    严肃的二叔
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://noname4me.github.io/2018/04/02/simple-simple-wheel/" title="画个圈，假装是轮子">https://noname4me.github.io/2018/04/02/simple-simple-wheel/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/28/git-learn/" rel="next" title="Git学习笔记（基础篇）">
+                <i class="fa fa-chevron-left"></i> Git学习笔记（基础篇）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/05/something-about-cache/" rel="prev" title="Web缓存之浏览器缓存（HTTP缓存）">
+                Web缓存之浏览器缓存（HTTP缓存） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpeg"
+                alt="严肃的二叔" />
+            
+              <p class="site-author-name" itemprop="name">严肃的二叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/noname4me" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/jonge" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.pinterest.ca/anichevas/" target="_blank" title="Pinterest">
+                    
+                      <i class="fa fa-fw fa-pinterest"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本概念"><span class="nav-text">1. 基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-vue"><span class="nav-text">2. vue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-AngularJs"><span class="nav-text">3. AngularJs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-说明"><span class="nav-text">3.1 说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-实现"><span class="nav-text">3.2 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-Provider"><span class="nav-text">3.2.1 Provider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-DOMCompiler"><span class="nav-text">3.2.2 DOMCompiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-Scope"><span class="nav-text">3.2.3 Scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-定义几个指令"><span class="nav-text">3.2.4 定义几个指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-试试这个小轮子"><span class="nav-text">3.2.5 试试这个小轮子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">严肃的二叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 97370, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 97370, xid: "2018/04/02/simple-simple-wheel/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/97370/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
